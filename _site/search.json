@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome to the Data Science Breakfast Club"
+  },
+  {
+    "objectID": "lab-charter.html",
+    "href": "lab-charter.html",
+    "title": "Lab Charter",
+    "section": "",
+    "text": "“Scientia per communionem” (knowledge through fellowship) emphasises the founding ethos of our lab group: collaboration, learning, and sharing of knowledge for the benefit of all.\nMuch like the medical firm (now lost to time) the academic lab group is a wonderful, shared community. It brings together like minded individuals on a journey to better themselves and expand their knowledge. It provides a solid core that persists for members as they move between placements, careers or even countries.\nWhy have a charter? Over time, labs mature and often develop their own scientific “political” leanings. In our experience, this can contribute to the negative interface between science (the method of learning) and academia (the human implementation of that method). Put another way, “successful” labs are often not defined by the quality of their scientific discovery, but by their ability to deluge the market with thematic papers and control the narrative around “their” subject. We aim to redefine what success looks like in medical academia. By building a charter, we can hold ourselves accountable to the standards we have chosen to set. We aim to be an aspirational force, with scientific discovery at its core. This requires a fundamental honesty: that we do not know, are not an authority, and can and will be wrong."
+  },
+  {
+    "objectID": "lab-charter.html#core-principles",
+    "href": "lab-charter.html#core-principles",
+    "title": "Lab Charter",
+    "section": "Core Principles",
+    "text": "Core Principles\n\nKnowledge can never be owned, only shared[1].\nA successful fellow is a successful lab; lift each other up.\nIndividual differences are to be celebrated and respected. We are united by a passion for acquiring and sharing knowledge.\nExtraordinary claims require extraordinary evidence; all opinions are provisional and can be falsified by further experimentation and study.\nBe ruthless in experimental planning and design. Never build a study because the data was there and it was convenient.\nIf it isn’t replicable, it didn’t happen."
+  },
+  {
+    "objectID": "lab-charter.html#affiliations-collaborations",
+    "href": "lab-charter.html#affiliations-collaborations",
+    "title": "Lab Charter",
+    "section": "Affiliations & Collaborations",
+    "text": "Affiliations & Collaborations\n\nThe Whittington Hospital (our independent host organisation).\nHarris Lab: UCLH.\nLSHTM causal inference group."
+  },
+  {
+    "objectID": "lab-charter.html#onboarding",
+    "href": "lab-charter.html#onboarding",
+    "title": "Lab Charter",
+    "section": "Onboarding",
+    "text": "Onboarding\nOur onboarding process is heavily inspired by Prof. Whittacre’s Lab group. Onboarding aims to:\n\nComplete a minimum example of using git and github\nWriting a short member profile\nInvesting some time in the lab\n\nThis process also serves to create a front end directory of lab members, building our community over time."
+  },
+  {
+    "objectID": "lab-charter.html#meetings",
+    "href": "lab-charter.html#meetings",
+    "title": "Lab Charter",
+    "section": "Meetings",
+    "text": "Meetings\nEvery Thursday at 07:00-07:45. Whittington Hospital meeting room behind the cafeteria (and online). Breakfast encouraged and often provided."
+  },
+  {
+    "objectID": "people/ed-palmer.html",
+    "href": "people/ed-palmer.html",
+    "title": "Ed Palmer",
+    "section": "",
+    "text": "I am a consultant in anaesthesia and intensive care medicine based in London, UK. My research background is in the reuse of routinely collected longitudinal healthcare data for research. My interests are directed towards research goals that may be challenging to meet under traditional frameworks because anticipated effect sizes are very small, that it is too expensive to run a classical trial, or there are concerns over equipoise. My PhD investigated the safe limits—including addressing intrinsic biases—of these resources. This ties with my clinical interest in sepsis, where my research took steps towards a better understanding of “time zero” and the association between physiological trajectories and outcomes in sepsis.\nI started this lab group as a way to bring together and support like minded individuals, improve local patient care using data informed methods, and engage with research in a positive way.\nThe lab group name “The Data Science Breakfast Club” is a loving nod to my long time friend and mentor Prof. Steve Harris, who started a club by the same name more than a decade ago. It was through meeting Steve that my love for this subject florished, and in many respects, this is my attempt at paying it forward.\nAs a past fellow of the Software Sustainability Institute, I am a strong proponent of open data, reproducible research and free1 and open software. When I am not tinkering with ventilators or R, I try to spend as much time as possible with my wonderful partner and children."
+  },
+  {
+    "objectID": "people/ed-palmer.html#education",
+    "href": "people/ed-palmer.html#education",
+    "title": "Ed Palmer",
+    "section": "Education",
+    "text": "Education\n\nFCICM. Fellow of The College of Intensive Care Medicine, 2024\nThe Royal College of Anaesthetists, UK\nPh.D. in Intensive Care Medicine, Health Informatics & Applied Statistics, 2020\nUniversity College London, UK\nFRCA. Fellow of the Royal College of Anaesthetists, 2016\nThe Royal College of Anaesthetists, UK\nMBBS. Medicine, 2011\nKing’s College London, UK\nB.Sc. Imaging Sciences, 2008\nKing’s College London, UK"
+  },
+  {
+    "objectID": "people/ed-palmer.html#experience",
+    "href": "people/ed-palmer.html#experience",
+    "title": "Finley Malloc",
+    "section": "Experience",
+    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Spet 2012 - April 2018"
+  },
+  {
+    "objectID": "people.html",
+    "href": "people.html",
+    "title": "Lab Members",
+    "section": "",
+    "text": "Ed Palmer\n\n\n\nlab head\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "people/ed-palmer.html#interests",
+    "href": "people/ed-palmer.html#interests",
+    "title": "Ed Palmer",
+    "section": "Interests",
+    "text": "Interests\n\nResearch methods\nTrials in Intensive Care Medicine\nStatistical literacy in medicine\nRunning and calisthenics"
+  },
+  {
+    "objectID": "people/ed-palmer.html#footnotes",
+    "href": "people/ed-palmer.html#footnotes",
+    "title": "Ed Palmer",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nFree as in freedom.↩︎"
+  },
+  {
+    "objectID": "onboarding.html",
+    "href": "onboarding.html",
+    "title": "Onboarding",
+    "section": "",
+    "text": "Our onboarding process is heavily inspired by Prof. Whittacre’s Lab group. Onboarding aims to:\n\nComplete a minimum example of using git and github\nWriting a short member profile\nInvesting some time in the lab\n\nThis process also serves to create a front end directory of lab members, building our community over time.\nIn order to “onboard”, please complete the following technical steps:\n\nInstall git on your local machine\nClone a copy of this website repo and create a new branch\nThis branch should be identified by your name\nAdd a profile page in the people folder, and tag yourself with the category of “active lab member”. Please take a look at any of the other profiles for examples.\npush your branch to github and submit a pull request.\n\nThis will complete the technical aspects of onboarding. You will have learnt through this process, all the vital steps that we will be using for sharing code and completing project peer review. If it feels daunting, please do not worry. We are all here to help you with this process.\nBeyond this, new members are expected to:\n\nRead and understand the lab charter.\nCome and show us something you are working on.\nContribute your knowledge and experience to others in the lab (as we will do with you.)\n\nWe look forward to seeing you in the lab!"
+  }
+]

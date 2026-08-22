@@ -1,0 +1,50 @@
+---
+title: "Lab Charter"
+author: "Ed Palmer"
+date: 2026-05-15
+format: html
+---
+
+“Scientia per communionem” (knowledge through fellowship) emphasises the
+founding ethos of our lab group: collaboration, learning, and sharing of
+knowledge for the benefit of all.
+
+Much like the medical firm (now lost to time) the academic lab group is a
+wonderful, shared community. It brings together like minded individuals on a
+journey to better themselves and expand their knowledge. It provides a solid
+core that persists for members as they move between placements, careers or even
+countries.
+
+Why have a charter? Over time, labs mature and often develop their own
+scientific "political" leanings. In our experience, this can contribute to the
+negative interface between science (the method of learning) and academia (the
+human implementation of that method). Put another way, "successful" labs are
+often not defined by the quality of their scientific discovery, but by their
+ability to deluge the market with thematic papers and control the narrative
+around "their" subject. We aim to redefine what success looks like in medical
+academia. By building a charter, we can hold ourselves accountable to the
+standards we have chosen to set. We aim to be an aspirational force, with
+scientific discovery at its core. This requires a fundamental honesty: that we
+do not know, are not an authority, and can and will be wrong.
+
+## Core Principles
+
+- Knowledge can never be owned, only shared[1].
+- A successful fellow is a successful lab; lift each other up.
+- Individual differences are to be celebrated and respected. We are united by a
+passion for acquiring and sharing knowledge.
+- Extraordinary claims require extraordinary evidence; all opinions are
+provisional and can be falsified by further experimentation and study.
+- Be ruthless in experimental planning and design. Never build a study because the data was there and it was convenient.
+- If it isn't replicable, it didn't happen.
+
+## Affiliations & Collaborations
+
+- The Whittington Hospital (our independent host organisation).
+- Harris Lab: UCLH.
+- LSHTM causal inference group.
+
+## Meetings
+
+Every Thursday at 07:00-07:45. Whittington Hospital meeting room behind the cafeteria (and online).
+Breakfast encouraged and often provided.

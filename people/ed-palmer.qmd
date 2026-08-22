@@ -1,0 +1,68 @@
+---
+title: "Ed Palmer"
+categories:
+  - "lab head"
+about:
+  template: jolla
+  image: images/ed-palmer.jpg
+  links:
+    - icon: bluesky
+      text: Bluesky
+      href: https://bsky.app/profile/doced.bsky.social
+    - icon: github
+      text: Github
+      href: https://doced.github.io/
+---
+
+I am a consultant in anaesthesia and intensive care medicine based in London, UK.
+My research background is in the reuse of routinely collected longitudinal healthcare data for research.
+My interests are directed towards research goals that may be challenging to meet under traditional frameworks because anticipated effect sizes are very small, that it is too expensive to run a classical trial, or there are concerns over equipoise.
+My PhD investigated the safe limits---including addressing intrinsic biases---of these resources.
+This ties with my clinical interest in sepsis, where my research took steps towards a better understanding of "time zero" and the association between physiological trajectories and outcomes in sepsis.
+
+I started this lab group as a way to bring together and support like minded
+individuals, improve local patient care using data informed methods, and
+engage with research in a positive way.
+
+The lab group name "The Data Science Breakfast Club" is a loving nod to my
+long time friend and mentor Prof. Steve Harris, who started a club by the same
+name more than a decade ago. It was through meeting Steve that my love for
+this subject florished, and in many respects, this is my attempt at paying
+it forward.
+
+As a past fellow of the Software Sustainability Institute, I am a strong proponent of open data, reproducible research and free[^1] and open software.
+When I am not tinkering with ventilators or R, I try to spend as much time as possible with my wonderful partner and children.
+
+[^1]:Free as in freedom.
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-8 style="text-align: left;"}
+## Education
+
+- **_FCICM_. Fellow of The College of Intensive Care Medicine**, **2024**  
+  *The Royal College of Anaesthetists, UK*
+
+- **_Ph.D._ in Intensive Care Medicine, Health Informatics & Applied Statistics**, **2020**  
+  *University College London, UK*
+
+- **_FRCA_. Fellow of the Royal College of Anaesthetists**, **2016**  
+  *The Royal College of Anaesthetists, UK*
+
+- **_MBBS_. Medicine**, **2011**  
+  *King's College London, UK*
+
+- **_B.Sc_. Imaging Sciences**, **2008**  
+  *King's College London, UK*
+:::
+
+::: {.g-col-12 .g-col-md-4 style="text-align: left;"}
+## Interests
+
+- Research methods
+- Trials in Intensive Care Medicine
+- Statistical literacy in medicine
+- Running and calisthenics
+:::
+
+::::
