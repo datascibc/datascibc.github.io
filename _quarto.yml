@@ -5,6 +5,7 @@ project:
 website:
   title: "DataSciBC"
   search: false
+  favicon: assets/favicon.png
   navbar:
     right:
       - href: index.qmd
@@ -13,6 +14,13 @@ website:
       - href: lab-charter.qmd
         text: "Charter"
       - href: people.qmd
+      - icon: github # add icons as navbar buttons
+        href: https://github.com/datascibc
+        target: _blank
+  page-footer:
+    background: light # or `dark` or omit this option altogether (footer color will match page body color)
+    left: Copyright 2026, DataSciBC
+    right: This website is built with R and [Quarto](https://quarto.org/){target=_blank}
 
 format:
   html:

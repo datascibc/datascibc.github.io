@@ -1,7 +1,13 @@
 ---
-title: "Welcome"
+title: "The Data Science Breakfast Club"
+about:
+  template: jolla
+  image: assets/crt-screen.png
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/datascibc
 ---
-
 ["Scientia per communionem"]{.smallcaps}
 
 :::{style="text-align: right"}
