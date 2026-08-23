@@ -1,0 +1,52 @@
+---
+title: "Journal Club"
+draft: true
+listing: 
+  contents: journal-club
+  type: default
+  sort: "date desc"
+  categories: true
+---
+
+## Background and Instructions
+
+At the Whittington Intensive Care Unit we run what is almost certainly the UK's
+best journal club[^1]. We review high impact, practice changing findings, and
+strive to implement them where possible; closing the implementation gap for best
+practice.
+
+Typically, journal club runs on the 1st and 3rd Thursday of the month, from
+15:00-16:00, in the Whittington ICU seminar room and online. Journal club is
+open to anyone of any professional background working within the ICU. We often
+invite key stakeholders from other departments when of interest (microbiology,
+pharmacy, anaesthetics etc.)
+
+Residents are assigned a paper and allocated to a session based on their rota
+pattern. The benefits of participation include:
+
+- Completion of the appropriate section of your portfolio (typically education
+  or research).
+- As much 1:1 support on statistical/research methods as you like.
+- First refusal on leading any practice change that follows. For example, 
+  leading on audit or guideline writing etc. We are incredibly proud of how
+  high impact quality improvement initiatives have arisen from journal club,
+  led by past residents.
+- The option (and support) to write a piece on the article if prudent (letter to
+  the editor, summary learning notes for departmental interest, blog post etc.)
+
+In return, we ask for a deep dive presentation on the manuscript of interest,
+coupled with a short evidence summary. The evidence summary will be posted here and will contribute to a compendium of results that reflect our interpretation
+of the broader literature.
+
+## Resources
+
+- Greenhalgh. 2024. How to read a paper. [DOI:10.1002/9781394206933](https://onlinelibrary.wiley.com/doi/book/10.1002/9781394206933): This is a really great first pass read on evidence based medicine.
+  
+## Tips
+
+- Don't skip the methods. This is invariably where the most important detail
+  of the paper is. Break it down and aim to understand what everything means.
+- Always read the supplement; that's often where important detail is hidden.
+- Don't be overly swayed by what other people think. Form your own judgments.
+
+[^1]: peer review pending.

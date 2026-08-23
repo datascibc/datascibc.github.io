@@ -14,6 +14,8 @@ website:
       - href: lab-charter.qmd
         text: "Charter"
       - href: people.qmd
+      # - href: journal-club.qmd
+      #   text: "Journal Club"
       - icon: github # add icons as navbar buttons
         href: https://github.com/datascibc
         target: _blank
@@ -24,5 +26,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - custom.scss
     toc: true

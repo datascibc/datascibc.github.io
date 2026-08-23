@@ -1,38 +1,40 @@
 ---
 title: "Onboarding"
-author: "Ed Palmer"
-date: 2026-08-22
 format: html
 ---
 
-Our onboarding process is heavily inspired by Prof. Whittacre’s Lab group.
-Onboarding aims to:
+Our on-boarding process is heavily inspired by [Kirstie Whittacre's](https://github.com/WhitakerLab/Onboarding) Lab group.
+On-boarding aims to:
 
-- Complete a minimum example of using git and github
-- Writing a short member profile
-- Investing some time in the lab
+- Complete a minimum example of using git and github, by;
+- Writing a short member profile.
+- Investing some time in the lab group.
 
 This process also serves to create a front end directory of lab members,
 building our community over time.
 
-In order to "onboard", please complete the following technical steps:
+In order to "on-board", please complete the following technical steps:
 
-- Install git on your local machine
-- Clone a copy of this website repo and create a new branch
-- This branch should be identified by your name
-- Add a profile page in the `people` folder, and tag yourself with the category of "active lab member". Please take a look at any of the other profiles for examples.
-- push your branch to github and submit a pull request.
+- [Install git](https://github.com/git-guides/install-git) on your local 
+  machine.
+- [Clone](https://github.com/git-guides/git-clone) a copy of this website 
+  repo and create a new branch.
+- Name the branch as `firstname-lastname` (e.g. `ed-palmer`)
+- Add a profile page as a `.qmd` document in the `people` folder:
+    - Use a category of "active lab member" in the yaml header of the file.
+    - Take a look at any of the other profiles for examples.
+- [Push](https://github.com/git-guides/git-push) your branch to github.
+- Submit a pull request on github.
 
-This will complete the technical aspects of onboarding. You will have
-learnt through this process, all the vital steps that we will be using
-for sharing code and completing project peer review.
-If it feels daunting, please do not worry. We are all here to help you
-with this process.
+This will complete the technical aspects of on-boarding. You will have learnt
+through this process, all the vital steps that we will be using for sharing code
+and completing project peer review. If it feels daunting, please do not worry.
+We are all here to help you with this process.
 
 Beyond this, new members are expected to:
 
-- Read and understand the lab charter.
-- Come and show us something you are working on.
-- Contribute your knowledge and experience to others in the lab (as we will do with you.)
+- Read and understand the lab charter, and follow our code of conduct.
+- Contribute your knowledge and experience to others in the lab (as we will do
+  with you.)
 
 We look forward to seeing you in the lab!
