@@ -1,0 +1,35 @@
+---
+title: "Adam Reynolds"
+categories:
+  - "Active Lab Member"
+about:
+---
+
+I am an ACCS Anaesthetics trainee in the UK with aspirations to dual train in anaesthesia and intensive care medicine. I am passionate about clinical research, having completed the Academic Foundation Programme (AFP), and I continue to pursue research alongside my clinical training. My research interests focus on translational work aimed at improving outcomes in anaesthesia, perioperative medicine and intensive care. 
+
+Outside of medicine I enjoy staying active and spending time outdoors. I play water polo and am currently in preparation for an IronMan 70.3.
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-8 style="text-align: left;"}
+## Education
+
+- **_MBBS_, Medicine**, **2023**  
+  *St. George's, University of London, UK*
+
+- **_BSc_, Biochemistry**, **2018**  
+  *University of Bath, UK*
+  
+:::
+
+::: {.g-col-12 .g-col-md-4 style="text-align: left;"}
+## Interests
+
+- Anaesthetics
+- Intensive Care Medicine
+- Perioperative Medicine
+- Triathlon
+- Water Polo
+:::
+
+::::
