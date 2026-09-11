@@ -3,9 +3,10 @@ title: "Adam Reynolds"
 categories:
   - "Active Lab Member"
 about:
+  template: jolla
+  image: images/adam-reynolds.jpg
 ---
-
-I am an ACCS Anaesthetics trainee in the UK with aspirations to dual train in anaesthesia and intensive care medicine. I am passionate about clinical research, having completed the Academic Foundation Programme (AFP), and I continue to pursue research alongside my clinical training. My research interests focus on translational work aimed at improving outcomes in anaesthesia, perioperative medicine and intensive care. 
+I am currently an ACCS Anaesthetics trainee in the UK with intentions to dual train in anaesthesia and intensive care medicine. I am passionate about clinical research, having completed the Academic Foundation Programme (AFP), and I continue to pursue research alongside my clinical training. My research interests focus on translational work aimed at improving outcomes in anaesthesia, perioperative medicine and intensive care. 
 
 Outside of medicine I enjoy staying active and spending time outdoors. I play water polo and am currently in preparation for an IronMan 70.3.
 
