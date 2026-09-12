@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "The Data Science Breakfast Club",
+    "objectID": "onboarding.html",
+    "href": "onboarding.html",
+    "title": "Onboarding",
     "section": "",
-    "text": "“Scientia per communionem”\n\nKnowledge through fellowship"
+    "text": "Our on-boarding process is heavily inspired by Kirstie Whittacre’s Lab group. On-boarding aims to:\n\nComplete a minimum example of using git and github, by;\nWriting a short member profile.\nInvesting some time in the lab group.\n\nThis process also serves to create a front end directory of lab members, building our community over time.\nIn order to “on-board”, please complete the following technical steps:\n\nInstall git on your local machine.\nClone a copy of this website repo and create a new branch.\nName the branch as firstname-lastname (e.g. ed-palmer)\nAdd a profile page as a .qmd document in the people folder:\n\nUse a category of “active lab member” in the yaml header of the file.\nTake a look at any of the other profiles for examples.\n\nPush your branch to github.\nSubmit a pull request on github.\n\nThis will complete the technical aspects of on-boarding. You will have learnt through this process, all the vital steps that we will be using for sharing code and completing project peer review. If it feels daunting, please do not worry. We are all here to help you with this process.\nBeyond this, new members are expected to:\n\nRead and understand the lab charter, and follow our code of conduct.\nContribute your knowledge and experience to others in the lab (as we will do with you.)\n\nWe look forward to seeing you in the lab!"
   },
   {
     "objectID": "people/ed-palmer.html",
@@ -35,6 +35,20 @@
     "text": "Footnotes\n\n\nFree as in freedom.↩︎"
   },
   {
+    "objectID": "people.html",
+    "href": "people.html",
+    "title": "Lab Members",
+    "section": "",
+    "text": "Pippa Whitaker\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEd Palmer\n\n\n\nlab head\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdam Reynolds\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
     "objectID": "lab-charter.html",
     "href": "lab-charter.html",
     "title": "Lab Charter",
@@ -63,13 +77,6 @@
     "text": "Meetings\nEvery Thursday at 07:00-07:45. Whittington Hospital meeting room behind the cafeteria (and online). Breakfast encouraged and often provided."
   },
   {
-    "objectID": "people.html",
-    "href": "people.html",
-    "title": "Lab Members",
-    "section": "",
-    "text": "Ed Palmer\n\n\n\nlab head\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "CODE_OF_CONDUCT.html",
     "href": "CODE_OF_CONDUCT.html",
     "title": "Code of Conduct",
@@ -84,10 +91,38 @@
     "text": "This sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
   },
   {
-    "objectID": "onboarding.html",
-    "href": "onboarding.html",
-    "title": "Onboarding",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The Data Science Breakfast Club",
     "section": "",
-    "text": "Our on-boarding process is heavily inspired by Kirstie Whittacre’s Lab group. On-boarding aims to:\n\nComplete a minimum example of using git and github, by;\nWriting a short member profile.\nInvesting some time in the lab group.\n\nThis process also serves to create a front end directory of lab members, building our community over time.\nIn order to “on-board”, please complete the following technical steps:\n\nInstall git on your local machine.\nClone a copy of this website repo and create a new branch.\nName the branch as firstname-lastname (e.g. ed-palmer)\nAdd a profile page as a .qmd document in the people folder:\n\nUse a category of “active lab member” in the yaml header of the file.\nTake a look at any of the other profiles for examples.\n\nPush your branch to github.\nSubmit a pull request on github.\n\nThis will complete the technical aspects of on-boarding. You will have learnt through this process, all the vital steps that we will be using for sharing code and completing project peer review. If it feels daunting, please do not worry. We are all here to help you with this process.\nBeyond this, new members are expected to:\n\nRead and understand the lab charter, and follow our code of conduct.\nContribute your knowledge and experience to others in the lab (as we will do with you.)\n\nWe look forward to seeing you in the lab!"
+    "text": "“Scientia per communionem”\n\nKnowledge through fellowship"
+  },
+  {
+    "objectID": "people/pippa-whitaker.html",
+    "href": "people/pippa-whitaker.html",
+    "title": "Pippa Whitaker",
+    "section": "",
+    "text": "I am an FY4 doctor currently working in intensive care in London. I’ll be moving to ED next year and ultimately plan on training in anaesthetics. I would also like to do more voluntary work in the future, having done some in Bulgaria last year. \nI am particularly interested in day case surgery, which I have worked to promote from both anaesthetic and surgical perspectives, and pain management, which was the subject of my PGCert. I care about anything that will improve my patients’ experiences, though, and am always involved in quality improvement. \nOutside of work I’m a huge fan of coffee, cycling (towards coffee), and high-quality sandwiches. \nEducation \nPGCert Clinical Management of Pain, 2024\nUniversity of Edinburgh \nMBBS Medicine, 2023\nBart’s and The London School of Medicine and Dentistry"
+  },
+  {
+    "objectID": "people/adam-reynolds.html",
+    "href": "people/adam-reynolds.html",
+    "title": "Adam Reynolds",
+    "section": "",
+    "text": "I am currently an ACCS Anaesthetics trainee in the UK with intentions to dual train in anaesthesia and intensive care medicine. I am passionate about clinical research, having completed the Academic Foundation Programme (AFP), and I continue to pursue research alongside my clinical training. My research interests focus on translational work aimed at improving outcomes in anaesthesia, perioperative medicine and intensive care.\nOutside of medicine I enjoy staying active and spending time outdoors. I play water polo and am currently in preparation for an IronMan 70.3."
+  },
+  {
+    "objectID": "people/adam-reynolds.html#education",
+    "href": "people/adam-reynolds.html#education",
+    "title": "Adam Reynolds",
+    "section": "Education",
+    "text": "Education\n\nMBBS, Medicine, 2023\nSt. George’s, University of London, UK\nBSc, Biochemistry, 2018\nUniversity of Bath, UK"
+  },
+  {
+    "objectID": "people/adam-reynolds.html#interests",
+    "href": "people/adam-reynolds.html#interests",
+    "title": "Adam Reynolds",
+    "section": "Interests",
+    "text": "Interests\n\nAnaesthetics\nIntensive Care Medicine\nPerioperative Medicine\nTriathlon\nWater Polo"
   }
 ]

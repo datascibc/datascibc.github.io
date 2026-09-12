@@ -1,7 +1,10 @@
 ---
 title: "Pippa Whitaker"
-category: 
- - "active lab member"
+categories:
+  - "Active Lab Member"
+about:
+  template: jolla
+  image: images/pippa-whitaker.jpeg
   links:
     - icon: github
       text: Github
