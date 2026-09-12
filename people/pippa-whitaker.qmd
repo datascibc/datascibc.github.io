@@ -1,0 +1,25 @@
+---
+title: "Pippa Whitaker"
+category: 
+ - "active lab member"
+  links:
+    - icon: github
+      text: Github
+      href: https://pippawhitaker.github.io/
+---
+
+I am an FY4 doctor currently working in intensive care in London. I’ll be moving to ED next year and ultimately plan on training in anaesthetics. I would also like to do more voluntary work in the future, having done some in Bulgaria last year. 
+
+I am particularly interested in day case surgery, which I have worked to promote from both anaesthetic and surgical perspectives, and pain management, which was the subject of my PGCert. I care about anything that will improve my patients’ experiences, though, and am always involved in quality improvement. 
+
+Outside of work I’m a huge fan of coffee, cycling (towards coffee), and high-quality sandwiches. 
+
+Education 
+
+PGCert Clinical Management of Pain, 2024
+
+*University of Edinburgh* 
+
+MBBS Medicine, 2023
+
+*Bart’s and The London School of Medicine and Dentistry*
