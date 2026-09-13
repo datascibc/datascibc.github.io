@@ -14,6 +14,13 @@ about:
       href: https://doced.github.io/
 ---
 
+<!-- The above YAML (contained within the "---") provides
+some useful metadata for the webpage. In YAML indentation is
+meaningful; each new nested item is identified by 2 spaces
+(not a tab).-->
+
+::: {.justify}
+
 I am a consultant in anaesthesia and intensive care medicine based in London, UK.
 My research background is in the reuse of routinely collected longitudinal healthcare data for research.
 My interests are directed towards research goals that may be challenging to meet under traditional frameworks because anticipated effect sizes are very small, that it is too expensive to run a classical trial, or there are concerns over equipoise.
@@ -35,7 +42,14 @@ When I am not tinkering with ventilators or R, I try to spend as much time as po
 
 [^1]:Free as in freedom.
 
+:::
+
 :::: {.grid}
+
+<!-- The grid system is lifted from the bootstrap web
+framework. There are 12 columns to play with, and each can
+be specified for a different screen size. Here I have
+implemented for 2 screen sizes. -->
 
 ::: {.g-col-12 .g-col-md-8 style="text-align: left;"}
 ## Education
