@@ -37,8 +37,11 @@ name more than a decade ago. It was through meeting Steve that my love for
 this subject florished, and in many respects, this is my attempt at paying
 it forward.
 
-As a past fellow of the Software Sustainability Institute, I am a strong proponent of open data, reproducible research and free[^1] and open software.
-When I am not tinkering with ventilators or R, I try to spend as much time as possible with my wonderful partner and children.
+As a past fellow of the Software Sustainability Institute, I am a strong
+proponent of open data, reproducible research and free[^1] and open software.
+When I am not tinkering with ventilators or R, I can usually be found running,
+reading and watching science fiction, or going on adventures with my wonderful
+children.
 
 [^1]:Free as in freedom.
 
