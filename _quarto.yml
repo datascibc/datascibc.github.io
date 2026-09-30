@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - teaching/cvvh-simulator.html 
 
 website:
   title: "DataSciBC"
@@ -14,6 +16,7 @@ website:
       - href: lab-charter.qmd
         text: "Charter"
       - href: people.qmd
+      - href: teaching.qmd
       # - href: journal-club.qmd
       #   text: "Journal Club"
       - icon: github # add icons as navbar buttons

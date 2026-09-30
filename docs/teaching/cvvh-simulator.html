@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CVVH: convective haemofiltration simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ======================================================================
+   STYLES
+   Colours are defined once as CSS custom properties ("tokens") on :root.
+   The dark-theme block below redefines the same tokens, so every element
+   and the canvas drawings (which read these tokens in JavaScript) switch
+   theme automatically. The safe-area padding keeps content clear of phone
+   notches and home bars.
+   ====================================================================== */
+:root{
+  --bg:#eef2f4; --card:#ffffff; --fg:#16232b; --muted:#5b6b75; --border:#d3dce1;
+  --accent:#1f5a8a; --blood:#a4161a; --plasma:#d9b44a; --water:#2f7fb5; --eff:#b39a2a;
+  --prot:#7a3fa0; --solute:#e0620d; --mem:#7f8f99; --warn:#b45309; --danger:#b91c1c; --ok:#2e7d4f;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f171c; --card:#16222a; --fg:#e4ecef; --muted:#93a4ad; --border:#2a3a44;
+    --accent:#6fb0e6; --blood:#e2475a; --plasma:#e7c766; --water:#5fa8e0; --eff:#d6bd4a;
+    --prot:#b88ae0; --solute:#ff8a3d; --mem:#8a9ba5; --warn:#f0a040; --danger:#f26b6b; --ok:#5cc18a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --card:#16222a; --fg:#e4ecef; --muted:#93a4ad; --border:#2a3a44;
+  --accent:#6fb0e6; --blood:#e2475a; --plasma:#e7c766; --water:#5fa8e0; --eff:#d6bd4a;
+  --prot:#b88ae0; --solute:#ff8a3d; --mem:#8a9ba5; --warn:#f0a040; --danger:#f26b6b; --ok:#5cc18a;
+}
+/* Layout and typography */
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding:18px 14px 48px}
+header{padding:6px 2px 4px}
+header h1{font-size:1.55rem;line-height:1.2;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted);max-width:68ch}
+section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin:14px 0}
+section h2{font-size:1.08rem;margin:0 0 4px;font-weight:600}
+section > p.sub{margin:0 0 10px;color:var(--muted);font-size:.9rem;max-width:72ch}
+canvas{display:block;width:100%;touch-action:pan-y}
+.grid2{display:grid;gap:14px}
+@media (min-width:900px){.grid2{grid-template-columns:1.25fr 1fr}.grid2 > section{margin:0}}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px;margin-top:10px}
+.stat{border:1px solid var(--border);border-radius:8px;padding:7px 9px}
+.stat .k{font-size:.76rem;color:var(--muted);line-height:1.25}
+.stat .v{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:1.02rem;font-weight:500;margin-top:2px}
+.stat.warn{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn)}
+.stat.bad{border-color:var(--danger);box-shadow:inset 3px 0 0 var(--danger)}
+.alerts{margin-top:10px;display:grid;gap:6px}
+.alert{border-left:3px solid var(--warn);padding:6px 10px;background:var(--bg);border-radius:0 6px 6px 0;font-size:.9rem}
+.alert.bad{border-left-color:var(--danger)}
+.alert.ok{border-left-color:var(--ok)}
+.controls{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 22px;margin-top:8px}
+.ctl label{display:flex;justify-content:space-between;gap:8px;font-size:.88rem;align-items:baseline}
+.ctl output{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--accent);margin:4px 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+button,select{font:inherit;font-size:.86rem;border:1px solid var(--border);background:var(--bg);color:var(--fg);border-radius:18px;padding:6px 12px;cursor:pointer}
+select{border-radius:8px}
+button.on{background:var(--accent);color:var(--card);border-color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted);margin:8px 0 2px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.note{font-size:.82rem;color:var(--muted);margin:6px 0 0}
+.eq{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap;font-size:.84rem;margin:6px 0}
+details{border-top:1px solid var(--border);padding:10px 0}
+details:first-of-type{border-top:none}
+summary{cursor:pointer;font-weight:600}
+details p{margin:6px 0;max-width:74ch}
+.tabs{margin:6px 0 8px}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:8px 0}
+ul.lim{margin:6px 0;padding-left:20px;max-width:76ch}
+ul.lim li{margin:4px 0}
+.muted{color:var(--muted)}
+/* Anything with class "adv" is hidden when the page is in Simple view */
+body.simple .adv{display:none !important}
+body.simple .grid2{grid-template-columns:1fr}
+.modebar{display:flex;gap:6px;margin:12px 0 0;flex-wrap:wrap;align-items:center}
+.hlbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 0}
+.hlbar button{padding:4px 10px;font-size:.8rem}
+.hlcap{margin-top:8px;display:grid;gap:6px}
+.hlcap div{border-left:3px solid var(--accent);padding:6px 10px;background:var(--bg);border-radius:0 6px 6px 0;font-size:.9rem;max-width:80ch}
+ol.refs{padding-left:22px;margin:6px 0}
+ol.refs li{margin:5px 0;font-size:.88rem;max-width:90ch}
+@media (prefers-reduced-motion:reduce){.rm-hint{display:inline}}
+.rm-hint{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- Page structure: header, circuit, controls, fibre view + charts, clearance, maths, limits, sources.
+     Every element with class="adv" appears only in Advanced view. -->
+<header>
+  <h1>Continuous venovenous haemofiltration, running purely convectively</h1>
+  <p>Every moving part below is driven by a one-dimensional physical model of the haemofilter. Change the prescription and watch pressures, haematocrit, oncotic pressure and solute clearance respond.</p>
+  <div class="modebar" role="group" aria-label="Level of detail">
+    <span class="muted" style="font-size:.88rem">View</span>
+    <button data-mode="simple">Simple</button><button data-mode="advanced" class="on">Advanced</button>
+  </div>
+</header>
+
+<section aria-labelledby="h-circuit">
+  <h2 id="h-circuit">The circuit</h2>
+  <p class="sub">Particle speed in each line is proportional to its flow rate. The share of red dots in a blood line equals its haematocrit. Tap any part of the circuit, or a button below, to highlight it.</p>
+  <canvas id="cv-circuit" aria-label="Animated CVVH circuit schematic" style="cursor:pointer"></canvas>
+  <div class="hlbar" id="hlbar" role="group" aria-label="Highlight part of the circuit"><span class="muted" style="font-size:.85rem">Highlight</span></div>
+  <div class="hlcap" id="hlcap" aria-live="polite"></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--blood)"></i>Red cells</span>
+    <span><i class="dot" style="background:var(--plasma)"></i>Plasma</span>
+    <span><i class="dot" style="background:var(--water)"></i>Replacement fluid</span>
+    <span><i class="dot" style="background:var(--eff)"></i>Ultrafiltrate (effluent)</span>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="alerts" id="alerts" aria-live="polite"></div>
+</section>
+
+<section aria-labelledby="h-ctl">
+  <h2 id="h-ctl">Prescription and patient</h2>
+  <div class="row" id="presets" style="margin-top:6px"></div>
+  <div class="controls" id="controls"></div>
+  <p class="note">Effluent rate = replacement rate + net fluid removal: in CVVH the machine sets the effluent pump, and filter pressures settle wherever they must to deliver it.</p>
+</section>
+
+<div class="grid2">
+<section aria-labelledby="h-fibre">
+  <h2 id="h-fibre">Inside one hollow fibre</h2>
+  <p class="sub">A longitudinal slice through a single 200&nbsp;µm fibre. Blood moves with a parabolic (Poiseuille) velocity profile. Water and small solutes are dragged through the membrane where local filtration occurs; cells and proteins are retained.</p>
+  <canvas id="cv-fibre" aria-label="Animated cross-section of a haemofilter fibre"></canvas>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--blood)"></i>Red cell</span>
+    <span><i class="dot" style="background:var(--prot)"></i>Plasma protein</span>
+    <span><i class="dot" style="background:var(--water)"></i>Water</span>
+    <span><i class="dot" style="background:var(--solute)"></i><span id="lg-sol">Solute</span></span>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <span class="muted" style="font-size:.85rem">Speed</span>
+    <button data-ts="1">Real time</button><button data-ts="3" class="on">3×</button><button data-ts="10">10×</button>
+    <button id="pause">Pause</button>
+  </div>
+  <p class="note" id="fibre-note"></p>
+</section>
+
+<section class="adv" aria-labelledby="h-along">
+  <h2 id="h-along">Along the filter</h2>
+  <p class="sub">Steady-state profiles from blood inlet (0&nbsp;cm) to outlet (25&nbsp;cm).</p>
+  <div class="row tabs" id="tabs">
+    <button data-tab="press" class="on">Pressures</button>
+    <button data-tab="flux">Filtration</button>
+    <button data-tab="hct">Haematocrit</button>
+    <button data-tab="sol">Solute</button>
+  </div>
+  <canvas id="cv-chart" aria-label="Chart of values along the filter"></canvas>
+  <p class="note" id="chart-note"></p>
+</section>
+</div>
+
+<section aria-labelledby="h-clear">
+  <h2 id="h-clear">Clearance and dose</h2>
+  <div class="row" style="margin:6px 0 4px">
+    <label for="solute" class="muted" style="font-size:.88rem">Solute</label>
+    <select id="solute"></select>
+    <span class="muted" id="sol-desc" style="font-size:.85rem"></span>
+  </div>
+  <div class="controls" id="kin-controls"></div>
+  <div class="kv" id="clear-stats"></div>
+  <canvas id="cv-proj" aria-label="Projected plasma concentration over 24 hours"></canvas>
+  <p class="note" id="proj-note"></p>
+</section>
+
+<section aria-labelledby="h-math">
+  <h2 id="h-math">The mathematics, with current values</h2>
+  <div id="math"></div>
+</section>
+
+<section aria-labelledby="h-lim">
+  <h2 id="h-lim">Assumptions and limits of the model</h2>
+  <ul class="lim">
+    <li>Steady state, one-dimensional: the filter is divided into 120 axial segments, and all fibres are assumed to behave identically (no flow maldistribution).</li>
+    <li>Fibre geometry is fixed at 200&nbsp;µm internal diameter and 25&nbsp;cm length; fibre number is derived from surface area. Real filters vary.</li>
+    <li>Plasma proteins are fully reflected (σ&nbsp;=&nbsp;1) for oncotic purposes; the albumin sieving figure is used only to estimate losses.</li>
+    <li>Membrane permeability is a single lumped value. Protein adsorption, the secondary membrane, concentration polarisation and progressive clotting are represented only by lowering it; set it low to model a fouled filter.</li>
+    <li>Solutes are tracked in plasma water only. Movement of urea between red cells and plasma, protein binding (beyond what the sieving coefficient already reflects) and solute in replacement fluid are ignored.</li>
+    <li>Effluent-side pressure is uniform; no diffusion occurs (pure convection, no dialysate); temperature effects on viscosity are ignored.</li>
+    <li>Access pressure is a rough linear estimate; in reality it depends on catheter size, position and patient factors.</li>
+    <li>The 24-hour projection is single-pool with no generation, so it shows the shape of removal, not a predicted lab value.</li>
+    <li>Sieving coefficients are typical literature values for high-flux synthetic membranes and vary between membranes and studies.</li>
+    <li>Lactate: one compartment with constant production and a fixed endogenous clearance. Real lactate metabolism is saturable and falls in liver failure and shock. Replacement fluid is assumed to be bicarbonate-buffered and lactate-free.</li>
+    <li>Phosphate: the pseudo-one-compartment model was derived in maintenance haemodialysis, not critical illness, and assumes the mobilisable tissue pool never runs down. Over days of CVVH, body stores do fall, and without supplementation hypophosphataemia develops.</li>
+  </ul>
+  <p class="note">An educational model for building intuition. It is not a prescribing tool.</p>
+</section>
+
+<section class="adv" aria-labelledby="h-refs">
+  <h2 id="h-refs">Sources</h2>
+  <ol class="refs">
+    <li>Pries AR, Neuhaus D, Gaehtgens P. Blood viscosity in tube flow: dependence on diameter and hematocrit. Am J Physiol. 1992;263:H1770–H1778.</li>
+    <li>Landis EM, Pappenheimer JR. Exchange of substances through the capillary walls. In: Handbook of Physiology, Circulation, vol. 2. American Physiological Society; 1963.</li>
+    <li>Levraut J, Ciebiera JP, Jambou P, et al. Effect of continuous venovenous hemofiltration with dialysis on lactate clearance in critically ill patients. Crit Care Med. 1997;25:58–62.</li>
+    <li>Troyanov S, Cardinal J, Geadah D, et al. Solute clearances during continuous venovenous haemofiltration at various ultrafiltration flow rates using Multiflow-100 and HF1000 filters. Nephrol Dial Transplant. 2003;18:961–966.</li>
+    <li>Agar BU, Akonur A, Lo YC, Cheung AK, Leypoldt JK. Kinetic model of phosphorus mobilization during and after short and conventional hemodialysis. Clin J Am Soc Nephrol. 2011;6:2854–2860.</li>
+    <li>Leypoldt JK, Agar BU, Akonur A, et al. Determinants of phosphorus mobilization during hemodialysis. Kidney Int. 2013 (HEMO Study analysis).</li>
+    <li>Sharma S, Waikar SS. Phosphate balance in continuous venovenous hemofiltration. Am J Kidney Dis. 2013;61:1043–1045.</li>
+  </ol>
+  <p class="note">Check citations against PubMed before formal use.</p>
+</section>
+</div>
+
+<script>
+/* ==========================================================================
+   CVVH SIMULATOR — HOW THE CODE IS ORGANISED
+
+   Everything runs in the browser; there is no server and nothing is sent
+   anywhere. The script is organised in this order:
+
+     1. Data          solute library, default parameters, slider and preset lists
+     2. Physics       solve(): the one-dimensional haemofilter model
+     3. Theme         reads colours from the CSS so canvases match the page
+     4. User interface builds sliders and buttons; view mode; highlighting
+     5. Canvas tools  sizing for sharp rendering, a small line-chart function
+     6. update()      runs the model and writes all numbers, warnings and text
+     7. Charts        along-filter profiles and 24-hour projections
+     8. Maths panel   formulas with the current numbers substituted
+     9. Circuit       animated schematic of the whole circuit
+    10. Fibre         animated slice through one hollow fibre
+    11. Main loop     redraws ~60 times a second
+
+   Data flow: moving a slider changes the parameter object P and sets
+   dirty = true. On the next animation frame, update() calls solve(P), which
+   returns a results object M. Everything that is drawn or displayed is read
+   from M, so the animation and the numbers always come from the same model.
+
+   Units: flows are mL/min inside the model (the controls show replacement
+   and effluent in mL/h, as clinical machines do), pressures are mmHg, protein
+   is g/dL, and physical constants are in SI units where noted.
+   ========================================================================== */
+(function(){            // wrap everything so no variables leak into the global scope
+"use strict";           // make JavaScript flag common mistakes as errors
+const $=id=>document.getElementById(id);   // shorthand: $('stats') finds the element with id="stats"
+
+/* ==========================================================================
+   1. DATA
+   ========================================================================== */
+
+/* Solute library.
+   S    sieving coefficient: filtrate concentration ÷ plasma concentration.
+        1 = passes freely with water; 0 = completely retained.
+        Values are typical for high-flux synthetic membranes.
+   vd   distribution volume in L/kg, used for the 24-hour projection.
+        For phosphate this is the central volume of the pseudo-one-compartment
+        model (HEMO Study median 9.4 L, about 0.13 L/kg).
+   kin  marks solutes that need their own kinetic model (lactate, phosphate).
+   Albumin has vd:null because only its loss is calculated, not its clearance. */
+const SOL={
+  urea:{name:'Urea',mw:'60 Da',S:1.0,vd:0.6},
+  creat:{name:'Creatinine',mw:'113 Da',S:1.0,vd:0.6},
+  vanc:{name:'Vancomycin',mw:'1.45 kDa',S:0.75,vd:0.7},
+  b2m:{name:'β₂-microglobulin',mw:'11.8 kDa',S:0.6,vd:0.2},
+  myo:{name:'Myoglobin',mw:'17 kDa',S:0.3,vd:0.2},
+  lac:{name:'Lactate',mw:'89 Da',S:1.0,vd:0.6,kin:'lac'},
+  phos:{name:'Phosphate',mw:'≈96 Da',S:1.0,vd:0.13,kin:'phos'},
+  alb:{name:'Albumin',mw:'66.5 kDa',S:0.002,vd:null}
+};
+
+/* P holds every adjustable parameter. Sliders write into it; solve() reads it. */
+const P={
+  qb:220,       // blood flow, mL/min
+  qrep:1800,    // total replacement fluid, mL/h
+  pre:0,        // percentage of replacement fluid given before the filter
+  qnet:100,     // net fluid removal from the patient, mL/h
+  hct:0.30,     // patient haematocrit (fraction)
+  tp:6.5,       // plasma total protein, g/dL (drives oncotic pressure)
+  wt:80,        // patient weight, kg (for dose and distribution volumes)
+  area:1.5,     // filter membrane surface area, m²
+  lp:20,        // membrane hydraulic permeability, mL/h/mmHg per m²
+  pret:60,      // pressure at the filter outlet / return line, mmHg
+  solute:'urea',// which solute the clearance section shows
+  lac0:4,       // lactate before CVVH, mmol/L
+  kendo:1379,   // endogenous (whole-body) lactate clearance, mL/min (Levraut 1997 median)
+  phos0:1.8,    // phosphate before CVVH, mmol/L
+  km:87         // phosphate mobilisation clearance, mL/min (HEMO Study median)
+};
+/* When switching to Simple view, the hidden advanced parameters are reset to
+   these defaults so that settings nobody can see cannot distort the results. */
+const ADV_DEF={tp:6.5,area:1.5,lp:20,pret:60};
+
+/* Slider definitions: [parameter key, label, min, max, step, display format, advanced-only?]
+   A slider marked true in the last position is hidden in Simple view. */
+const CTL=[
+  ['qb','Blood flow, Q<sub>B</sub>',50,400,10,v=>v+' mL/min'],
+  ['qrep','Replacement fluid, Q<sub>R</sub>',0,6000,100,v=>v+' mL/h'],
+  ['pre','Given pre-filter (pre-dilution)',0,100,1,v=>v+' %'],
+  ['qnet','Net fluid removal',0,500,10,v=>v+' mL/h'],
+  ['hct','Patient haematocrit',0.15,0.50,0.01,v=>Math.round(v*100)+' %'],
+  ['tp','Plasma total protein',3,9,0.1,v=>v.toFixed(1)+' g/dL',true],
+  ['wt','Patient weight',40,150,1,v=>v+' kg'],
+  ['area','Filter surface area',0.6,2.2,0.1,v=>v.toFixed(1)+' m²',true],
+  ['lp','Membrane permeability (in vivo)',3,60,1,v=>v+' mL/h/mmHg/m²',true],
+  ['pret','Return line pressure',20,150,5,v=>v+' mmHg',true]
+];
+
+/* Teaching presets: [button label, parameter values to apply, advanced-only?] */
+const PRESETS=[
+  ['Standard post-dilution',{qb:220,qrep:1800,pre:0,qnet:100,hct:0.30,tp:6.5,area:1.5,lp:20,pret:60}],
+  ['Pure pre-dilution',{qb:220,qrep:1800,pre:100,qnet:100,hct:0.30,tp:6.5,area:1.5,lp:20,pret:60}],
+  ['One-third pre-dilution',{qb:220,qrep:1800,pre:33,qnet:100,hct:0.30,tp:6.5,area:1.5,lp:20,pret:60},true],
+  ['High FF, clot risk',{qb:160,qrep:1800,pre:0,qnet:100,hct:0.34,tp:7.0,area:1.5,lp:20,pret:60}],
+  ['Fouled membrane',{qb:220,qrep:1800,pre:0,qnet:100,hct:0.30,tp:6.5,area:1.5,lp:5,pret:60},true],
+  ['High dose, mixed',{qb:250,qrep:3500,pre:50,qnet:150,hct:0.28,tp:6.0,area:1.8,lp:20,pret:70},true]
+];
+
+/* ==========================================================================
+   2. PHYSICS
+   ========================================================================== */
+const FIB_D=200e-6;   // fibre internal diameter, m (200 µm)
+const FIB_L=0.25;     // fibre length, m (25 cm)
+const MU_P=1.2e-3;    // plasma viscosity at 37 °C, Pa·s
+const MMHG=133.322;   // pascals per mmHg
+const NSEG=120;       // number of axial segments the filter is divided into
+
+/* Landis–Pappenheimer equation: colloid oncotic pressure (mmHg) of plasma
+   from total protein concentration c (g/dL). The cubic terms matter: as blood
+   is concentrated inside the filter, oncotic pressure rises faster than
+   linearly and increasingly opposes filtration. */
+function landis(c){return 2.1*c+0.16*c*c+0.009*c*c*c;}
+
+/* Blood viscosity (Pries, Neuhaus & Gaehtgens 1992, in-vitro tube fit).
+   Blood is not a simple fluid: its apparent viscosity rises steeply with
+   haematocrit, and in narrow tubes it is lower than in wide ones
+   (Fåhræus–Lindqvist effect). Pries et al. fitted equations to pooled glass-
+   tube data. We evaluate them once for a 200 µm tube:
+     e45  relative viscosity at haematocrit 0.45 for this diameter (≈ 2.81)
+     C    shape exponent describing how viscosity changes with haematocrit (≈ −0.80)
+   relVisc(H) then gives viscosity relative to plasma at any haematocrit H. */
+const PRIES=(function(){
+  const D=FIB_D*1e6;
+  const e45=220*Math.exp(-1.3*D)+3.2-2.44*Math.exp(-0.06*Math.pow(D,0.645));
+  const t=1/(1+1e-11*Math.pow(D,12));
+  const C=(0.8+Math.exp(-0.075*D))*(-1+t)+t;
+  return {e45,C,den:Math.pow(1-0.45,C)-1};
+})();
+function relVisc(H){
+  H=Math.min(Math.max(H,0),0.95);   // keep within the range where the formula is meaningful
+  return 1+(PRIES.e45-1)*(Math.pow(1-H,PRIES.C)-1)/PRIES.den;}
+
+/**
+ * solve(p) — the heart of the simulator.
+ *
+ * Given the parameters p, compute the steady-state behaviour of the
+ * haemofilter and return an object (called M elsewhere) holding every
+ * derived quantity the page displays or animates.
+ *
+ * MODEL OUTLINE
+ * The filter is N identical hollow fibres in parallel. Each fibre is split
+ * along its length into n = 120 short segments. Walking from inlet to outlet,
+ * in each segment the model:
+ *   1. works out local haematocrit, protein concentration, oncotic pressure
+ *      and blood viscosity from how much plasma is left;
+ *   2. calculates the pressure lost to friction (Hagen–Poiseuille);
+ *   3. calculates how much plasma water crosses the membrane
+ *      (Starling: permeability × net pressure);
+ *   4. removes that water from the blood and moves on.
+ *
+ * Two pressures are unknown at the start:
+ *   Pin  the blood pressure at the filter inlet, and
+ *   Pf   the pressure in the effluent compartment outside the fibres.
+ * They are fixed by two conditions, just as on a real machine:
+ *   • blood leaving the filter must be at the return-line pressure, and
+ *   • total ultrafiltration must equal the effluent pump rate.
+ * So there are two nested searches: for a trial Pf, atPf() finds the Pin that
+ * gives the right outlet pressure; an outer bisection then adjusts Pf until
+ * total filtration matches the prescription.
+ */
+function solve(p){
+  const n=NSEG, d=FIB_D, L=FIB_L;
+
+  // ---- Filter geometry ------------------------------------------------------
+  // One fibre's inner wall has area π·d·L, so the number of fibres needed to
+  // give the filter's rated surface area is:
+  const N=p.area/(Math.PI*d*L);
+
+  // ---- Circuit flows (mL/h ÷ 60 = mL/min) -----------------------------------
+  const Qpre =p.qrep*(p.pre/100)/60;     // replacement fluid given before the filter
+  const Qpost=p.qrep*(1-p.pre/100)/60;   // replacement fluid given after the filter
+  const Quf  =(p.qrep+p.qnet)/60;        // effluent pump rate = replacement + net removal
+
+  // ---- Blood entering the filter ---------------------------------------------
+  const Qrbc=p.qb*p.hct;      // red-cell volume flow; cells never cross, so this stays constant
+  const Qp0 =p.qb*(1-p.hct);  // patient plasma flow, before any pre-dilution
+  const QpIn=Qp0+Qpre;        // plasma plus pre-dilution fluid entering the fibres
+  const QbIn=p.qb+Qpre;       // total flow entering the fibres
+  const HctIn=Qrbc/QbIn;      // haematocrit at the filter inlet (lowered by pre-dilution)
+  const TPin=p.tp*Qp0/QpIn;   // protein concentration at the inlet (diluted by pre-dilution)
+
+  // ---- Membrane permeability --------------------------------------------------
+  const Kuf=p.lp*p.area;      // whole-filter ultrafiltration coefficient, mL/h/mmHg
+  const kseg=Kuf/60/n;        // share of it belonging to one segment, mL/min/mmHg
+
+  // ---- Poiseuille constant ------------------------------------------------------
+  // For laminar flow in one tube: ΔP = 128·μ·Δx·q / (π·d⁴), where q is the flow
+  // in that tube. The total flow Q is shared by N fibres (q = Q/N), so
+  // ΔP = geo × μ × Q, with geo as below (SI units).
+  const dx=L/n;
+  const geo=128*dx/(Math.PI*N*Math.pow(d,4));
+
+  // Physical limit: blood cannot be concentrated past ~92 % haematocrit,
+  // so plasma flow is never allowed to fall below this floor.
+  const QpMin=Qrbc*(0.08/0.92);
+
+  // Arrays recording the profile along the filter, used by charts and animation.
+  const A={
+    P :new Float64Array(n),  // blood pressure at the segment midpoint, mmHg
+    pi:new Float64Array(n),  // oncotic pressure, mmHg
+    jv:new Float64Array(n),  // water filtered in this segment, mL/min (negative = backfiltration)
+    H :new Float64Array(n),  // haematocrit (fraction)
+    TP:new Float64Array(n),  // plasma protein, g/dL
+    Q :new Float64Array(n),  // total blood flow entering the segment, mL/min
+    qp:new Float64Array(n),  // plasma flow entering the segment, mL/min
+    mu:new Float64Array(n)   // apparent blood viscosity, Pa·s
+  };
+
+  /* run(Pf, Pin, st): one pass from inlet to outlet for given effluent and
+     inlet pressures. Returns total filtration, outlet pressure and outlet
+     plasma flow, plus flags. If st is true, the profile is saved in A. */
+  function run(Pf,Pin,st){
+    let Pp=Pin, Qp=QpIn, filt=0, back=false, lim=false;
+    for(let i=0;i<n;i++){
+      const Q =Qrbc+Qp;               // total blood flow here
+      const H =Qrbc/Q;                // local haematocrit
+      const C =TPin*QpIn/Qp;          // protein is retained, so it concentrates as plasma is removed
+      const pi=landis(C);             // local oncotic pressure
+      const mu=MU_P*relVisc(H);       // local apparent blood viscosity
+      const dP=geo*mu*(Q/6e7)/MMHG;   // friction loss in this segment (÷6e7: mL/min → m³/s; ÷MMHG: Pa → mmHg)
+      // Starling: filtration = permeability × (blood P − effluent P − oncotic P),
+      // using blood pressure at the middle of the segment.
+      let jv=kseg*(Pp-dP/2-Pf-pi);
+      if(jv>Qp-QpMin){jv=Math.max(0,Qp-QpMin);lim=true;}  // cannot remove more plasma than exists
+      if(jv<-1e-6)back=true;                              // negative filtration = backfiltration
+      if(st){A.P[i]=Pp-dP/2;A.pi[i]=pi;A.jv[i]=jv;A.H[i]=H;A.TP[i]=C;A.Q[i]=Q;A.qp[i]=Qp;A.mu[i]=mu;}
+      Qp-=jv;     // plasma left for the next segment
+      filt+=jv;   // running total of ultrafiltrate
+      Pp-=dP;     // pressure entering the next segment
+    }
+    return {filt,Pout:Pp,Qp,back,lim};
+  }
+
+  /* atPf(Pf, st): for a given effluent pressure, find the inlet pressure at
+     which blood leaves the filter at the return pressure (p.pret).
+     Fixed-point method: if the outlet is e mmHg too low, raise the inlet by e
+     and try again. This converges in a few steps because the pressure drop
+     barely depends on the inlet pressure. In rare extreme cases it can stall,
+     so bisection is used as a fallback (outlet pressure always rises as
+     inlet pressure rises, so bisection is guaranteed to work). */
+  function atPf(Pf,st){
+    let Pin=p.pret+50, r, ok=false;          // first guess: 50 mmHg above return pressure
+    for(let k=0;k<40;k++){
+      r=run(Pf,Pin,false);
+      const e=p.pret-r.Pout;                 // how far the outlet pressure is from target
+      if(Math.abs(e)<1e-4){ok=true;break;}
+      Pin+=e;
+    }
+    if(!ok){
+      let a=p.pret-100, b=p.pret+4000;
+      for(let k=0;k<60;k++){const m=(a+b)/2; if(run(Pf,m,false).Pout>p.pret)b=m; else a=m;}
+      Pin=(a+b)/2;
+    }
+    r=run(Pf,Pin,st); r.Pin=Pin; return r;
+  }
+
+  // ---- Outer search: effluent pressure ----------------------------------------
+  // Lowering the effluent pressure increases filtration. Bisect between
+  // −800 mmHg (strong suction) and well above return pressure (no filtration)
+  // to find the Pf that delivers exactly Quf. If even −800 mmHg is not enough,
+  // the prescription cannot be delivered (a real machine would alarm).
+  let lo=-800, hi=p.pret+250, Pf, unach=false;
+  if(atPf(lo,false).filt<Quf){unach=true; Pf=lo;}
+  else{
+    for(let k=0;k<48;k++){const m=(lo+hi)/2; if(atPf(m,false).filt>Quf)lo=m; else hi=m;}
+    Pf=(lo+hi)/2;
+  }
+  const r=atPf(Pf,true);   // final run at the solution, this time storing the profile
+
+  // ---- Convective solute transport ---------------------------------------------
+  // Kedem–Katchalsky with diffusion switched off: solute leaves with water, so in
+  // each segment the solute flux is Js = S × Jv × C, where C is the local
+  // plasma concentration and S the sieving coefficient.
+  // Concentrations are relative to the patient's plasma (patient = 1).
+  // Pre-dilution fluid contains no solute, so the inlet concentration is Qp0/QpIn.
+  const sol=SOL[p.solute], S=sol.S;
+  const csIn=Qp0/QpIn;
+  const cs=new Float64Array(n);   // plasma concentration along the filter
+  const cf=new Float64Array(n);   // local filtrate concentration
+  // Two passes: the first finds the average filtrate concentration; the second
+  // uses it for any backfiltered fluid, which carries solute back into the blood.
+  let cfMean=0, mass=Qp0, Js=0;   // mass = solute flow (relative units × mL/min)
+  for(let pass=0;pass<2;pass++){
+    mass=Qp0; Js=0; let jp=0, sp=0;
+    for(let i=0;i<n;i++){
+      const c=mass/A.qp[i]; cs[i]=c;                // local concentration = solute flow ÷ plasma flow
+      const jv=A.jv[i], js=jv>0?S*jv*c:jv*cfMean;   // solute carried across in this segment
+      if(jv>0){jp+=jv; sp+=js;}
+      cf[i]=jv>0?S*c:NaN;                           // filtrate concentration (none where backfiltering)
+      mass-=js; Js+=js;
+    }
+    cfMean=jp>0?sp/jp:0;
+  }
+  // Clearance = solute removed per minute ÷ patient plasma concentration.
+  // Because patient concentration is 1, clearance is simply Js (mL/min).
+
+  // ---- Outlet blood ----------------------------------------------------------------
+  const QpOut=r.Qp;              // plasma leaving the fibres
+  const QbOutF=Qrbc+QpOut;       // blood leaving the filter
+  const Qret=QbOutF+Qpost;       // blood returned to the patient, after post-dilution
+
+  // ---- Quantities used by the fibre animation ------------------------------------
+  // vbn[i]  mean blood velocity in segment i, in fibre-lengths per second
+  // haz[i]  fraction of the segment's plasma water that is filtered; used as the
+  //         probability that a water particle crosses the membrane there
+  // transit time for blood to travel the whole fibre, seconds
+  const vbn=new Float64Array(n), haz=new Float64Array(n);
+  let transit=0;
+  for(let i=0;i<n;i++){
+    const v=(A.Q[i]/6e7)/N/(Math.PI*d*d/4);   // velocity = flow per fibre ÷ lumen cross-section, m/s
+    vbn[i]=v/L; transit+=dx/v;
+    haz[i]=Math.max(0,A.jv[i])/A.qp[i];
+  }
+  // Wall shear rate at the inlet for Poiseuille flow: 32q/(πd³), with q per fibre.
+  const shear=32*(A.Q[0]/6e7/N)/(Math.PI*d*d*d);
+
+  return {
+    n,N,Qpre,Qpost,Quf,Qrbc,Qp0,QpIn,QbIn,HctIn,TPin,Kuf,Pf,unach,
+    filt:r.filt,              // ultrafiltration actually achieved, mL/min
+    Pin:r.Pin, Pout:r.Pout,   // pre-filter and return pressures, mmHg
+    back:r.back, lim:r.lim,   // flags: backfiltration, haemoconcentration limit reached
+    A,                        // profiles along the filter
+    QpOut,QbOutF,Qret,
+    HctOutF:Qrbc/QbOutF,      // haematocrit leaving the filter
+    HctRet:Qrbc/Qret,         // haematocrit returned to the patient
+    TPout:TPin*QpIn/QpOut,    // protein leaving the filter
+    csRet:mass/(QpOut+Qpost), // solute concentration returned (relative)
+    FF:r.filt/QpIn,           // filtration fraction (plasma, pre-dilution adjusted)
+    bFF:r.filt/QbIn,          // filtration fraction of whole blood
+    TMP:(r.Pin+r.Pout)/2-Pf,  // transmembrane pressure as a machine reports it
+    dPf:r.Pin-r.Pout,         // pressure drop along the filter
+    Pacc:-(0.35*p.qb+5),      // crude estimate of access pressure (catheter-dependent)
+    S,cs,cf,csIn,
+    Kn:Js,                    // clearance from the segment-by-segment calculation
+    Ka:Quf*S*Qp0/QpIn,        // clearance from the bedside formula
+    vbn,haz,transit,shear,
+    piIn:landis(TPin), piOut:landis(TPin*QpIn/QpOut),
+    muIn:A.mu[0], muOut:A.mu[n-1]
+  };
+}
+
+/* ==========================================================================
+   3. THEME
+   Canvas drawings cannot use CSS variables directly, so the colour tokens are
+   read from the stylesheet into the object C. When the device switches between
+   light and dark mode, they are re-read and the charts redrawn.
+   ========================================================================== */
+let C={};
+function readColors(){
+  const s=getComputedStyle(document.documentElement), g=k=>s.getPropertyValue(k).trim();
+  C={fg:g('--fg'),muted:g('--muted'),border:g('--border'),card:g('--card'),bg:g('--bg'),blood:g('--blood'),
+     plasma:g('--plasma'),water:g('--water'),eff:g('--eff'),prot:g('--prot'),solute:g('--solute'),
+     accent:g('--accent'),mem:g('--mem'),danger:g('--danger'),warn:g('--warn'),ok:g('--ok')};
+}
+readColors();
+const mq=window.matchMedia('(prefers-color-scheme: dark)');
+if(mq.addEventListener)mq.addEventListener('change',()=>{readColors();drawStatic();});
+
+/* ==========================================================================
+   4. USER INTERFACE
+   ========================================================================== */
+const refs={};   // for each parameter, a function that refreshes its slider and label
+const ctlWrap=$('controls');
+/* mkCtl builds one labelled slider inside `wrap`. Moving it writes the new value
+   into P and sets dirty = true, which makes the main loop re-run the model. */
+function mkCtl(wrap,[k,lab,min,max,step,fmt,adv]){
+  const d=document.createElement('div');d.className='ctl'+(adv?' adv':'');
+  d.innerHTML='<label for="c_'+k+'"><span>'+lab+'</span><output id="o_'+k+'"></output></label>'+
+    '<input type="range" id="c_'+k+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+P[k]+'">';
+  wrap.appendChild(d);
+  const inp=d.querySelector('input'),out=d.querySelector('output');
+  const sync=()=>{out.textContent=fmt(P[k]);inp.value=P[k];};
+  inp.addEventListener('input',()=>{P[k]=parseFloat(inp.value);sync();dirty=true;});
+  refs[k]=sync;sync();
+}
+CTL.forEach(c=>mkCtl(ctlWrap,c));
+/* Extra sliders that appear only when lactate or phosphate is selected. */
+const KCTL={
+  lac:[['lac0','Lactate before CVVH',0.5,15,0.1,v=>v.toFixed(1)+' mmol/L'],
+       ['kendo','Endogenous lactate clearance',100,2500,10,v=>v+' mL/min']],
+  phos:[['phos0','Phosphate before CVVH',0.5,4,0.05,v=>v.toFixed(2)+' mmol/L'],
+        ['km','Phosphate mobilisation clearance, K<sub>M</sub>',30,200,1,v=>v+' mL/min',true]]
+};
+/* Rebuild the solute-specific sliders whenever the selected solute changes. */
+function buildKin(){
+  const w=$('kin-controls');w.innerHTML='';
+  (KCTL[SOL[P.solute].kin]||[]).forEach(c=>mkCtl(w,c));
+}
+/* Preset buttons copy a set of values into P and refresh every slider. */
+const pw=$('presets');
+PRESETS.forEach(([name,vals,adv])=>{
+  const b=document.createElement('button');b.textContent=name;if(adv)b.className='adv';
+  b.addEventListener('click',()=>{Object.assign(P,vals);Object.values(refs).forEach(f=>f());dirty=true;});
+  pw.appendChild(b);
+});
+/* Solute drop-down, filled from the SOL library. */
+const selS=$('solute');
+Object.entries(SOL).forEach(([k,s])=>{const o=document.createElement('option');o.value=k;o.textContent=s.name+' ('+s.mw+')';selS.appendChild(o);});
+selS.value=P.solute;buildKin();
+selS.addEventListener('change',()=>{P.solute=selS.value;buildKin();dirty=true;});
+
+/* Simple / Advanced view.
+   Simple view adds the class "simple" to <body>; CSS then hides every element
+   marked "adv". Hidden advanced parameters are reset to defaults, and the
+   canvases are resized because some were hidden and had zero width. */
+let mode='advanced';
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
+  mode=b.dataset.mode;
+  document.body.classList.toggle('simple',mode==='simple');
+  document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('on',x===b));
+  if(mode==='simple'){Object.assign(P,ADV_DEF);Object.values(refs).forEach(f=>f());}
+  resize();dirty=true;
+}));
+
+/* Highlighting.
+   hl is the set of circuit parts currently highlighted. When it is empty,
+   everything is drawn normally; otherwise parts not in the set are drawn
+   faintly (see ga() in the circuit section). Each entry in HL is
+   [id, button label, caption function]. Captions are functions so they can
+   include live values from the model. */
+const hl=new Set();
+const HL=[
+  ['patient','Patient',()=>'Blood is drawn from and returned to the patient through a dual-lumen central venous catheter.'],
+  ['access','Access line',()=>'Carries blood from the catheter to the pump and on to the filter. Before the pump the pressure is negative (about '+fmt(M.Pacc)+' mmHg here), because the pump pulls blood through the catheter.'],
+  ['pump','Blood pump',()=>'A roller pump sets blood flow, now '+P.qb+' mL/min. Higher blood flow lowers filtration fraction and clotting risk, at the cost of a more negative access pressure and a higher return pressure.'],
+  ['pre','Pre-dilution',()=>'Replacement fluid given before the filter, now '+Math.round(M.Qpre*60)+' mL/h. It lowers haematocrit and protein inside the filter, which reduces clotting, but it dilutes solutes, so clearance is multiplied by Q<sub>P</sub>/(Q<sub>P</sub> + Q<sub>pre</sub>) = '+fmt(M.Qp0/M.QpIn,2)+'.'],
+  ['filter','Haemofilter',()=>'About '+Math.round(M.N/1000)+' thousand hollow fibres. Pressure across the membrane pushes plasma water out, and small solutes are carried with it (solvent drag) in proportion to their sieving coefficient. Cells and proteins stay in the blood.'],
+  ['eff','Effluent',()=>'The effluent pump fixes total ultrafiltration, which equals replacement fluid plus net fluid removal: now '+fmt(M.filt*60)+' mL/h. Filter pressures settle wherever they must to deliver this rate.'],
+  ['post','Post-dilution',()=>'Replacement fluid given after the filter, now '+Math.round(M.Qpost*60)+' mL/h. It restores volume without diluting the blood being filtered, so clearance is not reduced, but the filter sees more concentrated blood.'],
+  ['return','Return line',()=>'Carries blood back to the patient. Its pressure ('+fmt(M.Pout)+' mmHg) reflects resistance downstream: the return tubing, air-trap chamber, catheter lumen and central venous pressure.'],
+  ['monitor',()=>mode==='simple'?'Key numbers':'Pressure monitor',()=>mode==='simple'?'Filtration fraction, haematocrit leaving the filter, and clearance of the selected solute: the three numbers that summarise how hard the filter is working.':'Machine pressures. TMP = (pre-filter + return)/2 − effluent. It ignores oncotic pressure, so the true driving pressure is lower than the displayed TMP.']
+];
+// Labels can themselves be functions (the monitor's label changes with view mode).
+const hlName=h=>typeof h[1]==='function'?h[1]():h[1];
+const hlBar=$('hlbar');
+HL.forEach(h=>{
+  const b=document.createElement('button');b.dataset.hl=h[0];b.textContent=hlName(h);
+  b.addEventListener('click',()=>toggleHL(h[0]));hlBar.appendChild(b);
+});
+const clr=document.createElement('button');clr.textContent='Clear';clr.addEventListener('click',()=>{hl.clear();syncHL();});hlBar.appendChild(clr);
+/* Toggle one part on or off, then refresh buttons and captions. */
+function toggleHL(g){if(hl.has(g))hl.delete(g);else hl.add(g);syncHL();}
+function syncHL(){
+  document.querySelectorAll('[data-hl]').forEach(b=>{b.classList.toggle('on',hl.has(b.dataset.hl));b.setAttribute('aria-pressed',hl.has(b.dataset.hl));
+    const h=HL.find(x=>x[0]===b.dataset.hl);b.textContent=hlName(h);});
+  clr.style.display=hl.size?'':'none';
+  $('hlcap').innerHTML=M?HL.filter(h=>hl.has(h[0])).map(h=>'<div><strong>'+hlName(h)+'.</strong> '+h[2]()+'</div>').join(''):'';
+}
+/* Tap targets on the circuit, as rectangles [x1, y1, x2, y2] in the circuit's
+   700 × 520 drawing coordinates. They are checked in order, so small parts
+   (the pump) are listed before the larger regions that surround them. */
+const HIT=[
+  ['pump',[206,56,254,104]],['filter',[380,110,460,390]],['monitor',[196,152,364,402]],['patient',[15,215,185,305]],
+  ['pre',[330,15,690,70]],['pre',[318,40,342,72]],['post',[320,462,690,515]],['post',[318,440,342,470]],
+  ['return',[85,300,115,455]],['return',[90,425,440,456]],['return',[405,380,435,456]],
+  ['eff',[452,135,660,410]],['access',[85,60,440,100]],['access',[85,95,115,215]],['access',[405,95,435,120]]
+];
+/* Convert a tap position from screen pixels to drawing coordinates, then find
+   which part (if any) was tapped. */
+$('cv-circuit').addEventListener('click',e=>{
+  const r=$('cv-circuit').getBoundingClientRect(),s=r.width/700,x=(e.clientX-r.left)/s,y=(e.clientY-r.top)/s;
+  const hit=HIT.find(h=>x>=h[1][0]&&x<=h[1][2]&&y>=h[1][1]&&y<=h[1][3]);
+  if(hit)toggleHL(hit[0]);
+});
+
+/* Animation speed for the fibre view (1 = real time) and pause control. */
+let timeScale=3,paused=false;
+document.querySelectorAll('[data-ts]').forEach(b=>b.addEventListener('click',()=>{
+  timeScale=parseFloat(b.dataset.ts);
+  document.querySelectorAll('[data-ts]').forEach(x=>x.classList.toggle('on',x===b));
+}));
+$('pause').addEventListener('click',()=>{paused=!paused;$('pause').textContent=paused?'Play':'Pause';$('pause').classList.toggle('on',paused);});
+/* Tabs for the along-filter chart. */
+let tab='press';
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{
+  tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x===b));drawChart();
+}));
+/* Respect the device's reduced-motion setting: start paused at real-time speed. */
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){timeScale=1;paused=true;$('pause').textContent='Play';$('pause').classList.add('on');
+  document.querySelectorAll('[data-ts]').forEach(x=>x.classList.toggle('on',x.dataset.ts==='1'));}
+
+/* ==========================================================================
+   5. CANVAS TOOLS
+   ========================================================================== */
+/* setup(): size a canvas to its on-screen width and a given height.
+   High-resolution screens have several device pixels per CSS pixel (dpr), so
+   the canvas is given dpr × more pixels and then scaled back. Drawing code can
+   use ordinary CSS-pixel coordinates and still look sharp. */
+function setup(cv,h){
+  const w=cv.getBoundingClientRect().width||cv.parentElement.clientWidth;
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  cv.style.height=h+'px';cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {cv,ctx,w,h};
+}
+let CC,FC,CH,PJ;   // canvas handles: circuit, fibre, along-filter chart, projection chart
+/* resize(): recompute all canvas sizes (on load, on window resize, and on view change). */
+function resize(){
+  const cw=Math.min(760,$('cv-circuit').parentElement.clientWidth-28);
+  $('cv-circuit').style.maxWidth='760px';$('cv-circuit').style.margin='0 auto';
+  CC=setup($('cv-circuit'),Math.round(Math.max(cw,280)*520/700));
+  const fw=$('cv-fibre').parentElement.clientWidth-28;
+  FC=setup($('cv-fibre'),Math.round(Math.min(330,Math.max(230,fw*0.62))));
+  CH=setup($('cv-chart'),250);
+  PJ=setup($('cv-proj'),200);
+  drawStatic();
+}
+/* Format a number to dp decimal places, or show a dash if it is not a real number. */
+const fmt=(v,dp=0)=>isFinite(v)?v.toFixed(dp):'–';
+/* niceTicks(): choose round axis tick values (1, 2 or 5 × a power of ten). */
+function niceTicks(min,max,count){
+  if(!(max>min)){max=min+1;}
+  const raw=(max-min)/count, mag=Math.pow(10,Math.floor(Math.log10(raw))), norm=raw/mag;
+  const step=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag;
+  const lo=Math.floor(min/step)*step, hi=Math.ceil(max/step)*step, t=[];
+  for(let v=lo;v<=hi+step*1e-6;v+=step)t.push(+v.toFixed(10));
+  return {lo,hi,t,step};
+}
+/* plot(): a minimal line chart.
+   cfg.xs     x values shared by all series
+   cfg.series [{y:[…], color, label, dash}]
+   cfg.xmax, cfg.xlab, cfg.ylab   axis range and labels
+   cfg.ymin, cfg.ymax             optional values the y axis must include
+   cfg.zero   draw a dashed line at y = 0
+   NaN values create gaps in a line (used where there is no filtrate). */
+function plot(G,cfg){
+  const {ctx,w,h}=G;ctx.clearRect(0,0,w,h);
+  const l=46,r=10,t=36,b=34,pw_=w-l-r,ph=h-t-b;
+  let mn=Infinity,mx=-Infinity;
+  cfg.series.forEach(s=>s.y.forEach(v=>{if(isFinite(v)){mn=Math.min(mn,v);mx=Math.max(mx,v);}}));
+  if(cfg.ymin!==undefined)mn=Math.min(mn,cfg.ymin);
+  if(cfg.ymax!==undefined)mx=Math.max(mx,cfg.ymax);
+  if(mx-mn<1e-9){mx+=1;mn-=1;}
+  const yt=niceTicks(mn,mx,5), xt=niceTicks(0,cfg.xmax,5);
+  const X=v=>l+v/cfg.xmax*pw_, Y=v=>t+ph-(v-yt.lo)/(yt.hi-yt.lo)*ph;
+  ctx.font='11px "IBM Plex Mono",ui-monospace,monospace';ctx.textBaseline='middle';
+  ctx.strokeStyle=C.border;ctx.lineWidth=1;ctx.fillStyle=C.muted;
+  yt.t.forEach(v=>{const y=Y(v);ctx.beginPath();ctx.moveTo(l,y);ctx.lineTo(l+pw_,y);ctx.stroke();ctx.textAlign='right';ctx.fillText(+v.toPrecision(4)+'',l-5,y);});
+  xt.t.forEach(v=>{if(v>cfg.xmax+1e-9)return;const x=X(v);ctx.textAlign='center';ctx.fillText(v+'',x,t+ph+11);});
+  ctx.textAlign='center';ctx.font='11px "IBM Plex Sans",system-ui,sans-serif';ctx.fillText(cfg.xlab,l+pw_/2,h-8);
+  ctx.save();ctx.translate(11,t+ph/2);ctx.rotate(-Math.PI/2);ctx.fillText(cfg.ylab,0,0);ctx.restore();
+  if(cfg.zero && yt.lo<0 && yt.hi>0){ctx.strokeStyle=C.muted;ctx.setLineDash([2,3]);ctx.beginPath();ctx.moveTo(l,Y(0));ctx.lineTo(l+pw_,Y(0));ctx.stroke();ctx.setLineDash([]);}
+  cfg.series.forEach(s=>{
+    ctx.strokeStyle=s.color;ctx.lineWidth=2;ctx.setLineDash(s.dash||[]);ctx.beginPath();let pen=false;
+    s.y.forEach((v,i)=>{if(!isFinite(v)){pen=false;return;}const x=X(cfg.xs[i]),y=Y(v);if(!pen){ctx.moveTo(x,y);pen=true;}else ctx.lineTo(x,y);});
+    ctx.stroke();ctx.setLineDash([]);
+  });
+  // legend
+  let lx=l,ly=8;ctx.textAlign='left';ctx.font='11px "IBM Plex Sans",system-ui,sans-serif';
+  cfg.series.forEach(s=>{
+    const wd=26+ctx.measureText(s.label).width;
+    if(lx+wd>w-r&&lx>l){lx=l;ly+=14;}
+    ctx.strokeStyle=s.color;ctx.lineWidth=2;ctx.setLineDash(s.dash||[]);ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(lx+14,ly);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=C.fg;ctx.fillText(s.label,lx+18,ly);lx+=wd+8;
+  });
+}
+
+/* ==========================================================================
+   6. UPDATE: run the model and refresh every number on the page
+   ========================================================================== */
+let M=null,      // latest model results from solve()
+    dirty=true;  // true when parameters changed and the model must be re-run
+/* stat(): HTML for one readout tile. cls adds a warning outline; adv hides it in Simple view. */
+function stat(k,v,cls,adv){return '<div class="stat '+(cls||'')+(adv?' adv':'')+'"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>';}
+function update(){
+  M=solve(P);                               // run the physics
+  const s=SOL[P.solute];
+  $('lg-sol').textContent=s.name;
+  $('sol-desc').textContent='Sieving coefficient S = '+s.S;
+  // Colour-code filtration fraction (>20 % caution, >25 % danger) and TMP.
+  const ffc=M.FF>0.25?'bad':M.FF>0.20?'warn':'';
+  const tmpc=M.TMP>250?'bad':M.TMP>180?'warn':'';
+  $('stats').innerHTML=
+    stat('Effluent (Q<sub>UF</sub>)',fmt(M.filt*60)+' mL/h',M.unach?'bad':'')+
+    stat('Filtration fraction',fmt(M.FF*100,1)+' %',ffc)+
+    stat('Haematocrit leaving filter',fmt(M.HctOutF*100,1)+' %',M.HctOutF>0.5?'warn':'')+
+    stat('Haematocrit returned',fmt(M.HctRet*100,1)+' %')+
+    stat('Protein leaving filter',fmt(M.TPout,1)+' g/dL','',true)+
+    stat('Access (estimate)',fmt(M.Pacc)+' mmHg','',true)+
+    stat('Pre-filter',fmt(M.Pin)+' mmHg',M.Pin>300?'warn':'',true)+
+    stat('Effluent',fmt(M.Pf)+' mmHg','',true)+
+    stat('Return',fmt(M.Pout)+' mmHg','',true)+
+    stat('TMP',fmt(M.TMP)+' mmHg',tmpc,true)+
+    stat('Filter pressure drop',fmt(M.dPf)+' mmHg','',true)+
+    stat('Fibre transit time',fmt(M.transit,1)+' s','',true);
+  // Build the list of warnings shown beneath the readouts.
+  const al=[];
+  if(M.unach)al.push(['bad','The membrane cannot deliver the prescribed effluent rate even at maximum TMP. A real machine would alarm and stop; the values shown are the best achievable.']);
+  if(M.FF>0.25)al.push(['bad','Filtration fraction above 25 %: blood is heavily concentrated in the distal filter, raising the risk of clotting. Increase blood flow or move replacement fluid pre-filter.']);
+  else if(M.FF>0.20)al.push(['warn','Filtration fraction 20–25 %: approaching the usual upper limit.']);
+  if(M.TMP>250)al.push(['bad','TMP above 250 mmHg: in practice this usually signals a fouled or clotting filter. Alarm limits vary by machine and settings.']);
+  if(M.back)al.push(['warn','Backfiltration: near the outlet, oncotic pressure exceeds the hydrostatic gradient and filtrate re-enters the blood.']);
+  if(M.lim)al.push(['bad','Local haemoconcentration reached its physical limit in part of the filter.']);
+  if(!al.length)al.push(['ok','Prescription within usual limits.']);
+  $('alerts').innerHTML=al.map(a=>'<div class="alert '+a[0]+'">'+a[1]+'</div>').join('');
+
+  // Clearance and dose readouts. pdCorr is the pre-dilution correction factor.
+  // mL/min × mmol/L × 1.44 = mmol/day (1440 min/day ÷ 1000 mL/L).
+  const K=M.Kn, pdCorr=M.Qp0/M.QpIn;
+  let cs='';
+  cs+=stat(mode==='simple'?'Filter clearance':'Clearance (numerical)',fmt(K,1)+' mL/min');
+  cs+=stat('Bedside formula',fmt(M.Ka,1)+' mL/min','',true);
+  cs+=stat('Prescribed effluent dose',fmt(M.filt*60/P.wt,1)+' mL/kg/h');
+  cs+=stat('Delivered dose (pre-dil. corrected)',fmt(M.filt*60*pdCorr/P.wt,1)+' mL/kg/h');
+  cs+=stat('Pre-dilution factor',fmt(pdCorr,2),'',true);
+  cs+=stat('Effluent / plasma concentration',fmt(K/Math.max(M.filt,1e-9),2),'',true);
+  // Lactate: body and filter clear lactate in parallel, so the steady-state
+  // level falls by the factor Kendo/(Kendo + Kfilter).
+  // Phosphate: plateau where filter removal balances mobilisation from tissues.
+  if(s.kin==='lac'){
+    const Kt=P.kendo+K, css=P.lac0*P.kendo/Kt;
+    cs+=stat('Filter share of total lactate clearance',fmt(100*K/Kt,1)+' %');
+    cs+=stat('Steady-state lactate',fmt(P.lac0,1)+' → '+fmt(css,2)+' mmol/L');
+    cs+=stat('Lactate in effluent',fmt(K*css*1.44,0)+' mmol/day');
+    cs+=stat('Body lactate production',fmt(P.kendo*P.lac0*1.44,0)+' mmol/day','',true);
+  }else if(s.kin==='phos'){
+    const css=P.phos0*P.km/(P.km+K), tau=s.vd*P.wt*1000/(P.km+K)/60;
+    cs+=stat('Plateau phosphate (model)',fmt(css,2)+' mmol/L');
+    cs+=stat('Removed at plateau',fmt(K*css*1.44,0)+' mmol/day ('+fmt(K*css*1.44*0.03097,2)+' g)');
+    cs+=stat('Time constant',fmt(tau,1)+' h','',true);
+  }
+  $('clear-stats').innerHTML=cs;
+
+  // Refresh highlight captions (they contain live values) and the fibre caption.
+  syncHL();
+  $('fibre-note').textContent='One of '+Math.round(M.N).toLocaleString()+' fibres. Radial scale exaggerated about '+
+    Math.round((FIB_L/(FC? FC.w-60:300))/(FIB_D/((FC?FC.h:260)*0.52)))+'×. Real filtrate crosses the membrane at well under 1 µm/s, so the crossing is drawn much faster than reality to make it visible.';
+  drawStatic();
+}
+
+/* ==========================================================================
+   7. CHARTS
+   These are redrawn only when the model or the selected tab changes.
+   ========================================================================== */
+/* drawChart(): the along-filter profile for the selected tab. x is the
+   midpoint of each segment in cm. */
+function drawChart(){
+  if(!M||!CH)return;
+  const n=M.n, xs=Array.from({length:n},(_,i)=>(i+0.5)*25/n), A=M.A;
+  if(tab==='press'){
+    const net=Array.from(A.P,(p,i)=>p-M.Pf-A.pi[i]);
+    plot(CH,{xs,xmax:25,xlab:'Distance along filter (cm)',ylab:'mmHg',zero:true,series:[
+      {y:Array.from(A.P),color:C.blood,label:'Blood P'},
+      {y:new Array(n).fill(M.Pf),color:C.eff,label:'Effluent P'},
+      {y:Array.from(A.pi),color:C.prot,label:'Oncotic π'},
+      {y:net,color:C.accent,label:'Net driving',dash:[5,4]}]});
+    $('chart-note').textContent='Net driving pressure = blood pressure − effluent pressure − oncotic pressure. It falls along the filter as blood pressure drops and oncotic pressure rises.';
+  }else if(tab==='flux'){
+    const cmSeg=25/n, loc=Array.from(A.jv,v=>v/cmSeg);
+    plot(CH,{xs,xmax:25,xlab:'Distance along filter (cm)',ylab:'mL/min per cm',zero:true,ymin:0,series:[
+      {y:loc,color:C.eff,label:'Local ultrafiltration'}]});
+    $('chart-note').textContent='Total ultrafiltration '+fmt(M.filt,1)+' mL/min. Most filtrate forms near the inlet, where the driving pressure is highest.';
+  }else if(tab==='hct'){
+    plot(CH,{xs,xmax:25,xlab:'Distance along filter (cm)',ylab:'Haematocrit (%)',series:[
+      {y:Array.from(A.H,v=>v*100),color:C.blood,label:'Haematocrit'}]});
+    $('chart-note').textContent='Entering the fibres at '+fmt(M.HctIn*100,1)+' %, leaving at '+fmt(M.HctOutF*100,1)+' %. Blood viscosity rises from '+fmt(M.muIn*1e3,2)+' to '+fmt(M.muOut*1e3,2)+' mPa·s.';
+  }else{
+    plot(CH,{xs,xmax:25,xlab:'Distance along filter (cm)',ylab:'% of patient plasma',ymin:0,series:[
+      {y:Array.from(M.cs,v=>v*100),color:C.solute,label:'In plasma water'},
+      {y:Array.from(M.cf,v=>v*100),color:C.eff,label:'In local filtrate',dash:[5,4]}]});
+    $('chart-note').textContent=M.S>=0.999?'With S = 1 the solute leaves with water at plasma concentration, so plasma concentration inside the filter does not change. Pre-dilution lowers it at the inlet.':'With S < 1 the solute is partly retained, so its plasma concentration rises along the filter as water is removed.';
+  }
+}
+/* drawProj(): 24-hour projection for the selected solute.
+   Albumin: shows estimated daily loss instead of a curve.
+   Lactate:   V dC/dt = G − (Kendo + Kf)·C, with G set so the level is steady before CVVH.
+   Phosphate: V dC/dt = KM·(C0 − C) − Kf·C (pseudo-one-compartment model).
+   Others:    C(t) = C0·exp(−K·t/V), single pool with no generation.
+   Each has an exact exponential solution, evaluated every 15 minutes. */
+function drawProj(){
+  if(!M||!PJ)return;
+  const s=SOL[P.solute];
+  if(s.vd===null){
+    const {ctx,w,h}=PJ;ctx.clearRect(0,0,w,h);
+    const alb=P.tp*0.6/100; // g/mL, albumin ≈ 60 % of total protein
+    const loss=M.Kn*alb*1440;
+    ctx.fillStyle=C.fg;ctx.font='500 22px "IBM Plex Mono",ui-monospace,monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('≈ '+fmt(loss,1)+' g albumin per day',w/2,h/2-10);
+    ctx.fillStyle=C.muted;ctx.font='13px "IBM Plex Sans",system-ui,sans-serif';
+    ctx.fillText('lost into the effluent (albumin taken as 60 % of total protein)',w/2,h/2+18);
+    $('proj-note').textContent='Albumin is almost entirely retained, so the question is loss, not clearance.';
+    return;
+  }
+  if(s.kin==='lac'){
+    const V=s.vd*P.wt*1000, Kt=P.kendo+M.Kn, k=Kt/V, css=P.lac0*P.kendo/Kt;
+    const xs=[],y=[],yb=[];for(let i=0;i<=96;i++){const t=i*15;xs.push(t/60);y.push(css+(P.lac0-css)*Math.exp(-k*t));yb.push(P.lac0);}
+    plot(PJ,{xs,xmax:24,xlab:'Hours',ylab:'Lactate (mmol/L)',ymin:0,series:[{y:yb,color:C.muted,label:'Without CVVH',dash:[5,4]},{y,color:C.solute,label:'With CVVH'}]});
+    $('proj-note').textContent='The body, chiefly the liver, clears lactate at about '+P.kendo+' mL/min; the filter adds '+fmt(M.Kn,0)+' mL/min. With production unchanged, lactate settles within an hour at '+fmt(100*css/P.lac0,1)+' % of its starting value. CVVH barely changes lactate, so a rising lactate on CVVH still means rising production or failing clearance.';
+    return;
+  }
+  if(s.kin==='phos'){
+    const V=s.vd*P.wt*1000, k=(P.km+M.Kn)/V, css=P.phos0*P.km/(P.km+M.Kn);
+    const xs=[],y=[],ylo=[];for(let i=0;i<=96;i++){const t=i*15;xs.push(t/60);y.push(css+(P.phos0-css)*Math.exp(-k*t));ylo.push(0.8);}
+    plot(PJ,{xs,xmax:24,xlab:'Hours',ylab:'Phosphate (mmol/L)',ymin:0,series:[{y,color:C.solute,label:'Plasma phosphate'},{y:ylo,color:C.muted,label:'0.8 mmol/L, approx. lower limit of normal',dash:[5,4]}]});
+    $('proj-note').textContent='Filter clearance ('+fmt(M.Kn,0)+' mL/min) is a large fraction of the rate at which phosphate can move out of cells and bone (K_M '+P.km+' mL/min), so plasma phosphate falls quickly to a lower plateau. The model assumes tissue stores never run down; in reality they do over days, which is why CVVH without phosphate replacement leads to hypophosphataemia.';
+    return;
+  }
+  const V=s.vd*P.wt*1000, k=M.Kn/V; // per minute
+  const xs=[],y=[];for(let i=0;i<=96;i++){const t=i*15;xs.push(t/60);y.push(100*Math.exp(-k*t));}
+  plot(PJ,{xs,xmax:24,xlab:'Hours',ylab:'% of starting level',ymin:0,ymax:100,series:[{y,color:C.solute,label:s.name+', single pool, no generation'}]});
+  const th=Math.log(2)/k/60;
+  $('proj-note').textContent='Distribution volume '+fmt(V/1000,0)+' L ('+s.vd+' L/kg). Removal half-life about '+(th>200?'>200':fmt(th,1))+' h; '+fmt(100*Math.exp(-k*1440),0)+' % would remain at 24 h if nothing were generated.';
+}
+
+/* ------------------------------------------------------------------ */
+/* Mathematics panel                                                   */
+/* ------------------------------------------------------------------ */
+/* ==========================================================================
+   8. MATHS PANEL
+   Builds expandable sections, each showing a formula with the current
+   numbers substituted. sec(title, html, openByDefault, advancedOnly).
+   ========================================================================== */
+function drawMath(){
+  if(!M)return;
+  const s=SOL[P.solute];
+  const h=[];
+  const sec=(t,body,open,adv)=>h.push('<details'+(open?' open':'')+(adv?' class="adv"':'')+'><summary>'+t+'</summary>'+body+'</details>');
+  sec('Mass balance of the circuit',
+    '<p>Plasma flow into the circuit and the effect of pre-dilution:</p>'+
+    '<div class="eq">Q<sub>P</sub> = Q<sub>B</sub>(1 − Hct) = '+P.qb+' × (1 − '+P.hct.toFixed(2)+') = '+fmt(M.Qp0,1)+' mL/min</div>'+
+    '<div class="eq">Q<sub>UF</sub> = Q<sub>R</sub> + Q<sub>net</sub> = '+P.qrep+' + '+P.qnet+' = '+(P.qrep+P.qnet)+' mL/h = '+fmt(M.Quf,1)+' mL/min</div>'+
+    '<div class="eq">Hct<sub>filter in</sub> = Q<sub>B</sub>·Hct / (Q<sub>B</sub> + Q<sub>pre</sub>) = '+fmt(M.Qrbc,1)+' / '+fmt(M.QbIn,1)+' = '+fmt(M.HctIn*100,1)+' %</div>'+
+    '<div class="eq">Returned blood = Q<sub>B</sub> + Q<sub>R</sub> − Q<sub>UF</sub> = '+fmt(M.Qret,1)+' mL/min</div>',true);
+  sec('Filtration fraction',
+    '<p>The fraction of plasma water entering the filter that is removed. High values concentrate blood at the outlet.</p>'+
+    '<div class="eq">FF = Q<sub>UF</sub> / (Q<sub>P</sub> + Q<sub>pre</sub>) = '+fmt(M.filt,1)+' / '+fmt(M.QpIn,1)+' = '+fmt(M.FF*100,1)+' %</div>'+
+    '<div class="eq">Hct<sub>out</sub> = Hct<sub>in</sub> / (1 − FF<sub>blood</sub>) = '+fmt(M.HctIn*100,1)+' / (1 − '+fmt(M.bFF,3)+') = '+fmt(M.HctOutF*100,1)+' %</div>');
+  sec('Local ultrafiltration (Starling)',
+    '<p>Each of 120 segments filters in proportion to its local net pressure. Plasma proteins are treated as fully reflected (σ = 1).</p>'+
+    '<div class="eq">J<sub>v</sub>(x) = K<sub>UF</sub>·(dA/A)·[P<sub>B</sub>(x) − P<sub>E</sub> − π(x)]</div>'+
+    '<div class="eq">K<sub>UF</sub> = L<sub>p</sub> × A = '+P.lp+' × '+P.area.toFixed(1)+' = '+fmt(M.Kuf,0)+' mL/h/mmHg</div>'+
+    '<p>The machine fixes Q<sub>UF</sub>, so the model solves for the effluent pressure P<sub>E</sub> = '+fmt(M.Pf,1)+' mmHg at which ∫J<sub>v</sub> dx equals the prescribed rate.</p>',false,true);
+  sec('Oncotic pressure (Landis–Pappenheimer)',
+    '<div class="eq">π = 2.1C + 0.16C² + 0.009C³ (C in g/dL)</div>'+
+    '<div class="eq">C(x) = C<sub>in</sub> · Q<sub>P,in</sub> / Q<sub>P</sub>(x)</div>'+
+    '<p>Inlet: C = '+fmt(M.TPin,2)+' g/dL, π = '+fmt(M.piIn,1)+' mmHg. Outlet: C = '+fmt(M.TPout,2)+' g/dL, π = '+fmt(M.piOut,1)+' mmHg.</p>',false,true);
+  sec('Axial pressure drop (Hagen–Poiseuille)',
+    '<div class="eq">dP/dx = −128 μ(Hct) Q / (π N d⁴)</div>'+
+    '<p>N = A / (π d L) = '+Math.round(M.N).toLocaleString()+' fibres, d = 200 µm, L = 25 cm. Blood viscosity follows the in-vitro tube relation of Pries et al. (1992) for a 200 µm tube, with plasma viscosity 1.2 mPa·s:</p>'+
+    '<div class="eq">μ<sub>rel</sub> = 1 + (μ<sub>0.45</sub> − 1)·[(1 − H)<sup>C</sup> − 1] / [(1 − 0.45)<sup>C</sup> − 1],  μ<sub>0.45</sub> = '+PRIES.e45.toFixed(2)+', C = '+PRIES.C.toFixed(2)+'</div>'+
+    '<p>Filter pressure drop: '+fmt(M.dPf,1)+' mmHg. Inlet wall shear rate ≈ '+fmt(M.shear,0)+' s⁻¹.</p>',false,true);
+  sec('Transmembrane pressure as the machine reports it',
+    '<div class="eq">TMP = (P<sub>pre-filter</sub> + P<sub>return</sub>)/2 − P<sub>effluent</sub> = ('+fmt(M.Pin)+' + '+fmt(M.Pout)+')/2 − ('+fmt(M.Pf)+') = '+fmt(M.TMP)+' mmHg</div>'+
+    '<p>This excludes oncotic pressure, so the true mean driving pressure is lower than the displayed TMP.</p>',false,true);
+  sec('Convective solute transport',
+    '<p>Kedem–Katchalsky with diffusion switched off: solute is dragged through the membrane with water.</p>'+
+    '<div class="eq">J<sub>s</sub> = J<sub>v</sub>(1 − σ)C = S · J<sub>v</sub> · C,  S('+s.name+') = '+s.S+'</div>'+
+    '<div class="eq">Bedside: K = Q<sub>UF</sub> · S · Q<sub>P</sub>/(Q<sub>P</sub> + Q<sub>pre</sub>) = '+fmt(M.Quf,1)+' × '+s.S+' × '+fmt(M.Qp0/M.QpIn,3)+' = '+fmt(M.Ka,1)+' mL/min</div>'+
+    '<div class="eq">Numerical: K = ∫ S·J<sub>v</sub>(x)·C(x) dx / C<sub>patient</sub> = '+fmt(M.Kn,1)+' mL/min</div>'+
+    '<p>The two agree exactly when S = 1. When S < 1, retained solute concentrates along the filter, so the local calculation gives slightly more clearance than the bedside formula, which uses inlet concentration. Published S values are often defined against mean filter concentration for this reason.</p>');
+  sec('Dose',
+    '<div class="eq">Effluent dose = Q<sub>UF</sub> / weight = '+fmt(M.filt*60,0)+' / '+P.wt+' = '+fmt(M.filt*60/P.wt,1)+' mL/kg/h</div>'+
+    '<div class="eq">Delivered (pre-dilution corrected) = dose × Q<sub>P</sub>/(Q<sub>P</sub> + Q<sub>pre</sub>) = '+fmt(M.filt*60*M.Qp0/M.QpIn/P.wt,1)+' mL/kg/h</div>'+
+    '<p>Some texts use blood flow rather than plasma flow in the correction, which is more appropriate for urea because it also equilibrates with red-cell water.</p>');
+  sec('Solute kinetics over time',
+    '<p>Urea, creatinine and middle molecules: single pool, no generation.</p>'+
+    '<div class="eq">C(t) = C<sub>0</sub> · e<sup>−K t / V</sup>,  t<sub>½</sub> = 0.693 V / K</div>'+
+    '<p>Lactate: constant production G, cleared by the body (K<sub>endo</sub>) and the filter (K<sub>F</sub>) in parallel. Before CVVH, G = K<sub>endo</sub>·C<sub>0</sub>.</p>'+
+    '<div class="eq">V dC/dt = G − (K<sub>endo</sub> + K<sub>F</sub>)·C,  C<sub>ss</sub> = C<sub>0</sub> · K<sub>endo</sub>/(K<sub>endo</sub> + K<sub>F</sub>) = '+fmt(P.lac0*P.kendo/(P.kendo+M.Kn),2)+' mmol/L</div>'+
+    '<p>Levraut et al. measured a median total lactate clearance of 1,379 mL/min, with the filter contributing under 3 %.</p>'+
+    '<p>Phosphate: pseudo-one-compartment model (Agar, Leypoldt et al.). Phosphate is removed from a central volume V and replenished from a large tissue pool at a rate set by the mobilisation clearance K<sub>M</sub>.</p>'+
+    '<div class="eq">V dC/dt = K<sub>M</sub>(C<sub>0</sub> − C) − K<sub>F</sub>·C,  C<sub>plateau</sub> = C<sub>0</sub> · K<sub>M</sub>/(K<sub>M</sub> + K<sub>F</sub>) = '+fmt(P.phos0*P.km/(P.km+M.Kn),2)+' mmol/L</div>'+
+    '<p>Defaults come from the HEMO Study analysis: median K<sub>M</sub> 87 mL/min (IQR 65–116) and central volume 9.4 L, scaled here as 0.13 L/kg. Phosphate is not protein-bound to a meaningful degree, and effluent-to-plasma ratios close to 1 have been measured in CVVH (Troyanov et al.), hence S = 1.</p>');
+  $('math').innerHTML=h.join('');
+}
+
+/* Redraw both charts. */
+function drawStatic(){drawChart();drawProj();}
+
+/* ==========================================================================
+   9. CIRCUIT ANIMATION
+   The circuit is drawn in fixed "drawing coordinates" 700 wide × 520 tall and
+   scaled to fit the screen. Each tube is a path (a list of corner points)
+   with a flow function. Dots are spaced evenly along each path and move at a
+   speed proportional to the flow, so faster flow = faster dots.
+   ========================================================================== */
+/* mkPath(group, points, flow, kind, haematocrit): precompute segment lengths.
+   group links the path to a highlightable part; kind sets its colour. */
+function mkPath(g,pts,flow,kind,hct){
+  let len=0;const seg=[];
+  for(let i=1;i<pts.length;i++){const l=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);seg.push(l);len+=l;}
+  return {g,pts,seg,len,flow,kind,hct,phase:0,seed:Math.random()};
+}
+/* ga(): opacity for a part: full if nothing is highlighted or it is highlighted, faint otherwise. */
+const ga=g=>(hl.size===0||hl.has(g))?1:0.12;
+/* ptAt(): the (x, y) point at distance s along a path. */
+function ptAt(p,s){
+  for(let i=0;i<p.seg.length;i++){
+    if(s<=p.seg[i]){const f=s/p.seg[i],a=p.pts[i],b=p.pts[i+1];return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];}
+    s-=p.seg[i];
+  }
+  return p.pts[p.pts.length-1];
+}
+/* The tubes. Flow changes at every junction, so the blood line is split into
+   separate paths: patient → pump → pre-dilution junction → filter → post-dilution
+   junction → patient. Each blood path carries its own haematocrit. */
+const paths=[
+  mkPath('access',[[100,215],[100,80],[330,80]],()=>P.qb,'blood',()=>P.hct),
+  mkPath('access',[[330,80],[420,80],[420,118]],()=>M.QbIn,'blood',()=>M.HctIn),
+  mkPath('filter',[[420,118],[420,382]],()=>(M.QbIn+M.QbOutF)/2,'blood',()=>(M.HctIn+M.HctOutF)/2),
+  mkPath('return',[[420,382],[420,440],[330,440]],()=>M.QbOutF,'blood',()=>M.HctOutF),
+  mkPath('return',[[330,440],[100,440],[100,305]],()=>M.Qret,'blood',()=>M.HctRet),
+  mkPath('pre',[[600,45],[330,45],[330,80]],()=>M.Qpre,'rep'),
+  mkPath('post',[[600,480],[330,480],[330,440]],()=>M.Qpost,'rep'),
+  mkPath('eff',[[450,165],[600,165],[600,330]],()=>M.filt,'eff')
+];
+/* Roller pumps: position, flow (sets rotation speed), label and label position. */
+const pumps=[
+  {g:'pump',x:230,y:80,flow:()=>P.qb,label:()=>'Blood '+P.qb+' mL/min',ly:118,a:0},
+  {g:'pre',x:480,y:45,flow:()=>M.Qpre,label:()=>'Pre '+Math.round(M.Qpre*60)+' mL/h',ly:17,a:0},
+  {g:'post',x:480,y:480,flow:()=>M.Qpost,label:()=>'Post '+Math.round(M.Qpost*60)+' mL/h',ly:512,a:0},
+  {g:'eff',x:530,y:165,flow:()=>M.filt,label:()=>'Effluent '+Math.round(M.filt*60)+' mL/h',ly:136,lx:560,a:0}
+];
+const SP=15;   // spacing between dots along a tube, drawing units
+/* rr(): draw a rounded rectangle path. */
+function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+/* drawCircuit(dt): draw one frame. dt is seconds since the last frame.
+   F() picks font sizes, slightly larger on narrow (phone) screens. */
+function drawCircuit(dt){
+  if(!M||!CC)return;
+  const {ctx,w,h}=CC,s=w/700,fs=s<0.6?1.25:1,F=(px,fam,wt)=>(wt?wt+' ':'')+Math.round(px*fs)+'px '+(fam==='m'?'"IBM Plex Mono",ui-monospace,monospace':'"IBM Plex Sans",system-ui,sans-serif');
+  ctx.clearRect(0,0,w,h);ctx.save();ctx.scale(s,s);
+  ctx.lineCap='round';ctx.lineJoin='round';
+  // tubing
+  paths.forEach(p=>{
+    ctx.strokeStyle=p.kind==='blood'?C.blood:p.kind==='rep'?C.water:C.eff;
+    ctx.globalAlpha=0.16*ga(p.g);ctx.lineWidth=12;ctx.beginPath();
+    p.pts.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.stroke();
+  });
+  ctx.globalAlpha=1;
+  // patient
+  ctx.globalAlpha=ga('patient');ctx.fillStyle=C.bg;ctx.strokeStyle=C.muted;ctx.lineWidth=1.5;rr(ctx,15,215,170,90,12);ctx.fill();ctx.stroke();
+  ctx.fillStyle=C.fg;ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=F(20,'s','600');ctx.fillText('Patient',100,248);
+  ctx.font=F(17,'m');ctx.fillStyle=C.muted;ctx.fillText('Hct '+Math.round(P.hct*100)+'%',100,278);
+  // bags
+  const bag=(g,x,y,w_,h_,col,txt)=>{const a=ga(g);ctx.globalAlpha=0.18*a;ctx.fillStyle=col;rr(ctx,x,y,w_,h_,10);ctx.fill();ctx.globalAlpha=a;ctx.strokeStyle=col;ctx.lineWidth=1.5;rr(ctx,x,y,w_,h_,10);ctx.stroke();ctx.fillStyle=C.fg;ctx.font=F(13);ctx.fillText(txt,x+w_/2,y+h_/2);};
+  bag('pre',600,18,86,56,C.water,'Pre fluid');
+  bag('post',600,452,86,56,C.water,'Post fluid');
+  bag('eff',560,330,90,74,C.eff,'Effluent');
+  // filter body
+  const fa=ga('filter');ctx.globalAlpha=fa;ctx.fillStyle=C.card;ctx.strokeStyle=C.fg;ctx.lineWidth=1.5;rr(ctx,388,118,64,264,10);ctx.fill();
+  ctx.globalAlpha=0.16*fa;ctx.fillStyle=C.eff;rr(ctx,388,118,64,264,10);ctx.fill();
+  ctx.strokeStyle=C.blood;ctx.globalAlpha=0.25*fa;ctx.lineWidth=2;
+  for(let x=396;x<=444;x+=6){ctx.beginPath();ctx.moveTo(x,124);ctx.lineTo(x,376);ctx.stroke();}
+  ctx.globalAlpha=fa;ctx.strokeStyle=C.fg;ctx.lineWidth=1.5;rr(ctx,388,118,64,264,10);ctx.stroke();
+  ctx.save();ctx.translate(377,250);ctx.rotate(-Math.PI/2);ctx.fillStyle=C.muted;ctx.font=F(14);ctx.fillText('Haemofilter '+P.area.toFixed(1)+' m²',0,0);ctx.restore();
+  // particles
+  paths.forEach(p=>{
+    const f=Math.max(0,p.flow()||0);
+    if(!paused)p.phase+=f*0.45*dt;   // advance dots: speed ∝ flow
+    if(f<0.05)return;
+    ctx.globalAlpha=ga(p.g);
+    // Each dot has a stable identity (id) as it moves. For blood, a dot is drawn
+    // as a red cell if a pseudo-random number derived from its id (golden-ratio
+    // sequence) is below the haematocrit, so the share of red dots equals the
+    // haematocrit of that tube.
+    const base=Math.floor(p.phase/SP), off=p.phase-base*SP, hc=p.hct?p.hct():0;
+    for(let j=0;off+j*SP<p.len;j++){
+      const id=j-base, q=ptAt(p,off+j*SP);
+      let col;
+      if(p.kind==='blood'){const r=((id*0.6180339887+p.seed)%1+1)%1;col=r<hc?C.blood:C.plasma;}
+      else col=p.kind==='rep'?C.water:C.eff;
+      ctx.fillStyle=col;ctx.beginPath();ctx.arc(q[0],q[1],3.6,0,6.2832);ctx.fill();
+    }
+  });
+  // pumps
+  pumps.forEach(pm=>{
+    const f=Math.max(0,pm.flow()||0);if(!paused)pm.a+=f*dt*0.035;ctx.globalAlpha=ga(pm.g);
+    ctx.fillStyle=C.card;ctx.strokeStyle=C.fg;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(pm.x,pm.y,19,0,6.2832);ctx.fill();ctx.stroke();
+    ctx.strokeStyle=C.muted;ctx.lineWidth=3;
+    for(let k=0;k<2;k++){const a=pm.a+k*Math.PI;ctx.beginPath();ctx.moveTo(pm.x-Math.cos(a)*13,pm.y-Math.sin(a)*13);ctx.lineTo(pm.x+Math.cos(a)*13,pm.y+Math.sin(a)*13);ctx.stroke();}
+    ctx.fillStyle=C.fg;ctx.font=F(16);ctx.fillText(pm.label(),pm.lx||pm.x,pm.ly);
+  });
+  // Monitor panel: pressures in Advanced view, key numbers in Simple view.
+  ctx.globalAlpha=ga('monitor');ctx.fillStyle=C.bg;ctx.strokeStyle=C.border;ctx.lineWidth=1.5;rr(ctx,196,152,168,250,8);ctx.fill();ctx.stroke();
+  ctx.textAlign='left';ctx.fillStyle=C.muted;ctx.font=F(15);ctx.fillText(mode==='simple'?'Key numbers':'mmHg',208,176);
+  const rows=mode==='simple'?[['FF',fmt(M.FF*100,1)+'%'],['Hct out',fmt(M.HctOutF*100,1)+'%'],['K, mL/min',fmt(M.Kn,1)]]:[['Access',M.Pacc],['Pre-filter',M.Pin],['Effluent',M.Pf],['Return',M.Pout],['TMP',M.TMP],['ΔP filter',M.dPf]];
+  rows.forEach((r,i)=>{const y=212+i*33;ctx.fillStyle=C.fg;ctx.font=F(17);ctx.textAlign='left';ctx.fillText(r[0],206,y);
+    ctx.font=F(18,'m','500');ctx.textAlign='right';
+    ctx.fillStyle=(r[0]==='TMP'&&M.TMP>250)||(r[0]==='FF'&&M.FF>0.25)?C.danger:C.fg;ctx.fillText(typeof r[1]==='string'?r[1]:Math.round(r[1])+'',356,y);});
+  ctx.textAlign='center';ctx.globalAlpha=1;
+  ctx.restore();
+}
+
+/* ==========================================================================
+   10. FIBRE ANIMATION
+   A longitudinal slice through one fibre. Particles are "tokens":
+     r = red cell, p = protein, w = water, s = selected solute.
+   Positions: x runs 0 (inlet) → 1 (outlet); y runs −1 → +1 across the lumen,
+   and beyond ±1 (past the membrane) into the effluent compartment.
+   State st: 0 = in the blood, 1 = crossing the membrane, 2 = in the effluent.
+
+   The key idea: particles enter at rates proportional to the real flows, move
+   at the real local velocity, and cross the membrane with the probability the
+   model gives for that segment. So what you see is a sample of the model's
+   actual mass balance, not a scripted effect.
+   ========================================================================== */
+const parts=[];                     // all live particles
+const acc={r:0,w:0,s:0,p:0};        // fractional particles accumulated between frames
+/* fGeom(): pixel geometry of the fibre drawing (centre line, lumen half-height R, membrane thickness). */
+function fGeom(){const {w,h}=FC;const yc=h/2,R=h*0.26,mt=6,x0=26,x1=w-26;return {w,h,yc,R,mt,x0,x1,memN:mt/R,shellMax:(h/2-7)/R};}
+/* spawn(): add a particle at the inlet.
+   Blood flows with a parabolic (Poiseuille) profile, velocity ∝ (1 − y²): fast
+   in the centre, still at the wall. To get an evenly filled lumen, entry
+   positions are chosen with probability ∝ (1 − y²) (rejection sampling).
+   Red cells stay out of a thin cell-free layer next to the wall (|y| < 0.9). */
+function spawn(t,G){
+  let y;const lim=t==='r'?0.9:0.97;
+  do{y=(Math.random()*2-1)*lim;}while(Math.random()>1-y*y); // flux-weighted for parabolic profile
+  parts.push({t,x:0,y,st:0,dir:0});
+}
+/* stepFibre(): advance all particles by one frame.
+   dtWall is real elapsed time; dt is simulated time (× the chosen speed).
+   Inlet rates: each species enters at a rate ∝ its volume flux at the inlet
+   (e.g. red cells ∝ haematocrit × velocity). The constants 420, 140, 70, 55
+   only set how many particles are on screen. Because particle speed then
+   slows as flow falls along the fibre, retained species automatically crowd
+   together toward the outlet: continuity makes haemoconcentration visible.
+   Crossing: a water particle travelling a distance dx in segment i crosses
+   with probability haz[i] × (dx as a fraction of the segment). Solute uses the
+   same probability multiplied by its sieving coefficient S. */
+function stepFibre(dtWall){
+  if(!M||!FC||paused)return;
+  const G=fGeom(), dt=dtWall*timeScale, n=M.n, v0=M.vbn[0], pwf=1-M.HctIn;
+  const rates={r:420*M.HctIn*v0,w:140*pwf*v0,s:70*M.csIn*pwf*v0,p:55*(M.TPin/7)*pwf*v0};
+  for(const t in rates){acc[t]+=rates[t]*dt;let guard=0;while(acc[t]>=1&&guard++<40){acc[t]-=1;spawn(t,G);}if(acc[t]>1)acc[t]=0;}
+  const wallIn=1+G.memN+0.06;
+  for(let k=parts.length-1;k>=0;k--){
+    const q=parts[k];
+    if(q.st===0){
+      const i=Math.min(n-1,Math.max(0,Math.floor(q.x*n)));
+      const dx=2*M.vbn[i]*(1-q.y*q.y)*dt;
+      if(q.t==='w'||q.t==='s'){
+        const Sx=q.t==='w'?1:M.S, pr=Sx*M.haz[i]*dx*n;   // crossing probability this frame
+        if(Math.random()<pr){q.st=1;q.dir=q.y>=0?1:-1;}
+      }
+      // cells and proteins drift slightly sideways but are never allowed to cross
+      if(q.t==='r'||q.t==='p'){q.y+=(Math.random()-0.5)*0.01;const L=q.t==='r'?0.9:0.97;if(q.y>L)q.y=L;if(q.y<-L)q.y=-L;}
+      q.x+=dx;
+      if(q.x>1){parts.splice(k,1);}
+    }else if(q.st===1){   // crossing: move toward and through the nearest wall (visibly faster than reality)
+      q.y+=q.dir*1.6*dtWall;
+      if(Math.abs(q.y)>wallIn){q.st=2;}
+    }else{                // in the effluent compartment: drift toward the effluent port at the inlet end
+      q.x-=0.05*dt;q.y+=(Math.random()-0.5)*0.03;
+      const a=Math.abs(q.y),sg=Math.sign(q.y);
+      if(a<wallIn)q.y=sg*wallIn;if(a>G.shellMax)q.y=sg*G.shellMax;
+      if(q.x<-0.02)parts.splice(k,1);
+    }
+  }
+  // Cap the number of effluent particles so long sessions stay smooth.
+  let shell=0;for(const q of parts)if(q.st===2)shell++;
+  if(shell>260){for(let k=0;k<parts.length&&shell>260;k++){if(parts[k].st===2){parts.splice(k,1);k--;shell--;}}}
+}
+/* drawFibre(): effluent space, lumen shaded by local haematocrit, membranes with
+   pores, arrows whose length is proportional to local filtration (red and
+   pointing inward where backfiltration occurs), then the particles. */
+function drawFibre(){
+  if(!M||!FC)return;
+  const {ctx}=FC,G=fGeom(),{w,h,yc,R,mt,x0,x1}=G,n=M.n,X=x=>x0+x*(x1-x0),Y=y=>yc+y*R;
+  ctx.clearRect(0,0,w,h);
+  // effluent space
+  ctx.globalAlpha=0.12;ctx.fillStyle=C.eff;ctx.fillRect(x0,4,x1-x0,yc-R-mt-4);ctx.fillRect(x0,yc+R+mt,x1-x0,h-4-(yc+R+mt));ctx.globalAlpha=1;
+  // lumen tinted by haematocrit
+  const sl=60;
+  for(let k=0;k<sl;k++){const i=Math.floor(k/sl*n);ctx.globalAlpha=0.05+M.A.H[i]*0.32;ctx.fillStyle=C.blood;ctx.fillRect(X(k/sl),yc-R,(x1-x0)/sl+1,2*R);}
+  ctx.globalAlpha=1;
+  // membranes with pores
+  [yc-R-mt,yc+R].forEach(yy=>{ctx.fillStyle=C.mem;ctx.fillRect(x0,yy,x1-x0,mt);ctx.fillStyle=C.card;for(let x=x0+3;x<x1;x+=7)ctx.fillRect(x,yy,2,mt);});
+  // local flux arrows
+  let mj=1e-9;for(let i=0;i<n;i++)mj=Math.max(mj,Math.abs(M.A.jv[i]));
+  const gap=(yc-R-mt-4)*0.75;
+  for(let k=0;k<18;k++){
+    const xf=(k+0.5)/18,i=Math.floor(xf*n),v=M.A.jv[i]/mj,len=Math.abs(v)*gap;if(len<2)continue;
+    const col=v>=0?C.eff:C.danger;ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1.6;
+    [-1,1].forEach(sg=>{
+      const ys=sg<0?yc-R-mt-2:yc+R+mt+2, d=v>=0?sg:-sg, yA=v>=0?ys:ys+sg*len, yB=v>=0?ys+sg*len:ys;
+      const x=X(xf);ctx.beginPath();ctx.moveTo(x,yA);ctx.lineTo(x,yB);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x,yB);ctx.lineTo(x-3,yB-d*5);ctx.lineTo(x+3,yB-d*5);ctx.closePath();ctx.fill();
+    });
+  }
+  // particles
+  for(const q of parts){
+    const x=X(q.x),y=Y(q.y);
+    if(q.t==='r'){ctx.fillStyle=C.blood;ctx.beginPath();ctx.ellipse(x,y,4.2,2.6,0,0,6.2832);ctx.fill();}
+    else if(q.t==='p'){ctx.fillStyle=C.prot;ctx.beginPath();ctx.arc(x,y,2.8,0,6.2832);ctx.fill();}
+    else if(q.t==='s'){ctx.fillStyle=C.solute;ctx.beginPath();ctx.arc(x,y,2.3,0,6.2832);ctx.fill();}
+    else{ctx.fillStyle=C.water;ctx.beginPath();ctx.arc(x,y,1.6,0,6.2832);ctx.fill();}
+  }
+  // labels
+  ctx.fillStyle=C.fg;ctx.font='12px "IBM Plex Sans",system-ui,sans-serif';ctx.textBaseline='middle';
+  ctx.textAlign='left';ctx.fillText('← filtrate to effluent port',x0+4,14);
+  ctx.save();ctx.translate(12,yc);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillText('blood in',0,0);ctx.restore();
+  ctx.save();ctx.translate(w-12,yc);ctx.rotate(Math.PI/2);ctx.textAlign='center';ctx.fillText('blood out',0,0);ctx.restore();
+  ctx.textAlign='right';ctx.fillStyle=C.muted;ctx.fillText('Hct '+fmt(M.HctIn*100,0)+'% → '+fmt(M.HctOutF*100,0)+'%',x1-4,h-12);
+}
+
+/* ==========================================================================
+   11. MAIN LOOP
+   requestAnimationFrame calls loop() before each screen refresh. The model is
+   re-solved only when something changed (dirty); the animations advance every
+   frame. dt is capped so that returning to a background tab does not cause a
+   huge jump.
+   ========================================================================== */
+let last=performance.now();
+function loop(now){
+  const dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(dirty){dirty=false;update();drawMath();}
+  stepFibre(dt);
+  drawCircuit(dt);drawFibre();
+  requestAnimationFrame(loop);
+}
+window.addEventListener('resize',()=>{resize();});
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

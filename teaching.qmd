@@ -1,0 +1,12 @@
+---
+title: "Teaching"
+format: html
+---
+
+The following is a [continuous renal replacement simulator](teaching/cvvh-simulator.html). I developed this with Claude
+as an educational tool. Take it with a pinch of salt. While this LLMs are
+reaching some incredible milestone, they do still often make mistakes.
+Since this is a combindation of code, maths and physics, it should be something
+it is very good at. I have not found any mistakes so far! But do let me know
+if you see something odd.
+

@@ -5,7 +5,7 @@ date: 2026-05-15
 format: html
 ---
 
-“Scientia per communionem” (knowledge through fellowship) emphasises the
+"Scientia per communionem" (knowledge through fellowship) emphasises the
 founding ethos of our lab group: collaboration, learning, and sharing of
 knowledge for the benefit of all.
 
