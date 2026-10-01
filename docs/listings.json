@@ -1,14 +1,14 @@
 [
   {
+    "listing": "/journal-club.html",
+    "items": []
+  },
+  {
     "listing": "/people.html",
     "items": [
       "/people/pippa-whitaker.html",
-      "/people/ed-palmer.html",
-      "/people/adam-reynolds.html"
+      "/people/adam-reynolds.html",
+      "/people/ed-palmer.html"
     ]
-  },
-  {
-    "listing": "/journal-club.html",
-    "items": []
   }
 ]
