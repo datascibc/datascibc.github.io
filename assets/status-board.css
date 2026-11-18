@@ -109,12 +109,11 @@
 .status-landed    .sb-status, .sb-legend .status-landed    { color: var(--sb-landed); }
 
 /* ---------- Clickable rows ----------
-   The project name is a real link (<a class="sb-link">). Its ::after is
-   stretched over the whole row, so clicking anywhere on the row (or card)
-   follows it, while screen readers and keyboards see one ordinary link. */
-.sb-row { position: relative; }
+   The project name is a real link (<a class="sb-link">). status-board.js
+   forwards clicks anywhere on the row (or card) to that link, while screen
+   readers and keyboards see one ordinary link. (A stretched ::after overlay
+   doesn't work here: Safari ignores position: relative on <tr>.) */
 .sb-board a.sb-link { color: inherit; text-decoration: none; }
-.sb-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .sb-row:has(.sb-link) { cursor: pointer; }
 .sb-row:has(.sb-link):hover .sb-tile,
 .sb-row:has(.sb-link:focus-visible) .sb-tile {
@@ -122,8 +121,7 @@
 }
 .sb-row:has(.sb-link):hover .sb-link,
 .sb-link:focus-visible { color: var(--sb-accent); }
-.sb-link:focus-visible { outline: none; }
-.sb-link:focus-visible::after { outline: 2px solid var(--sb-accent); outline-offset: 4px; border-radius: 4px; }
+.sb-link:focus-visible { outline: 2px solid var(--sb-accent); outline-offset: 4px; border-radius: 2px; }
 
 /* ---------- Flap tiles (built by status-board.js) ---------- */
 .sb-flaps { display: inline-flex; gap: var(--gap); vertical-align: middle; }

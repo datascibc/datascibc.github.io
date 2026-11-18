@@ -5,6 +5,32 @@ subtitle: "Theme: Septic shock"
 
 [← Back to the board](../projects.qmd)
 
-*Placeholder: write the project description here.*
+## Peri-Met Study: peripheral metaraminol in septic shock
 
-Peripheral metaraminol in septic shock: a systematic review as the first step towards designing a pilot RCT at the Whittington.
+:::: {.justify}
+
+Septic shock is a life-threatening complication of infection
+in which blood pressure falls dangerously low. Treatment
+often includes medicines called vasopressors, which raise
+blood pressure by narrowing the blood vessels. Increasingly,
+these are started through a standard drip in the arm rather
+than waiting for a larger "central" line to be placed.
+
+In the UK, the medicine most often used this way is
+metaraminol. International guidelines recommend a different
+drug, noradrenaline, and the two have never been compared
+directly in a clinical trial in septic shock.
+
+The Peri-Met Study aims to address this gap. We are first
+reviewing the published evidence, and will use this to
+inform on whether or not a small pilot trial at the
+Whittington Hospital would be appropriate. The pilot will
+test whether a larger, multicentre trial is feasible.
+
+::::
+
+## Lab members working on this
+
+- [Ed Palmer](../people/ed-palmer.qmd)
+- [Pippa Whitaker](../people/pippa-whitaker.qmd)
+- [Adam Reynolds](../people/adam-reynolds.qmd)

@@ -109,6 +109,18 @@
   function init() {
     document.querySelectorAll("[data-status-board]").forEach((board) => {
       const tiles = build(board);
+
+      // Whole-row click: forward to the row's link (Safari can't stretch a link over a <tr>)
+      board.querySelectorAll(".sb-row").forEach((row) => {
+        const link = row.querySelector("a.sb-link");
+        if (!link) return;
+        row.addEventListener("click", (e) => {
+          if (e.target.closest("a") || window.getSelection().toString()) return; // real link click, or selecting text
+          if (e.metaKey || e.ctrlKey) window.open(link.href, "_blank");
+          else window.location.href = link.href;
+        });
+      });
+
       animate(board, tiles);
       const replay = board.querySelector(".sb-replay");
       if (replay) {

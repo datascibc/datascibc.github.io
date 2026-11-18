@@ -5,6 +5,36 @@ subtitle: "Theme: ICU recovery"
 
 [← Back to the board](../projects.qmd)
 
-*Placeholder: write the project description here.*
+## Creatine and recovery from critical illness
 
-A systematic review of creatine in recovery from critical care, currently in progress.
+:::: {.justify}
+
+Many people who survive a stay in intensive care leave
+hospital much weaker than before. They can lose a striking
+amount of muscle in the first week or two, and for some the
+weakness lasts months or years. It affects how well they can
+walk, work and look after themselves. There are still no
+proven treatments beyond rehabilitation and good nutrition.
+
+Creatine is a natural compound that helps muscles store and
+supply energy. As a supplement it is cheap, widely available
+and well studied. In healthy adults and older people, adding
+it to exercise can modestly improve muscle mass and
+strength. Whether that holds after critical illness is
+unknown, and the early research is limited and mixed.
+
+We are carrying out a systematic review of all the published
+evidence and registered trials of creatine in critical
+illness and recovery. We want to find out what is already
+known, where the evidence is weakest, and whether creatine
+deserves a properly designed clinical trial. In particular,
+we are asking when during recovery it is most likely to
+help.
+
+::::
+
+## Lab members working on this
+
+- [Ed Palmer](../people/ed-palmer.qmd)
+- [Adam Reynolds](../people/adam-reynolds.qmd)
+

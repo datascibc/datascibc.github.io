@@ -71,9 +71,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-code','listing-project','listing-theme','listing-status','listing-eta',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-code','listing-project','listing-theme','listing-status','listing-eta',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-code","listing-project","listing-theme","listing-status","listing-eta"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-engines","listing-language","listing-title","listing-subtitle","listing-path","listing-outputHref","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-code","listing-theme","listing-status","listing-eta"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -244,12 +244,12 @@ Est. arrival
 </tr>
 </thead>
 <tbody class="list">
-<tr class="sb-row status-in-flight" data-index="0">
+<tr class="sb-row status-in-flight" data-index="0" data-listing-file-modified-sort="1795042792563" data-listing-reading-time-sort="1" data-listing-word-count-sort="172">
 <td class="sb-cell sb-code" data-col="code">
 CR01
 </td>
 <td class="sb-cell sb-project" data-col="project">
-Creatine study
+<a class="sb-link" href="./projects/creatine.html">Creatine study</a>
 </td>
 <td class="sb-cell sb-theme" data-col="theme">
 ICU recovery
@@ -261,12 +261,12 @@ In flight
 Jun 2027
 </td>
 </tr>
-<tr class="sb-row status-boarding" data-index="1">
+<tr class="sb-row status-boarding" data-index="1" data-listing-file-modified-sort="1795042484285" data-listing-reading-time-sort="1" data-listing-word-count-sort="135">
 <td class="sb-cell sb-code" data-col="code">
 PM02
 </td>
 <td class="sb-cell sb-project" data-col="project">
-Peri-Met study
+<a class="sb-link" href="./projects/peri-met.html">Peri-Met study</a>
 </td>
 <td class="sb-cell sb-theme" data-col="theme">
 Septic shock
@@ -278,12 +278,12 @@ Boarding
 Dec 2027
 </td>
 </tr>
-<tr class="sb-row status-in-flight" data-index="2">
+<tr class="sb-row status-in-flight" data-index="2" data-listing-file-modified-sort="1795041611229" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <td class="sb-cell sb-code" data-col="code">
 DS03
 </td>
 <td class="sb-cell sb-project" data-col="project">
-Data Sci for Docs
+<a class="sb-link" href="./projects/ds4d.html">Data Sci for Docs</a>
 </td>
 <td class="sb-cell sb-theme" data-col="theme">
 Teaching / R
@@ -312,24 +312,7 @@ Boarding
 Dec 2026
 </td>
 </tr>
-<tr class="sb-row status-boarding" data-index="4">
-<td class="sb-cell sb-code" data-col="code">
-HP04
-</td>
-<td class="sb-cell sb-project" data-col="project">
-High Performance ICU
-</td>
-<td class="sb-cell sb-theme" data-col="theme">
-Safety Systems
-</td>
-<td class="sb-cell sb-status" data-col="status">
-Boarding
-</td>
-<td class="sb-cell sb-eta" data-col="eta">
-Dec 2026
-</td>
-</tr>
-<tr class="sb-row status-in-flight" data-index="5">
+<tr class="sb-row status-in-flight" data-index="4">
 <td class="sb-cell sb-code" data-col="code">
 SS05
 </td>
@@ -346,7 +329,7 @@ In Flight
 Jan 2027
 </td>
 </tr>
-<tr class="sb-row status-scheduled" data-index="6">
+<tr class="sb-row status-scheduled" data-index="5">
 <td class="sb-cell sb-code" data-col="code">
 FS06
 </td>

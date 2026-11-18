@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/journal-club.html",
-    "items": []
-  },
-  {
     "listing": "/people.html",
     "items": [
       "/people/adam-reynolds.html",
@@ -12,11 +8,15 @@
     ]
   },
   {
-    "listing": "/status.html",
-    "items": []
+    "listing": "/projects.html",
+    "items": [
+      "/projects/creatine.html",
+      "/projects/peri-met.html",
+      "/projects/ds4d.html"
+    ]
   },
   {
-    "listing": "/projects.html",
+    "listing": "/journal-club.html",
     "items": []
   }
 ]
