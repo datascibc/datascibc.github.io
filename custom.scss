@@ -28,3 +28,10 @@ $code-color: $purple; // inline code text color
 .justify {
   text-align: justify !important
 }
+
+/*-- scss:rules --*/
+.quarto-about-jolla .about-image {
+  box-shadow: 0 0 2.5rem rgba(4, 124, 144, 0.35); // your $teal, as a soft screen glow
+  max-width: 100%;
+  height: auto !important;   // keeps 4:3 on narrow screens
+}

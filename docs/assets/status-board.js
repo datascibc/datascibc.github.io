@@ -68,7 +68,14 @@
           });
         });
 
-        td.replaceChildren(text, flaps);
+        // If the cell holds a link (rows with a `path` in the YAML), keep the
+        // link and put the tiles inside it; otherwise fill the cell directly.
+        const link = td.querySelector("a");
+        if (link) {
+          link.replaceChildren(text, flaps);
+        } else {
+          td.replaceChildren(text, flaps);
+        }
       });
     });
     return tiles;

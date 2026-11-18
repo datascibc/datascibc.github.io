@@ -3,13 +3,24 @@ title: "The Data Science Breakfast Club"
 about:
   template: jolla
   image: assets/crt-screen.png
+  image-shape: rounded
+  image-width: 28em
   links:
     - icon: github
       text: Github
       href: https://github.com/datascibc
 ---
-["Scientia per communionem"]{.smallcaps}
+::: {style="text-align: center"}
+[Scientia per communionem]{.smallcaps style="font-size: 1.3em; letter-spacing: 0.08em"}
 
-:::{style="text-align: right"}
-*Knowledge through fellowship*
+[*Knowledge through fellowship*]{style="opacity: 0.7"}
 :::
+
+:::: {.justify}
+
+Meetings are every Thursday at 07:00-07:45.
+Whittington Hospital meeting room behind the cafeteria (and online).
+Please contact one of the lab members directly for a link.
+Breakfast encouraged and often provided.
+
+::::

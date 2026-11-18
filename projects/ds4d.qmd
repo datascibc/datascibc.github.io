@@ -1,0 +1,10 @@
+---
+title: "Data Science for Docs"
+subtitle: "Theme: Teaching / R"
+---
+
+[← Back to the board](../projects.qmd)
+
+*Placeholder: write the project description here.*
+
+A re-development of my R teaching course for clinicians.

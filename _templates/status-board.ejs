@@ -31,7 +31,7 @@ const slug = (s) => String(s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, 
 <% for (const item of items) { %>
 <tr class="sb-row status-<%= slug(item.status) %>" <%= metadataAttrs(item) %>>
 <td class="sb-cell sb-code" data-col="code"><%= item.code %></td>
-<td class="sb-cell sb-project" data-col="project"><%= item.project %></td>
+<td class="sb-cell sb-project" data-col="project"><% if (item.path) { %><a class="sb-link" href="<%- item.path %>"><%= item.project %></a><% } else { %><%= item.project %><% } %></td>
 <td class="sb-cell sb-theme" data-col="theme"><%= item.theme %></td>
 <td class="sb-cell sb-status" data-col="status"><%= item.status %></td>
 <td class="sb-cell sb-eta" data-col="eta"><%= item.eta %></td>

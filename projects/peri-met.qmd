@@ -1,0 +1,10 @@
+---
+title: "Peri-Met study"
+subtitle: "Theme: Septic shock"
+---
+
+[← Back to the board](../projects.qmd)
+
+*Placeholder: write the project description here.*
+
+Peripheral metaraminol in septic shock: a systematic review as the first step towards designing a pilot RCT at the Whittington.

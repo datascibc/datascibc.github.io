@@ -108,6 +108,23 @@
 .status-delayed   .sb-status, .sb-legend .status-delayed   { color: var(--sb-delayed); }
 .status-landed    .sb-status, .sb-legend .status-landed    { color: var(--sb-landed); }
 
+/* ---------- Clickable rows ----------
+   The project name is a real link (<a class="sb-link">). Its ::after is
+   stretched over the whole row, so clicking anywhere on the row (or card)
+   follows it, while screen readers and keyboards see one ordinary link. */
+.sb-row { position: relative; }
+.sb-board a.sb-link { color: inherit; text-decoration: none; }
+.sb-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.sb-row:has(.sb-link) { cursor: pointer; }
+.sb-row:has(.sb-link):hover .sb-tile,
+.sb-row:has(.sb-link:focus-visible) .sb-tile {
+  background: linear-gradient(#303036 0%, #26262b 50%, #1e1e22 50%, #18181b 100%);
+}
+.sb-row:has(.sb-link):hover .sb-link,
+.sb-link:focus-visible { color: var(--sb-accent); }
+.sb-link:focus-visible { outline: none; }
+.sb-link:focus-visible::after { outline: 2px solid var(--sb-accent); outline-offset: 4px; border-radius: 4px; }
+
 /* ---------- Flap tiles (built by status-board.js) ---------- */
 .sb-flaps { display: inline-flex; gap: var(--gap); vertical-align: middle; }
 .sb-tile {
@@ -169,6 +186,7 @@
     border: 1px solid #222226;
     border-radius: 8px;
   }
+  .sb-table .sb-row:has(.sb-link):hover { border-color: #3a3a40; }
   .sb-code    { grid-area: code; }
   .sb-status  { grid-area: status; text-align: right; }
   .sb-project { grid-area: project; }

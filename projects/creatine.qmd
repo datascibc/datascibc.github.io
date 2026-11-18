@@ -1,0 +1,10 @@
+---
+title: "Creatine study"
+subtitle: "Theme: ICU recovery"
+---
+
+[← Back to the board](../projects.qmd)
+
+*Placeholder: write the project description here.*
+
+A systematic review of creatine in recovery from critical care, currently in progress.

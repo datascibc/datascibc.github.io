@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "The Data Science Breakfast Club",
     "section": "",
-    "text": "“Scientia per communionem”\n\nKnowledge through fellowship"
+    "text": "Scientia per communionem\nKnowledge through fellowship\n\n\nMeetings are every Thursday at 07:00-07:45. Whittington Hospital meeting room behind the cafeteria (and online). Please contact one of the lab members directly for a link. Breakfast encouraged and often provided."
   },
   {
     "objectID": "people/ed-palmer.html",
@@ -159,5 +159,54 @@
     "title": "Pippa Whitaker",
     "section": "Interests",
     "text": "Interests\n\nI’m a huge fan of coffee\nCycling (towards coffee)\nHigh-quality sandwiches."
+  },
+  {
+    "objectID": "index.html#meetings",
+    "href": "index.html#meetings",
+    "title": "The Data Science Breakfast Club",
+    "section": "Meetings",
+    "text": "Meetings\nEvery Thursday at 07:00-07:45. Whittington Hospital meeting room behind the cafeteria (and online). Breakfast encouraged and often provided."
+  },
+  {
+    "objectID": "lab-charter.html#flexible-working-hours",
+    "href": "lab-charter.html#flexible-working-hours",
+    "title": "Lab Charter",
+    "section": "Flexible working hours",
+    "text": "Flexible working hours\nThis sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
+  },
+  {
+    "objectID": "lab-charter.html#code-of-conduct-and-inclusion-policy",
+    "href": "lab-charter.html#code-of-conduct-and-inclusion-policy",
+    "title": "Lab Charter",
+    "section": "Code of Conduct and Inclusion Policy",
+    "text": "Code of Conduct and Inclusion Policy\nThis code of conduct is adapted from The Whitaker Lab code of conduct, which we consider gold standard.\nWe value the participation of every member of our community and want to ensure that every contributor has an enjoyable and fulfilling experience. Accordingly, everyone who participates in any DataSciBC project is expected to show respect and courtesy to other community members at all time.\nEd Palmer, as head of the DataSciBC (aka “Palmer-Lab”), and all lab members, are dedicated to a positive, respectful, and harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.\nAs a community, we do not tolerate bullying or harassment by and/or of members of our community in any form.\nWe are particularly motivated to support new and/or anxious collaborators, those who would consider themselves under-represented in our field, and anyone at any stage who are looking to learn and develop new skills.\nTo make clear what is expected, we ask all members of the community to conform to the following Code of Conduct:\n\nAll communication—online and in person—should be appropriate for a professional audience including people of many different backgrounds.\nBe respectful to others. Do not insult or put down other contributors. It can take a lot of courage to showcase your work to others and await critical feedback. We seek to make that experience a positive one.\n\nTo report an issue please contact Ed Palmer. All communication will be treated as confidential."
+  },
+  {
+    "objectID": "lab-charter.html#code-of-conduct-and-inclusion",
+    "href": "lab-charter.html#code-of-conduct-and-inclusion",
+    "title": "Lab Charter",
+    "section": "Code of Conduct and Inclusion",
+    "text": "Code of Conduct and Inclusion\nThis code of conduct is adapted from The Whitaker Lab code of conduct, which we consider gold standard.\nWe value the participation of every member of our community and want to ensure that every contributor has an enjoyable and fulfilling experience. Accordingly, everyone who participates in any DataSciBC project is expected to show respect and courtesy to other community members at all time.\nEd Palmer, as head of the DataSciBC (aka “Palmer-Lab”), and all lab members, are dedicated to a positive, respectful, and harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.\nAs a community, we do not tolerate bullying or harassment by and/or of members of our community in any form.\nWe are particularly motivated to support new and/or anxious collaborators, those who would consider themselves under-represented in our field, and anyone at any stage who are looking to learn and develop new skills.\nTo make clear what is expected, we ask all members of the community to conform to the following Code of Conduct:\n\nAll communication—online and in person—should be appropriate for a professional audience including people of many different backgrounds.\nBe respectful to others. Do not insult or put down other contributors. It can take a lot of courage to showcase your work to others and await critical feedback. We seek to make that experience a positive one.\n\nTo report an issue please contact Ed Palmer. All communication will be treated as confidential."
+  },
+  {
+    "objectID": "projects/creatine.html",
+    "href": "projects/creatine.html",
+    "title": "Creatine study",
+    "section": "",
+    "text": "← Back to the board\nPlaceholder: write the project description here.\nA systematic review of creatine in recovery from critical care, currently in progress."
+  },
+  {
+    "objectID": "projects/peri-met.html",
+    "href": "projects/peri-met.html",
+    "title": "Peri-Met study",
+    "section": "",
+    "text": "← Back to the board\nPlaceholder: write the project description here.\nPeripheral metaraminol in septic shock: a systematic review as the first step towards designing a pilot RCT at the Whittington."
+  },
+  {
+    "objectID": "projects/ds4d.html",
+    "href": "projects/ds4d.html",
+    "title": "Data Science for Docs",
+    "section": "",
+    "text": "← Back to the board\nPlaceholder: write the project description here.\nA re-development of my R teaching course for clinicians."
   }
 ]
