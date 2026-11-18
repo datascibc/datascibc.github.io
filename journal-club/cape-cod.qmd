@@ -1,0 +1,501 @@
+---
+title: "CAPE-COD"
+author: "Ed Palmer"
+draft: true
+categories:
+  - "respiratory"
+---
+
+## TL;DR
+
+CAPE-COD was a double blind, multi-center (conducted in France) placebo
+controlled RCT of hydrocortisone in patients admitted to the ICU with severe
+community acquired pneumonia (CAP). Death by day 28 was 6.2% with hydrocortisone
+and 11.9% with placebo. The trial was stopped early at two thirds of its planned
+size, on only 72 deaths. The effect size (a halving of mortality) is roughly
+double what the trial was designed to detect, and is likely to be an
+overestimate (see, "the winners curse"). It appears that this effect may have been
+more pronounced in those with a higher CRP.
+One of the main contrasting RCTs is
+the REMAP-CAP corticosteroid domain, which has since stopped its fixed-course hydrocortisone arm for futility, with a point
+estimate in the
+direction of harm. REMAP-CAP steroid was open label, has a (very) small control arm, and 
+so I do not believe it overturns CAPE-COD; it should, though, reduce our confidence in the application of these findings, and make us more open to new evidence as it emurges.
+
+On the basis of the totality of the evidence, I would want to recieve
+hydrocortisone for a severe bacterial pneumonia with a high inflammatory burden,
+if I were a candidate for ICU.
+
+## Background
+
+The steroid evidence landscape in intensive care is complex. Really complex.
+There are a number of conditions that may benefit from steroids including:
+septic shock, meningitis and ARDS. The story in pneumonia is somewhat less
+clear. A number of small RCTs---which were almost certainly underpowered---have
+been unable to detect a mortality benefit, which should not be a surprise.
+
+There are strong reasons of biological plausibility that severe bacterial
+pneumonia would be susceptible to inflammatory modification with steroids.
+However, there are rightly concerns about potential adverse sequelae of steroid
+use: overly aggressive immune suppression, hyperglycaemia, improper timing (i.e.
+initiating too soon or too late).
+
+## Trial Overview
+
+This trial was a double blind, placebo controlled, French multi-centre RCT
+conducted at 31 centres from 2015 to 2020. Randomisation took place in a 1:1
+fashion in blocks of four across strata (center and use of mechanical
+ventilation). 1146 patients were needed to provide 80% power to detect a 25%
+relative risk reduction in mortality from a baseline of 27%. This was increased
+to 1165 to allow for two interim analyses, and rounded up to 1200 to account for
+withdrawal of consent.
+
+## PICO
+
+- *Population:* adults admitted to the ICU with CAP, and at least one of four
+severity criteria:
+  - Mechanical ventilation (invasive or non-invasive) with PEEP
+    of at least 5 cmH~2~O
+  - High flow nasal oxygen with an FiO~2~ of at least 0.5 and a PaO~2~:FiO~2~ ratio below 40 kPa (300 mmHg)
+  - A non-rebreathe mask with an estimated PaO~2~:FiO~2~ ratio below 40 kPa
+  - A Pulmonary Severity Index above 130
+  - *Key exclusions:* septic shock, a do-not-intubate order, influenza, suspected aspiration, long term steroid use and myelosuppression.
+- *Intervention:* continuous infusion of hydrocortisone (200 mg / day) for 4 days,
+started within 24 hours of meeting a severity criterion. At day 4, predefined
+criteria for clinical improvement determined whether the patient received a
+total course of 8 or 14 days, including a taper. Treatment stopped at ICU
+discharge.
+- *Comparator:* matched placebo (saline)
+- *Outcomes:*
+  - Primary: 28 day mortality.
+  - Secondary: 90 day mortality, ICU length of stay, intubation or
+non-invasive ventilation in those not ventilated at baseline, vasopressor
+initiation, ventilator and vasopressor free days, change in PaO~2~:FiO~2~ ratio
+and SOFA score by day 7, and SF-36 at day 90.
+  - Safety: secondary infection, GI bleeding, daily insulin dose and weight gain.
+
+Recruitment was paused at 800 randomised patients; the point of the planned
+second interim analysis. This coincided with the COVID pandemic, and allowed
+this group to pivot to investigating hydrocortisone in COVID-19, since the
+research apparatus was already established. After a long (and very
+understandable) pause, the DSMB recommended stopping the trial because:
+
+1) Based on available data, equipoise no longer remained between groups.
+2) long term suspension of the trial would have unknown impact on analysis
+3) another 400 patients were very unlikely to change interpretation of results.
+
+## In Context
+
+| Study | Steroid | When? | Where? | Why? | How? | Who? |
+|---|---|---|---|---|---|---| 
+| CAPE-COD | Hydrocortisone | Within 24 h of a severity criterion (median 15 h after ICU admission) | 31 ICUs, France | 28 day mortality | 200 mg/day infusion, then taper (8 or 14 days). Double blind | Severe CAP in ICU. No shock, no influenza. SAPS II 37, 22% intubated | 
+| REMAP-CAP | Hydrocortisone | Within 24 h of ICU admission (median 8 h) | 101 sites, 18 countries | 90 day mortality | 50 mg QDS for 7 days, no taper. Open label | Severe CAP in ICU. Around half in shock, 7% influenza. APACHE II 18, 39% intubated |
+| APROCCHSS | Hydrocortisone and fludrocortisone | Within 24 h of shock onset | France | 90 day mortality | 50 mg QDS plus 50 micrograms fludrocortisone for 7 days, no taper. Double blind | Septic shock (45% CAP). SAPS II 56, SOFA 11 to 12 |
+| HYPRESS | Hydrocortisone | Within 48 h of organ dysfunction | 34 sites, Germany | Septic shock by day 14 | 200 mg/day infusion for 5 days, then taper. Double blind | Severe sepsis without shock |
+| DEXA-ARDS | Dexamethasone | Within 30 h of ARDS onset | 17 ICUs, Spain | Ventilator free days | 20 mg daily for 5 days, then 10 mg daily for 5 days. Open label | Established moderate to severe ARDS |
+
+## Results
+
+5948 patients were assessed and 800 randomised; 795 were analysed. The single
+largest reason for exclusion was septic shock (1200 patients). The median age
+was 67 and 70% were male. At baseline, 22% were intubated, 22% were receiving
+non-invasive ventilation, 42% high flow nasal oxygen and 14% a non-rebreathe
+mask. The median SAPS II score was 37 to 38, the median SOFA score was 4, and
+the median CRP was around 250 mg/L. Patients received the trial drug a median of
+15 hours after ICU admission. No pathogen was isolated in 45% of patients.
+
+The primary outcome, death from all causes by day 28, was 6.2% (25 of 400) in
+the hydrocortisone arm and 11.9% (47 of 395) in the matched placebo arm. This
+corresponds to a difference of -5.6% (-9.6% to -1.7%), p = 0.006 (chi square),
+or a number needed to treat of 18. There are a number of secondary outcomes,
+which I include graphically below.
+
+```{r}
+#| label: fig-secondary
+#| echo: false
+#| fig-cap: "Secondary and safety outcomes from CAPE-COD, reported as hazard ratios with 95% confidence intervals. A hazard ratio below 1 favours hydrocortisone. These intervals were not adjusted for multiplicity."
+
+library(ggplot2)
+
+secondary <- data.frame(
+  outcome = c(
+    "Intubation (no ventilation at baseline)",
+    "Non-invasive ventilation (no ventilation at baseline)",
+    "Intubation (not intubated at baseline)",
+    "Vasopressor initiation (none at baseline)",
+    "Hospital acquired infection",
+    "GI bleeding" ),
+  hr = c(0.59, 0.60, 0.69, 0.59, 0.87, 0.68),
+  lo = c(0.40, 0.32, 0.50, 0.43, 0.57, 0.29),
+  hi = c(0.86, 1.15, 0.94, 0.82, 1.34, 1.59) )
+
+secondary$outcome <-
+    factor(secondary$outcome, levels = rev(secondary$outcome))
+
+ggplot(secondary, aes(x = hr, y = outcome)) +
+  geom_vline(xintercept = 1, linetype = "dashed") + 
+  geom_pointrange(aes(xmin = lo, xmax = hi)) +
+  scale_x_log10() + 
+  labs(x = "Hazard ratio (95% CI), hydrocortisone vs placebo", y = NULL) + 
+  theme_minimal()
+```
+
+## Secondary Outcomes
+
+The secondary outcomes were not adjusted for multiplicity, and the authors are
+clear that they should be regarded as exploratory. I therefore describe
+direction and size, and avoid the word "significant".
+
+- No clear difference in:
+  - Cumulative incidence of hospital acquired infection by day 28: 9.8 vs 11.1%
+  - Cumulative incidence of GI bleeding by day 28: 2.2 vs 3.3%
+  - Greater in intervention group 
+  - Median daily dose of insulin by day 7, in those who received insulin: 35.5 vs 20.5 IU/day. More patients also needed insulin in the first place (231 vs 177). - Less in intervention group
+  - Death by day 90: 9.3% vs 14.7%
+  - Cumulative incidence of endotracheal intubation by day 28 in those not receiving any ventilation at baseline: 18.0 vs 29.5% -
+Cumulative incidence of endotracheal intubation by day 28 in those not intubated
+at baseline: 19.5% vs 27.7% - Cumulative incidence of vasopressor initiation by
+day 28 in those not receiving at baseline: 15.3 vs 25.0%
+
+These outcomes are coherent with the primary result. Fewer patients progressed
+to intubation, fewer developed shock, and fewer died. This is the pattern we
+would expect if steroids were interrupting the progression of the disease, and
+it gives the mortality finding more credibility than it would have in isolation.
+
+## Subgroups of Interest
+
+The authors report that the effect on the primary outcome was consistent across
+the subgroups examined: mechanical ventilation at baseline, age above or below
+65, sex, a Pulmonary Severity Index above or below 130, a CRP above or below 150
+mg/L, and whether a pathogen was isolated.
+
+The subgroup I find most interesting is ventilation at baseline. Among patients
+receiving mechanical ventilation at enrolment, mortality was 10.7% vs 14.3%.
+Among those who were not, it was 2.7% vs 10.0%. This is a subgroup, and the
+trial was not powered to detect an interaction. It is, though, at least
+compatible with the idea that steroids are of most use early, before the patient
+has declared themselves.
+
+<!-- TODO (Ed): the ventilation subgroup numbers are from a secondary summary of
+Figure S3 (Critical Care Reviews), not from the supplement itself. Please check
+against the supplement, and add the CRP and sex subgroups if you want them. -->
+
+## Discussion
+
+There are several important questions that arise from this trial. Rarely does a
+trial give us everything we want and this one is no different.
+
+### Were these patients sick?
+
+The severity criteria were already quite lax in my view, and I can't explain the
+rationale to change the eligibility criteria part way through the trial (the
+PaO~2~:FiO~2~ threshold for patients on high flow nasal oxygen was relaxed from
+200 to 300 mmHg). I'm not so sure if this truly is a trial of "severe"
+pneumonia, but rather of pneumonia with an oxygen requirement. Perhaps they are
+one and the same. Further, these were not very sick patients. A median SAPS II
+of 37 and a median SOFA of 4 demonstrate this, as does the fact that fewer than
+a quarter were intubated. Contrast this with APROCCHSS, where the mean SAPS II
+was 56. The enrolment criteria were never going to produce a mortality of 27%
+and indeed, a much lower control group mortality (11.9%) is exactly what we saw.
+
+<!-- TODO (Ed): the detail of the eligibility amendment (200 to 300 mmHg, spring
+2017, after 285 patients) is from Wiki Journal Club, not the protocol. Please
+check. -->
+
+It is of interest to highlight that although septic shock was an exclusion
+criterion, 10 to 13% of patients were receiving a vasopressor at baseline. Shock
+is a spectrum, and this trial sits at the mild end of it.
+
+### How much should we trust the size of the effect?
+
+This is the part of the trial I am least comfortable with. The trial was
+designed to detect a 25% relative risk reduction. It observed one of 47%. Either
+hydrocortisone is twice as effective as its own investigators hoped, or the
+estimate is inflated. I think the latter is more likely, for three reasons.
+
+First, the trial stopped at two thirds of its planned size. Trials that stop
+early with a favourable result overestimate the treatment effect on average;
+this is a well described phenomenon. The decision to stop was also not a clean
+one. The interim result (p = 0.006) is nowhere near the very stringent threshold
+that Peto's rule sets for an interim analysis, and so the trial was not stopped
+for crossing a boundary. It was stopped because of a mixture of an encouraging
+result and the practical difficulty of restarting after the pandemic. I have
+sympathy for the DSMB, though I find it difficult to reconcile "equipoise no
+longer remained" with a result that did not meet the trial's own stopping rule.
+
+Second, the baseline mortality was less than half that anticipated. The trial was
+arguably therefore substantially *underpowered* to detect a plausible effect, and an underpowered
+trial that reaches significance does so by overestimating.
+
+None of this invalidates the findings. But it does suggest caution that the likely
+effect size is going to be far smaller in practice than the one we have observed.
+
+### Translating to the UK
+
+All these patients were inside the ICU. It's hard to translate this directly
+into the UK, which is seemingly more resource restricted, by comparison. Many of
+the patients in this trial would be managed on the ward in a UK environment. And
+so this raises the question, should we start steroids outside the ICU in those
+eligible?
+
+Although I view the point of admission to the ICU as a largely administrative
+time point, it does create a different safety profile for the patient, some
+positive, some negative. For those who think admission to the ICU is a slam dunk
+positive intervention, I would invite them to read the ICE-CUB 2 trial, in which
+a programme of systematic ICU admission for critically ill elderly patients did
+not reduce 6 month mortality. Inside the ICU I can site an art line, closely
+monitor both haemodynamics and gas exchange, and trivially run a variable rate
+insulin infusion to control hyperglycaemia. This may offer a favourable safety
+advantage in this context that I can't replicate on the ward.
+
+An infusion of steroid is
+less realistically achievable in a UK ward setting. I think a pragmatic use of
+QDS hydrocortisone is reasonable; it can be administered on ward rounds, and won't occupy another line when central access isn't going to be availible. This requires buy in from parent teams who
+will be looking after the patients outside ICU and will have to contend with the
+inevitable hyperglycaemia. Though we do have large scale institutional memory of this
+from COVID.
+
+Does this finding translate to patients who are not candidates for ICU? I would
+say no. This is a fundamentally different patient population. Typically much
+more frail, and susceptible to the adverse sequelae of steroids, particularly
+outside the ICU. The trial excluded patients with a do-not-intubate order (212
+of those screened), and it did not measure the harms I would be most concerned
+about in this group; delirium and neuromuscular weakness were not assessed, and
+the reversibility of the hyperglycaemia was not examined. I don't think you can
+extrapolate that far from this trial. There will be a strong cross contaminating
+"action" bias from this study (i.e. there will be cultural awareness that steroids
+are used in severe CAP, and so we must do "everything" we can for ward level patients)
+which I would strongly caution against. This trial doesn't opine on that group,
+and I could easily create a physiological argument for both harm and help in this group;
+equipoise remains.
+
+### Was this bacterial pneumonia?
+
+Mostly. Microbiological
+testing was left to the treating team. Influenza testing was recommended during
+epidemic periods and was not mandated. No pathogen was found in 45% of patients.
+I think it is fair to say that this was a trial of presumed bacterial pneumonia
+in which a reasonable attempt to exclude influenza was undertaken.
+In my institute, my feeling is that we probably test for more viral respiratory
+pathogens, which is a practice that has in a small part come out of the pandemic.
+I think this is an important nuance of the trial, as a negative
+respiratory viral PCR should be part of the decision to treat, doubly so in
+seasonal periods.
+
+## Putting CAPE-COD in Context
+
+There are many steroid trials in intensive care, though four major trials
+come to mind that may contribute to interpretation here.
+
+### DEXA-ARDS
+
+First, DEXA-ARDS, which has several notable flaws. Most strikingly, the lack of
+appropriate blinding and the lack of any meaningful excess of
+hyperglycaemia in the treatment arm (76% vs 70%) which has always bothered me.
+It was also stopped early, for
+slow recruitment. While I cannot ignore the findings, and I
+would probably administer dexamethasone to patients with established ARDS, I
+would want another trial to be conducted that essentially bridges these two
+trials. A properly blinded ARDS trial, where prior steroid use wasn't an
+exclusion criterion. The question would then be, does a patient who has already
+received hydrocortisone for their pneumonia, and who progresses to ARDS
+regardless, benefit from escalation to dexamethasone?
+
+At present we would be implementing findings by moving from one trial population
+to another, and I don't think we can say with any degree of certainty what 
+the effect of steroids would be in that context.
+
+### APROCCHSS
+
+Second, APROCCHSS, which was a double blind randomised controlled trial
+investigating the use of hydrocortisone plus fludrocortisone in established
+septic shock. I'll make a timely joke that if you want a steroid trial to 
+be positive in ICM, then make sure Anand conducts it.
+Briefly, patients in this trial were much sicker, with a minimum
+noradrenaline requirement of 0.25 micrograms/kg/min (This is a heck of a lot
+of noradrenaline), commensurate SAPS II and
+SOFA scores, and a control group mortality of 49.1% at 90 days (vs 43.0% with
+treatment). These were very sick patients.
+Although this was all comers with sepsis, the single largest group
+was severe community acquired pneumonia. A subsequent subgroup analysis of the
+562 patients with CAP found 90 day mortality of 39% with treatment and 51% with
+placebo (OR 0.60, 95% CI 0.43 to 0.83), with no apparent effect in the 648
+patients without CAP (OR 0.95, 95% CI 0.70 to 1.29). Again, this study excluded
+those who were exposed to prior steroids.
+
+<!-- TODO (Ed): I could not find the 0.25 micrograms/kg/min threshold in the
+sources I was able to open; it is your figure and matches my recollection of the
+paper. Worth a quick check. -->
+
+There is now an abundance of data to show that steroids in septic shock speed
+shock resolution, and likely improve mortality. CAPE-COD and APROCCHSS are
+complementary; one excluded shock and the other required it, and both point in
+the same direction for pneumonia.
+
+### HYPRESS
+
+Third, HYPRESS, which used steroids (hydrocortisone only) in sepsis in an
+attempt to *prevent* the onset of shock. It did not. Septic shock developed in
+21.2% of the hydrocortisone group and 22.9% of the placebo group, and there was
+no difference in mortality.
+
+This is harder to square away with CAPE-COD, in which
+hydrocortisone appeared to prevent vasopressor initiation (15.3% vs 25.0%) using
+a very similar regimen. This could be used as an argument to add weight to the evidence that CAPE-COD
+may be a victim of the winners curse. The counter argument, and the one I prefer, is that HYPRESS is a victim
+of the heterogenity of sepsis, and by CAPE-COD narrowing down on a more specific 
+disease entity (that of primarily bacterial pneumonia) then a biological signal
+may be more apparent. This is a complex discussion for another day.
+
+### REMAP-CAP
+
+Last, and the most directly comparable, is the REMAP-CAP corticosteroid domain.
+
+REMAP-CAP is an international, open label, adaptive platform trial. Patients
+admitted to the ICU with severe CAP, requiring respiratory or cardiovascular
+organ support, were randomised to hydrocortisone 50 mg every 6 hours for 7 days,
+or to no steroid. The arm was stopped for futility; there was less than a 5%
+probability that hydrocortisone reduced the odds of death by more than 20%. 90
+day mortality was 15% (78 of 521) with hydrocortisone and 9.8% (12 of 122) with
+control. The pooled adjusted odds ratio was 1.56 (95% credible interval 0.80 to
+3.31), with a 90% posterior probability of harm.
+
+These two trials are not easily reconciled. The unadjusted odds ratio for death
+in CAPE-COD is 0.49 (95% CI 0.30 to 0.82, my calculation). The intervals barely
+touch. So what is going on? I can see several candidate explanations, and I do
+not think any of them is sufficient alone.
+
+**REMAP-CAP is imprecise.** The control arm contained 122 patients and 12
+deaths. The entire comparison hinges on those 12 events. A control group
+mortality of 9.8% is also surprisingly low for a population in which nearly half
+were in shock and 38% were intubated; it is lower than the placebo arm of
+CAPE-COD (14.7% at day 90), which excluded shock. I don't entirely know what
+went on here, but I wonder if this is an incredbly noisy sample (being so small)
+which has captured a control arm that was doing much better by chance, than 
+severity should have suggested.
+
+**The arms were not well balanced.** Patients assigned to hydrocortisone were older (62.5
+vs 58.5 years), more hypoxaemic and had more cardiovascular dysfunction. A third
+of them were enrolled at sites that would not randomise to control, because
+those clinicians lacked equipoise (i.e. they wanted to give steroids). 
+A data labelling error also
+distorted the response adaptive randomisation. The model adjusts for site and
+severity, and the result held when restricted to sites offering both arms.
+Adjustment in a sample this small can only do so much.
+
+**It was open label.**
+23% of control patients received a steroid, although usually a short course.
+This would dilute a benefit. It would not manufacture a signal of harm.
+
+**The population differed.** REMAP-CAP included shock and influenza; CAPE-COD excluded
+both. This does not rescue the situation. The APROCCHSS subgroup suggests that
+pneumonia with shock is where steroids work best, and yet the estimate in the
+REMAP-CAP shock stratum (OR 1.53) was no better than elsewhere.
+
+**The regimen differed.** CAPE-COD used an infusion with a response guided taper. REMAP-CAP
+used intermittent boluses and stopped abruptly at day 7. The survival curves in
+REMAP-CAP overlap for the first fortnight and separate thereafter, which is at
+least compatible with a rebound in inflammation after abrupt cessation. This is
+speculation on my part. It is weakened by the fact that APROCCHSS used the same
+bolus regimen without a taper and was positive.
+
+**Timing does not explain it.** The CAPE-COD authors propose that early treatment may account for their
+result. Patients in REMAP-CAP were treated a median of 8 hours after ICU
+admission, which is earlier than in CAPE-COD.
+
+**Inflammation may matter more than severity.** The median CRP in CAPE-COD was around 250 mg/L. An individual patient data meta-analysis of eight trials (Smit and colleagues, 2025) found
+that the benefit of steroids in CAP was concentrated in patients with a CRP
+above 204 mg/L. REMAP-CAP does not report CRP. It is possible that the two
+trials enrolled patients with a similar need for organ support and quite
+different inflammatory phenotypes. This would be my leading hypothesis, though
+it remains a hypothesis.
+
+It is also worth saying that the positive results in this area (CAPE-COD, and
+APROCCHSS with its CAP subgroup) all come from one country and overlapping
+networks of investigators. I do not suggest anything improper. Replication
+outside the system that generated a finding is how we learn whether it travels,
+and REMAP-CAP is the first serious attempt at that.
+
+There was one point of agreement. In REMAP-CAP the duration of cardiovascular
+support was shorter with hydrocortisone (median 2 vs 3 days). Faster shock
+resolution is the most reproducible effect of steroids in critical illness, and
+it appears here too.
+
+Where does this leave us? REMAP-CAP tells us that a very large benefit from a
+fixed 7 day course of hydrocortisone, applied to all comers with severe CAP in
+ICU, is unlikely. 
+CAPE-COD tells us that there may be a benefit in a more selected group. Taken
+together, I think the most credible explanasion is that there is a modest benefit,
+probably smaller than CAPE-COD reported, and probably not uniform across
+all patients.
+
+### Caution: Interaction with DNAR orders
+
+Both trials enrolled patients who were for full escalation. CAPE-COD excluded
+those with a do-not-intubate order. REMAP-CAP excluded nursing home residents
+and those for whom there was no commitment to full support. Neither can tell us
+anything about the patient with a ward based ceiling of care, who makes up a
+large share of pneumonia deaths in the UK.
+
+## The Friends and Family Test
+
+My "acid" test for interpreting trial literature is whether or not you would want
+the treatment for yourself or family members. I find it's a helpful heuristic to
+follow and challenges us to bridge the gap between our intellectual side
+(interpreting trial evidence in the cold) and our emotional side (where the
+stakes are very high). I have, on occasion, also found myself committing to doing 
+something in an academic context, and then feeling far more nervous about it
+when its actually my decision at the bedside, and the stakes are high.
+This is my way of trying to wrestle with this now, in a more public way, so
+that I'm not spending my decision making budget during a critical period.
+
+If I (or a close family member) had a bacterial pneumonia, with an oxygen requirement, would I want to receive steroids? Yes. With a few qualifiers.
+
+Taken in the context above, I think any potentia harms of steroids have been fairly
+well identified and are both modest and manageable;
+contrasting with the potential benefit for increased survival.
+If my CRP were high (above 200) and my flu swab negative, I would not hesitate.
+If my flu swab was positive, I'd want to be enrolled in a trial (like RECOVERY) because I
+want randomised care, not random care.
+If I had an oxygen requirement, but my CRP was much lower, say under 100, I would be much less certain. I think I'd probably still want them, but honestly, I don't think I'd mind
+too much either way.
+
+And so my practice will continue to promote the use of steroids in bacterial pneumonia
+with an oxygen requirement in patients eligible for admission to the ICU, particularly
+in those with a high inflammatory phenome, as characterised by their CRP.
+
+<!-- TODO (Ed): the paragraph above is my wording of your position after
+REMAP-CAP. Your original said "yes" without qualification. Please make sure it
+says what you think. -->
+
+## Wrapping Up
+
+CAPE-COD showed that hydrocortisone improved mortality in a population of
+patients with presumed bacterial pneumonia, who were being treated inside an
+ICU, with an oxygen requirement, who were not in shock, and in whom influenza
+had not been identified. The effect was probably overestimated, and REMAP-CAP (a subsequent
+open label platform trial) was unable to reproduce its findings.
+
+I think equipoise remains in two places. First, in the frail or elderly
+population who are ineligible for treatment inside the ICU. Second, in those with
+reletively low CRPs, in whom significant inflamation is thought not to be an issue.
+I would randomise between steroids and placebo in patients that meet the standard CAPE-COD
+crtieria, but have a very low inflammatory phenome. Last, those that go on to develop
+ARDS physiology but who were already started on steroids. I don't know what to do
+with these patients, are prior RCTs have generally excluded them ("prior steroid exposure").
+
+## My Recommendations
+
+- Hydrocortisone should be considered for patients with "severe" CAP, who:
+  - meet inclusion criteria listed above (pragmatically, I would use CURB-65 instead of the PSI. Since thats already baked into standard UK practice.)
+  - are being *considered* for admission to the ICU (so we can start steroids early,
+prior to admission to the ICU, and continue in line with the CAPE-COD protocol)
+  - where influenza has been tested and excluded.
+- with greater confidence where the CRP is high (above approximately 200 mg/L)
+- Pragmatically, consider dosing at 50 mg QDS, and implement the taper used in the trial (or stop at ICU discharge)
+- Add in fludrocortisone if the patient develops septic shock.
+- Switch to high dose dexamethasone if the patient develops severe ARDS.
+
+- Consider a more liberal use of procalcitonin in these patients, since we would
+lose the signal from white cells (and to a lesser extent CRP) to monitor for secondary infective
+complications.

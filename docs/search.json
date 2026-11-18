@@ -46,7 +46,7 @@
     "href": "people.html",
     "title": "Lab Members",
     "section": "",
-    "text": "Pippa Whitaker\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdam Reynolds\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEd Palmer\n\n\n\nlab head\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Adam Reynolds\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEd Palmer\n\n\n\nLab Head\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPippa Whitaker\n\n\n\nActive Lab Member\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lab-charter.html",
@@ -131,5 +131,19 @@
     "title": "Onboarding",
     "section": "",
     "text": "Our on-boarding process is heavily inspired by Kirstie Whittacre’s Lab group. On-boarding aims to:\n\nComplete a minimum example of using git and github, by;\nWriting a short member profile.\nInvesting some time in the lab group.\n\nThis process also serves to create a front end directory of lab members, building our community over time.\nIn order to “on-board”, please complete the following technical steps:\n\nInstall git on your local machine.\nClone a copy of this website repo and create a new branch.\nName the branch as firstname-lastname (e.g. ed-palmer)\nAdd a profile page as a .qmd document in the people folder:\n\nUse a category of “active lab member” in the yaml header of the file.\nTake a look at any of the other profiles for examples.\n\nPush your branch to github.\nSubmit a pull request on github.\n\nThis will complete the technical aspects of on-boarding. You will have learnt through this process, all the vital steps that we will be using for sharing code and completing project peer review. If it feels daunting, please do not worry. We are all here to help you with this process.\nBeyond this, new members are expected to:\n\nRead and understand the lab charter, and follow our code of conduct.\nContribute your knowledge and experience to others in the lab (as we will do with you.)\n\nWe look forward to seeing you in the lab!"
+  },
+  {
+    "objectID": "status.html",
+    "href": "status.html",
+    "title": "Project status",
+    "section": "",
+    "text": "Arrivals\n\n\nProjects in progress\n\n\n\n\nReplay\n\n\n\n\nCurrent projects: status, theme and estimated arrival\n\n\n\n\nFlight\n\n\nProject\n\n\nTheme\n\n\nStatus\n\n\nEst. arrival\n\n\n\n\n\n\nCR01\n\n\nCreatine study\n\n\nICU recovery\n\n\nIn flight\n\n\nJun 2027\n\n\n\n\nPM02\n\n\nPeri-Met study\n\n\nSeptic shock\n\n\nBoarding\n\n\nDec 2027\n\n\n\n\nDS03\n\n\nData Sci for Docs\n\n\nTeaching / R\n\n\nIn flight\n\n\nMar 2027\n\n\n\n\n\n\nScheduled\n\n\nBoarding\n\n\nIn flight\n\n\nDelayed\n\n\nLanded\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Project status",
+    "section": "",
+    "text": "Arrivals\n\n\nProjects in progress\n\n\n\n\nReplay\n\n\n\n\nCurrent projects: status, theme and estimated arrival\n\n\n\n\nFlight\n\n\nProject\n\n\nTheme\n\n\nStatus\n\n\nEst. arrival\n\n\n\n\n\n\nCR01\n\n\nCreatine study\n\n\nICU recovery\n\n\nIn flight\n\n\nJun 2027\n\n\n\n\nPM02\n\n\nPeri-Met study\n\n\nSeptic shock\n\n\nBoarding\n\n\nDec 2027\n\n\n\n\nDS03\n\n\nData Sci for Docs\n\n\nTeaching / R\n\n\nIn flight\n\n\nMar 2027\n\n\n\n\nHP04\n\n\nHigh Performance ICU\n\n\nSafety Systems\n\n\nBoarding\n\n\nDec 2026\n\n\n\n\nHP04\n\n\nHigh Performance ICU\n\n\nSafety Systems\n\n\nBoarding\n\n\nDec 2026\n\n\n\n\nSS05\n\n\nSimulation Suite\n\n\nTeaching\n\n\nIn Flight\n\n\nJan 2027\n\n\n\n\nFS06\n\n\nHospital Flow\n\n\nOperational\n\n\nScheduled\n\n\nMar 2027\n\n\n\n\n\n\nScheduled\n\n\nBoarding\n\n\nIn flight\n\n\nDelayed\n\n\nLanded\n\n\n\n\nNo matching items"
   }
 ]

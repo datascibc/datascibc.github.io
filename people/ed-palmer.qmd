@@ -1,10 +1,11 @@
 ---
 title: "Ed Palmer"
+image: images/ed-palmer.jpg
 categories:
-  - "lab head"
+  - "Lab Head"
 about:
   template: jolla
-  image: images/ed-palmer.jpg
+  image: ./images/ed-palmer.jpg
   links:
     - icon: bluesky
       text: Bluesky

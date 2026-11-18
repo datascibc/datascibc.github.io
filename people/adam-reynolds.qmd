@@ -1,5 +1,6 @@
 ---
 title: "Adam Reynolds"
+image: images/adam-reynolds.jpg
 categories:
   - "Active Lab Member"
 about:

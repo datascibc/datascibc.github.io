@@ -6,9 +6,17 @@
   {
     "listing": "/people.html",
     "items": [
-      "/people/pippa-whitaker.html",
       "/people/adam-reynolds.html",
-      "/people/ed-palmer.html"
+      "/people/ed-palmer.html",
+      "/people/pippa-whitaker.html"
     ]
+  },
+  {
+    "listing": "/status.html",
+    "items": []
+  },
+  {
+    "listing": "/projects.html",
+    "items": []
   }
 ]

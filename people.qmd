@@ -3,6 +3,6 @@ title: "Lab Members"
 listing: 
   contents: people
   type: default
-  sort: "date desc"
+  sort: "title"
   categories: true
 ---

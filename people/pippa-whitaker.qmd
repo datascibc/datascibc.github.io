@@ -1,5 +1,6 @@
 ---
 title: "Pippa Whitaker"
+image: images/pippa-whitaker.jpeg
 categories:
   - "Active Lab Member"
 about:

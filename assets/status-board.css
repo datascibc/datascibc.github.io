@@ -1,0 +1,251 @@
+/* =====================================================================
+   Split-flap status board
+   - Wide screens: airport-style board (one row per project)
+   - Narrow screens (board narrower than 640px): stacked cards
+   The switch is a container query on .sb, so it responds to the width
+   of the space the board sits in, not just the screen.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap");
+
+.sb {
+  container-type: inline-size;
+  margin: 1.5rem 0;
+}
+
+.sb-board {
+  /* ---- Colours: change these to restyle the board ---- */
+  --sb-bg: #0b0b0c;
+  --sb-text: #f2f2f2;
+  --sb-muted: #a8a8b0;
+  --sb-rule: #26262a;
+  --sb-accent: #ffc233;
+  --sb-scheduled: #f2f2f2;
+  --sb-boarding: #ffc233;
+  --sb-in-flight: #4ade80;
+  --sb-delayed: #ff6b6b;
+  --sb-landed: #7cc4ff;
+
+  /* ---- Sizing ----
+     --total-chars and --cols are set by status-board.js from the data,
+     so the tiles shrink to fit the width available (max 26px wide). */
+  --pad: clamp(16px, 3cqi, 48px);
+  --col-gap: clamp(8px, 1.6cqi, 24px);
+  --gap: 3px;
+  --tile-w: clamp(
+    9px,
+    calc((100cqi - 2 * var(--pad) - (var(--cols, 5) - 1) * var(--col-gap)) / var(--total-chars, 50) - var(--gap)),
+    26px
+  );
+
+  background: var(--sb-bg);
+  color: var(--sb-text);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  padding: var(--pad);
+  border-radius: 6px;
+}
+
+/* ---------- Header ---------- */
+.sb-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--sb-rule);
+}
+.sb-title { display: flex; align-items: center; gap: 14px; }
+.sb-icon {
+  width: 40px; height: 40px; flex: none;
+  fill: none; stroke: var(--sb-accent); stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.sb-heading {
+  margin: 0; font-size: 2.4rem; font-weight: 700; line-height: 1;
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.sb-subheading {
+  margin: 0; font-size: 1rem; font-weight: 500; color: var(--sb-muted);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.sb-replay {
+  min-height: 44px; padding: 0 16px;
+  background: #1c1c20; color: var(--sb-accent);
+  border: 1px solid #3a3a40; border-radius: 4px;
+  font: inherit; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer;
+}
+.sb-replay:hover { background: #26262b; }
+.sb-replay:focus-visible { outline: 2px solid var(--sb-accent); outline-offset: 2px; }
+
+/* ---------- Table (wide layout) ---------- */
+/* Reset anything the site theme (Bootstrap/Quarto) applies to tables.
+   !important on the background because Quarto's own table rules win otherwise. */
+.sb-table, .sb-table thead, .sb-table tbody, .sb-table tr, .sb-table th, .sb-table td {
+  background: transparent !important; border: 0; padding: 0; color: inherit;
+  box-shadow: none;
+}
+.sb-table {
+  width: auto;
+  border-collapse: separate;
+  border-spacing: var(--col-gap) calc(var(--tile-w) * 0.55);
+  margin: 0 calc(-1 * var(--col-gap));
+}
+.sb-table th {
+  text-align: left; vertical-align: bottom;
+  font-size: max(0.75rem, calc(var(--tile-w) * 0.7));
+  font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #8e8e96;
+}
+.sb-table td { vertical-align: middle; text-transform: uppercase; }
+
+/* Status colours: the template gives each row a class like status-in-flight */
+.status-scheduled .sb-status, .sb-legend .status-scheduled { color: var(--sb-scheduled); }
+.status-boarding  .sb-status, .sb-legend .status-boarding  { color: var(--sb-boarding); }
+.status-in-flight .sb-status, .sb-legend .status-in-flight { color: var(--sb-in-flight); }
+.status-delayed   .sb-status, .sb-legend .status-delayed   { color: var(--sb-delayed); }
+.status-landed    .sb-status, .sb-legend .status-landed    { color: var(--sb-landed); }
+
+/* ---------- Flap tiles (built by status-board.js) ---------- */
+.sb-flaps { display: inline-flex; gap: var(--gap); vertical-align: middle; }
+.sb-tile {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--tile-w); height: calc(var(--tile-w) * 1.55);
+  border-radius: 3px; overflow: hidden;
+  background: linear-gradient(#26262b 0%, #1e1e22 50%, #17171a 50%, #121215 100%);
+  box-shadow: inset 0 1px 0 #34343a, 0 2px 3px #000;
+}
+.sb-tile::after { /* the hinge line across the middle of each flap */
+  content: ""; position: absolute; left: 0; right: 0;
+  top: calc(50% - 0.5px); height: 1px; background: rgba(0, 0, 0, 0.75);
+}
+.sb-glyph {
+  display: inline-block;
+  font-size: calc(var(--tile-w) * 1.15);
+  font-weight: 600; line-height: 1;
+}
+/* Plain-text copy of each cell: read by screen readers, hidden on screen
+   (shown again for some cells in the card layout below). */
+.sb-text {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Legend ---------- */
+.sb-legend {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  list-style: none; margin: 14px 0 0; padding: 14px 0 0;
+  border-top: 2px solid var(--sb-rule);
+  font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.sb-legend li::before { content: "■ "; }
+
+/* =====================================================================
+   Card layout for narrow containers (phones, sidebars)
+   ===================================================================== */
+@container (max-width: 640px) {
+  .sb-board { --pad: 14px; border-radius: 8px; }
+  .sb-heading { font-size: 1.8rem; }
+  .sb-subheading { font-size: 0.85rem; }
+  .sb-icon { width: 30px; height: 30px; }
+
+  .sb-table thead { display: none; }
+  .sb-table, .sb-table tbody { display: block; margin: 0; border-spacing: 0; }
+
+  .sb-table .sb-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "code    status"
+      "project project"
+      "theme   eta";
+    gap: 10px 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: #131316 !important; /* !important to beat the table reset above */
+    border: 1px solid #222226;
+    border-radius: 8px;
+  }
+  .sb-code    { grid-area: code; }
+  .sb-status  { grid-area: status; text-align: right; }
+  .sb-project { grid-area: project; }
+  .sb-theme   { grid-area: theme; }
+  .sb-eta     { grid-area: eta; text-align: right; }
+
+  /* Flight code and status become plain text in the card layout */
+  .sb-code .sb-flaps, .sb-status .sb-flaps { display: none; }
+  .sb-code .sb-text, .sb-status .sb-text {
+    position: static; width: auto; height: auto; clip: auto;
+    font-size: 0.95rem; letter-spacing: 0.12em;
+  }
+  .sb-code .sb-text { color: var(--sb-muted); }
+  .sb-code .sb-text::before { content: "Flight "; }
+  .sb-status .sb-text { font-weight: 700; }
+  .sb-status .sb-text::before { content: "● "; }
+
+  /* Project name: tiles sized to fit the longest name across the card */
+  .sb-project {
+    --tile-w: min(18px, calc((100cqi - 2 * var(--pad) - 50px) / var(--project-chars, 17) - var(--gap)));
+  }
+  /* Theme and arrival: small tiles with a label above */
+  .sb-theme, .sb-eta {
+    --gap: 2px;
+    --tile-w: min(13px, calc((100cqi - 2 * var(--pad) - 60px) / (var(--theme-chars, 12) + var(--eta-chars, 8)) - var(--gap)));
+  }
+  .sb-theme::before, .sb-eta::before {
+    display: block; margin-bottom: 4px;
+    font-size: 0.8rem; letter-spacing: 0.15em; color: var(--sb-muted);
+  }
+  .sb-theme::before { content: "Theme"; }
+  .sb-eta::before { content: "Arrival"; }
+  .sb-eta .sb-glyph { color: var(--sb-accent); }
+  .sb-tile { border-radius: 2px; box-shadow: inset 0 1px 0 #34343a; }
+
+  .sb-legend { gap: 6px 16px; font-size: 0.85rem; }
+}
+
+/* =====================================================================
+   Dark page: makes the whole page match the board.
+   Only applies to pages with `body-classes: sb-dark-page` in their
+   front matter, so the rest of the site keeps its normal theme.
+   ===================================================================== */
+body.sb-dark-page {
+  --sb-page-bg: #0b0b0c;
+  --sb-page-text: #e6e6ea;
+  --sb-page-muted: #a8a8b0;
+  background: var(--sb-page-bg);
+  color: var(--sb-page-text);
+}
+body.sb-dark-page h1, body.sb-dark-page h2, body.sb-dark-page h3,
+body.sb-dark-page .title { color: var(--sb-page-text); }
+body.sb-dark-page a { color: #ffc233; }
+body.sb-dark-page a:hover { color: #ffe08a; }
+
+/* Hide the page title (it is still used for the browser tab and search).
+   title-block-style: none doesn't work here because Quarto adds a title
+   header to listing pages regardless. */
+body.sb-dark-page #title-block-header { display: none; }
+body.sb-dark-page #quarto-document-content { padding-top: 1rem; }
+
+/* Navbar */
+body.sb-dark-page .navbar {
+  background-color: var(--sb-page-bg) !important;
+  border-bottom: 1px solid #26262a;
+}
+body.sb-dark-page .navbar .navbar-title,
+body.sb-dark-page .navbar .nav-link,
+body.sb-dark-page .navbar .bi,
+body.sb-dark-page .navbar .aa-DetachedSearchButtonIcon { color: var(--sb-page-muted) !important; }
+body.sb-dark-page .navbar .nav-link.active,
+body.sb-dark-page .navbar .nav-link:hover { color: #ffc233 !important; }
+body.sb-dark-page .navbar-toggler-icon { filter: invert(1); }
+
+/* The board no longer needs to stand out from the page */
+body.sb-dark-page .sb-board { padding-left: 0; padding-right: 0; }
+body.sb-dark-page .sb-legend, body.sb-dark-page .sb-header { border-color: #26262a; }
+@container (max-width: 640px) {
+  body.sb-dark-page .sb-board { padding-left: 0; padding-right: 0; }
+}

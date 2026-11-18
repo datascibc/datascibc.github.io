@@ -1,0 +1,54 @@
+# Status board data: one entry per project.
+# The order here is the order on the board.
+#
+#   code     short "flight number" (any letters/digits; ~4 characters looks best)
+#   project  name shown on the board (keep it short: about 17 characters max)
+#   theme    one- or two-word theme
+#   status   one of: Scheduled, Boarding, In flight, Delayed, Landed
+#            (anything else still shows, just in white)
+#   eta      estimated arrival, written however you like, e.g. "Jun 2027"
+#
+# Text is shown in capitals on the board, so the case you use here doesn't matter.
+# NB: the eta values below are PLACEHOLDERS.
+
+- code: CR01
+  project: Creatine study
+  theme: ICU recovery
+  status: In flight
+  eta: Jun 2027
+
+- code: PM02
+  project: Peri-Met study
+  theme: Septic shock
+  status: Boarding
+  eta: Dec 2027
+
+- code: DS03
+  project: Data Sci for Docs
+  theme: Teaching / R
+  status: In flight
+  eta: Mar 2027
+
+- code: HP04
+  project: High Performance ICU
+  theme: Safety Systems
+  status: Boarding
+  eta: Dec 2026
+
+- code: HP04
+  project: High Performance ICU
+  theme: Safety Systems
+  status: Boarding
+  eta: Dec 2026
+
+- code: SS05
+  project: Simulation Suite
+  theme: Teaching
+  status: In Flight
+  eta: Jan 2027
+
+- code: FS06
+  project: Hospital Flow
+  theme: Operational
+  status: Scheduled
+  eta: Mar 2027

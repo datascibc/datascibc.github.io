@@ -1,0 +1,21 @@
+---
+title: "Project status"
+css: assets/status-board.css
+body-classes: sb-dark-page   # black page, no title on the page (see the end of status-board.css)
+listing:
+  id: status-board
+  contents: data/projects.yml
+  template: _templates/status-board.ejs
+  sort: false
+  sort-ui: false
+  filter-ui: false
+  page-size: 100
+  fields: [code, project, theme, status, eta]
+---
+
+::: {#status-board .column-page}
+:::
+
+```{=html}
+<script src="assets/status-board.js" defer></script>
+```
