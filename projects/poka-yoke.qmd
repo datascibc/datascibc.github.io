@@ -5,9 +5,11 @@ subtitle: "Theme: Safety systems"
 
 [← Back to the board](../projects.qmd)
 
-## Peri-Met Study: peripheral metaraminol in septic shock
+## Mistake-proofing high performance cardiac arrest trolleys.
 
 :::: {.justify}
+
+Poka-yoke (ポカヨケ); mistake-proofing.
 
 When a patient's heart stops in hospital, staff fetch equipment from a
 resuscitation trolley: a set of drawers holding airway devices, needles, drugs
