@@ -49,3 +49,10 @@
   theme: Operational
   status: Scheduled
   eta: Mar 2027
+
+- code: LX07
+  project: Laxatives
+  theme: ICU
+  status: Landed
+  eta: Oct 2026
+  path: ../projects/laxatives.qmd
