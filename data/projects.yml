@@ -14,35 +14,30 @@
 - code: CR01
   project: Creatine study
   theme: ICU recovery
-  status: In flight
-  eta: Jun 2027
+  status: Scheduled
+  eta: Dec 2026
   path: ../projects/creatine.qmd
 
 - code: PM02
   project: Peri-Met study
   theme: Septic shock
-  status: Boarding
-  eta: Dec 2027
+  status: Scheduled
+  eta: Dec 2026
   path: ../projects/peri-met.qmd
 
 - code: DS03
-  project: Data Sci for Docs
+  project: Data Sci 4 Docs
   theme: Teaching / R
-  status: In flight
+  status: Boarding
   eta: Mar 2027
   path: ../projects/ds4d.qmd
 
 - code: HP04
-  project: High Performance ICU
+  project: Poka-yoke
   theme: Safety Systems
-  status: Boarding
+  status: Scheduled
   eta: Dec 2026
-
-- code: SS05
-  project: Simulation Suite
-  theme: Teaching
-  status: In Flight
-  eta: Jan 2027
+  path: ../projects/poka-yoke.qmd
 
 - code: FS06
   project: Hospital Flow

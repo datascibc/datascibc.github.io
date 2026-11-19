@@ -53,7 +53,7 @@
     "href": "projects.html",
     "title": "Project status",
     "section": "",
-    "text": "Arrivals\n\n\nProjects in progress\n\n\n\n\nReplay\n\n\n\n\nCurrent projects: status, theme and estimated arrival\n\n\n\n\nFlight\n\n\nProject\n\n\nTheme\n\n\nStatus\n\n\nEst. arrival\n\n\n\n\n\n\nCR01\n\n\nCreatine study\n\n\nICU recovery\n\n\nIn flight\n\n\nJun 2027\n\n\n\n\nPM02\n\n\nPeri-Met study\n\n\nSeptic shock\n\n\nBoarding\n\n\nDec 2027\n\n\n\n\nDS03\n\n\nData Sci for Docs\n\n\nTeaching / R\n\n\nIn flight\n\n\nMar 2027\n\n\n\n\nHP04\n\n\nHigh Performance ICU\n\n\nSafety Systems\n\n\nBoarding\n\n\nDec 2026\n\n\n\n\nSS05\n\n\nSimulation Suite\n\n\nTeaching\n\n\nIn Flight\n\n\nJan 2027\n\n\n\n\nFS06\n\n\nHospital Flow\n\n\nOperational\n\n\nScheduled\n\n\nMar 2027\n\n\n\n\nLX07\n\n\nLaxatives\n\n\nICU\n\n\nLanded\n\n\nOct 2026\n\n\n\n\n\n\nScheduled\n\n\nBoarding\n\n\nIn flight\n\n\nDelayed\n\n\nLanded\n\n\n\n\nNo matching items"
+    "text": "Arrivals\n\n\nProjects in progress\n\n\n\n\nReplay\n\n\n\n\nCurrent projects: status, theme and estimated arrival\n\n\n\n\nFlight\n\n\nProject\n\n\nTheme\n\n\nStatus\n\n\nEst. arrival\n\n\n\n\n\n\nCR01\n\n\nCreatine study\n\n\nICU recovery\n\n\nScheduled\n\n\nDec 2026\n\n\n\n\nPM02\n\n\nPeri-Met study\n\n\nSeptic shock\n\n\nScheduled\n\n\nDec 2026\n\n\n\n\nDS03\n\n\nData Sci 4 Docs\n\n\nTeaching / R\n\n\nBoarding\n\n\nMar 2027\n\n\n\n\nHP04\n\n\nPoka-yoke\n\n\nSafety Systems\n\n\nScheduled\n\n\nDec 2026\n\n\n\n\nFS06\n\n\nHospital Flow\n\n\nOperational\n\n\nScheduled\n\n\nMar 2027\n\n\n\n\nLX07\n\n\nLaxatives\n\n\nICU\n\n\nLanded\n\n\nOct 2026\n\n\n\n\n\n\nScheduled\n\n\nBoarding\n\n\nIn flight\n\n\nDelayed\n\n\nLanded\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/ds4d.html",
@@ -63,39 +63,32 @@
     "text": "← Back to the board\nPlaceholder: write the project description here.\nA re-development of my R teaching course for clinicians."
   },
   {
-    "objectID": "projects/laxatives.html",
-    "href": "projects/laxatives.html",
-    "title": "Laxative review",
+    "objectID": "projects/peri-met.html",
+    "href": "projects/peri-met.html",
+    "title": "Peri-Met study",
     "section": "",
     "text": "← Back to the board"
   },
   {
-    "objectID": "projects/laxatives.html#a-systematic-review-of-laxative-use-in-critically-unwell-patients-are-we-doing-more-harm-than-good",
-    "href": "projects/laxatives.html#a-systematic-review-of-laxative-use-in-critically-unwell-patients-are-we-doing-more-harm-than-good",
-    "title": "Laxative review",
-    "section": "A systematic review of laxative use in critically unwell patients: Are we doing more harm than good?",
-    "text": "A systematic review of laxative use in critically unwell patients: Are we doing more harm than good?\n\nDiarrhoea is common in critically unwell patients and is associated with prolonged intensive care unit (ICU) stay and increased mortality. Its causes are multifactorial; however, emerging evidence suggests that laxative exposure may be an important, and potentially modifiable, contributor. Laxatives are frequently prescribed in ICU patients to prevent constipation, increasingly as part of bowel management protocols (BMP) and care bundles, despite limited supporting evidence. This systematic review evaluated the effects and prevailing associations of laxatives on clinical outcomes in critically unwell adults.\nRead the full paper"
+    "objectID": "projects/peri-met.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
+    "href": "projects/peri-met.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
+    "title": "Peri-Met study",
+    "section": "Peri-Met Study: peripheral metaraminol in septic shock",
+    "text": "Peri-Met Study: peripheral metaraminol in septic shock\n\nSeptic shock is a life-threatening complication of infection in which blood pressure falls dangerously low. Treatment often includes medicines called vasopressors, which raise blood pressure by narrowing the blood vessels. Increasingly, these are started through a standard drip in the arm rather than waiting for a larger “central” line to be placed.\nIn the UK, the medicine most often used this way is metaraminol. International guidelines recommend a different drug, noradrenaline, and the two have never been compared directly in a clinical trial in septic shock.\nThe Peri-Met Study aims to address this gap. We are first reviewing the published evidence, and will use this to inform on whether or not a small pilot trial at the Whittington Hospital would be appropriate. The pilot will test whether a larger, multicentre trial is feasible."
   },
   {
-    "objectID": "projects/laxatives.html#lab-members-working-on-this",
-    "href": "projects/laxatives.html#lab-members-working-on-this",
-    "title": "Laxative review",
+    "objectID": "projects/peri-met.html#lab-members-working-on-this",
+    "href": "projects/peri-met.html#lab-members-working-on-this",
+    "title": "Peri-Met study",
     "section": "Lab members working on this",
-    "text": "Lab members working on this\n\nAdam Reynolds\nPippa Whitaker\nEd Palmer"
+    "text": "Lab members working on this\n\nEd Palmer\nPippa Whitaker\nAdam Reynolds"
   },
   {
-    "objectID": "CODE_OF_CONDUCT.html",
-    "href": "CODE_OF_CONDUCT.html",
-    "title": "Code of Conduct",
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching Resources",
     "section": "",
-    "text": "This code of conduct is adapted from The Whitaker Lab code of conduct, which we consider gold standard.\nWe value the participation of every member of our community and want to ensure that every contributor has an enjoyable and fulfilling experience. Accordingly, everyone who participates in any DataSciBC project is expected to show respect and courtesy to other community members at all time.\nEd Palmer, as head of the DataSciBC (aka “Palmer-Lab”), and all lab members, are dedicated to a positive, respectful, and harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.\nAs a community, we do not tolerate bullying or harassment by and/or of members of our community in any form.\nWe are particularly motivated to support new and/or anxious collaborators, those who would consider themselves under-represented in our field, and anyone at any stage who are looking to learn and develop new skills.\nTo make clear what is expected, we ask all members of the community to conform to the following Code of Conduct:\n\nAll communication—online and in person—should be appropriate for a professional audience including people of many different backgrounds.\nBe respectful to others. Do not insult or put down other contributors. It can take a lot of courage to showcase your work to others and await critical feedback. We seek to make that experience a positive one.\n\nTo report an issue please contact Ed Palmer. All communication will be treated as confidential.\n\n\nThis sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
-  },
-  {
-    "objectID": "CODE_OF_CONDUCT.html#flexible-working-hours",
-    "href": "CODE_OF_CONDUCT.html#flexible-working-hours",
-    "title": "Code of Conduct",
-    "section": "",
-    "text": "This sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
+    "text": "continuous renal replacement simulator."
   },
   {
     "objectID": "lab-charter.html",
@@ -133,32 +126,60 @@
     "text": "Affiliations & Collaborations\n\nThe Whittington Hospital (our independent host organisation).\nHarris Lab: UCLH.\nLSHTM causal inference group."
   },
   {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching Resources",
+    "objectID": "CODE_OF_CONDUCT.html",
+    "href": "CODE_OF_CONDUCT.html",
+    "title": "Code of Conduct",
     "section": "",
-    "text": "continuous renal replacement simulator."
+    "text": "This code of conduct is adapted from The Whitaker Lab code of conduct, which we consider gold standard.\nWe value the participation of every member of our community and want to ensure that every contributor has an enjoyable and fulfilling experience. Accordingly, everyone who participates in any DataSciBC project is expected to show respect and courtesy to other community members at all time.\nEd Palmer, as head of the DataSciBC (aka “Palmer-Lab”), and all lab members, are dedicated to a positive, respectful, and harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.\nAs a community, we do not tolerate bullying or harassment by and/or of members of our community in any form.\nWe are particularly motivated to support new and/or anxious collaborators, those who would consider themselves under-represented in our field, and anyone at any stage who are looking to learn and develop new skills.\nTo make clear what is expected, we ask all members of the community to conform to the following Code of Conduct:\n\nAll communication—online and in person—should be appropriate for a professional audience including people of many different backgrounds.\nBe respectful to others. Do not insult or put down other contributors. It can take a lot of courage to showcase your work to others and await critical feedback. We seek to make that experience a positive one.\n\nTo report an issue please contact Ed Palmer. All communication will be treated as confidential.\n\n\nThis sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
   },
   {
-    "objectID": "projects/peri-met.html",
-    "href": "projects/peri-met.html",
-    "title": "Peri-Met study",
+    "objectID": "CODE_OF_CONDUCT.html#flexible-working-hours",
+    "href": "CODE_OF_CONDUCT.html#flexible-working-hours",
+    "title": "Code of Conduct",
+    "section": "",
+    "text": "This sentence is stolen from Bastian Greshake’s email footer and forms the basis of the DataSciBC’s policy on flexible working:\n\nWhile I may be sending this email outside my normal office hours, I have no expectation to receive a reply outside yours.\n\nThe hours that members of the lab choose to put in is up to them. This is a voluntary endeavour, and we understand that time is both a valuable and precious commodity. We are each welcome to send work-related communications or pull requests over the weekend or late at night, but no lab members are required or expected to reply to them outside of “typical” working hours. The DataSciBC maintains a whatsapp group for more casual communication, and these same principles apply. Members are welcome to mute, or even leave and rejoin when convenient.\nIdeally, all lab members will have some time each week to overlap with Ed in order to stay in touch on any challenges or successes. The Thursday morning meeting is the best opportunity for this."
+  },
+  {
+    "objectID": "projects/laxatives.html",
+    "href": "projects/laxatives.html",
+    "title": "Laxative review",
     "section": "",
     "text": "← Back to the board"
   },
   {
-    "objectID": "projects/peri-met.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
-    "href": "projects/peri-met.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
-    "title": "Peri-Met study",
-    "section": "Peri-Met Study: peripheral metaraminol in septic shock",
-    "text": "Peri-Met Study: peripheral metaraminol in septic shock\n\nSeptic shock is a life-threatening complication of infection in which blood pressure falls dangerously low. Treatment often includes medicines called vasopressors, which raise blood pressure by narrowing the blood vessels. Increasingly, these are started through a standard drip in the arm rather than waiting for a larger “central” line to be placed.\nIn the UK, the medicine most often used this way is metaraminol. International guidelines recommend a different drug, noradrenaline, and the two have never been compared directly in a clinical trial in septic shock.\nThe Peri-Met Study aims to address this gap. We are first reviewing the published evidence, and will use this to inform on whether or not a small pilot trial at the Whittington Hospital would be appropriate. The pilot will test whether a larger, multicentre trial is feasible."
+    "objectID": "projects/laxatives.html#a-systematic-review-of-laxative-use-in-critically-unwell-patients-are-we-doing-more-harm-than-good",
+    "href": "projects/laxatives.html#a-systematic-review-of-laxative-use-in-critically-unwell-patients-are-we-doing-more-harm-than-good",
+    "title": "Laxative review",
+    "section": "A systematic review of laxative use in critically unwell patients: Are we doing more harm than good?",
+    "text": "A systematic review of laxative use in critically unwell patients: Are we doing more harm than good?\n\nDiarrhoea is common in critically unwell patients and is associated with prolonged intensive care unit (ICU) stay and increased mortality. Its causes are multifactorial; however, emerging evidence suggests that laxative exposure may be an important, and potentially modifiable, contributor. Laxatives are frequently prescribed in ICU patients to prevent constipation, increasingly as part of bowel management protocols (BMP) and care bundles, despite limited supporting evidence. This systematic review evaluated the effects and prevailing associations of laxatives on clinical outcomes in critically unwell adults.\nRead the full paper"
   },
   {
-    "objectID": "projects/peri-met.html#lab-members-working-on-this",
-    "href": "projects/peri-met.html#lab-members-working-on-this",
-    "title": "Peri-Met study",
+    "objectID": "projects/laxatives.html#lab-members-working-on-this",
+    "href": "projects/laxatives.html#lab-members-working-on-this",
+    "title": "Laxative review",
     "section": "Lab members working on this",
-    "text": "Lab members working on this\n\nEd Palmer\nPippa Whitaker\nAdam Reynolds"
+    "text": "Lab members working on this\n\nAdam Reynolds\nPippa Whitaker\nEd Palmer"
+  },
+  {
+    "objectID": "projects/poka-yoke.html",
+    "href": "projects/poka-yoke.html",
+    "title": "Poka-yoke",
+    "section": "",
+    "text": "← Back to the board"
+  },
+  {
+    "objectID": "projects/poka-yoke.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
+    "href": "projects/poka-yoke.html#peri-met-study-peripheral-metaraminol-in-septic-shock",
+    "title": "Poka-yoke",
+    "section": "Peri-Met Study: peripheral metaraminol in septic shock",
+    "text": "Peri-Met Study: peripheral metaraminol in septic shock\n\nWhen a patient’s heart stops in hospital, staff fetch equipment from a resuscitation trolley: a set of drawers holding airway devices, needles, drugs and other items. Every second counts, so the right item needs to be in the right place, in date, and quick to find. Trolleys are checked every day, but checking a drawer full of small items is easy to get wrong. Trolleys in different parts of a hospital can also be laid out differently, which slows down staff who move between wards. We want to test a simple idea. Each drawer gets a foam insert with a shaped space for every item, and a photo of the item at the bottom of that space. If something is missing, the empty space and photo show it straight away.\nThis multi-staged project uses audit, novel research ideas and implementation science. We aim to pre-register our approach and publish our findings regardless of what they show."
+  },
+  {
+    "objectID": "projects/poka-yoke.html#lab-members-working-on-this",
+    "href": "projects/poka-yoke.html#lab-members-working-on-this",
+    "title": "Poka-yoke",
+    "section": "Lab members working on this",
+    "text": "Lab members working on this\n\nEd Palmer\nLucy Bates"
   },
   {
     "objectID": "projects/creatine.html",

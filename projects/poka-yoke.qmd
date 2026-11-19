@@ -1,0 +1,30 @@
+---
+title: "Poka-yoke"
+subtitle: "Theme: Safety systems"
+---
+
+[← Back to the board](../projects.qmd)
+
+## Peri-Met Study: peripheral metaraminol in septic shock
+
+:::: {.justify}
+
+When a patient's heart stops in hospital, staff fetch equipment from a
+resuscitation trolley: a set of drawers holding airway devices, needles, drugs
+and other items. Every second counts, so the right item needs to be in the right
+place, in date, and quick to find. Trolleys are checked every day, but checking
+a drawer full of small items is easy to get wrong. Trolleys in different parts
+of a hospital can also be laid out differently, which slows down staff who move
+between wards. We want to test a simple idea. Each drawer gets a foam insert
+with a shaped space for every item, and a photo of the item at the bottom of
+that space. If something is missing, the empty space and photo show it straight
+away.
+
+This multi-staged project uses audit, novel research ideas and implementation science. We aim to pre-register our approach and publish our findings regardless of what they show.
+
+::::
+
+## Lab members working on this
+
+- [Ed Palmer](../people/ed-palmer.qmd)
+- Lucy Bates
